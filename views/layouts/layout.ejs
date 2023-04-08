@@ -1,14 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>New Sails App</title>
+    <title>TheraMin</title>
 
     <!-- Viewport mobile tag for sensible mobile support -->
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1"
+    />
 
-    <%/* If you want to discourage search engines from indexing this site, uncomment the following line: */%>
-    <%/* <meta name="robots" content="noindex"> */%>
-
+    <%/* If you want to discourage search engines from indexing this site,
+    uncomment the following line: */%> <%/*
+    <meta name="robots" content="noindex" />
+    */%>
 
     <!--
         Stylesheets and Preprocessors
@@ -32,13 +36,54 @@
     -->
 
     <!--STYLES-->
+    <link rel="stylesheet" href="/dependencies/bootstrap.min.css" />
+    <link rel="stylesheet" href="/styles/importer.css" />
     <!--STYLES END-->
   </head>
 
   <body>
+    <header>
+      <div class="container-fluid text-center">
+        <a href="/"><img src="/images/icon_schrift_daneben.png" /></a>
+      </div>
+      <nav class="navbar navbar-expand-md m-4 justify-content-end">
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav col-md-9">
+            <li class="nav-item">
+              <a class="nav-link" href="#">Praxissuche</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Mein Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Terminübersicht</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Praxis verwalten</a>
+            </li>
+          </ul>
+          <ul class="navbar-nav col-md-3 justify-content-end">
+            <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link" href="#">Registrieren</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
     <%- body %>
-
-
 
     <!--
         Client-side Templates
@@ -64,7 +109,6 @@
     <!--TEMPLATES-->
     <!--TEMPLATES END-->
 
-
     <!--
         Server-side View Locals
         ========================
@@ -79,7 +123,6 @@
         https://sailsjs.com/docs/concepts/views/locals#?escaping-untrusted-data-using-exposelocalstobrowser
 
     -->
-
 
     <!--
 
@@ -105,6 +148,8 @@
     -->
 
     <!--SCRIPTS-->
+    <script src="/dependencies/sails.io.js"></script>
+    <script src="/dependencies/bootstrap.min.js"></script>
     <!--SCRIPTS END-->
   </body>
 </html>
