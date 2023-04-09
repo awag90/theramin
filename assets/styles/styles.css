@@ -1,0 +1,26 @@
+.social-btn{
+    display: flex;
+    width:40px;
+    height: 40px;
+    border-radius: 20px;
+    color: white;
+    background-color: black;
+    padding-top: 10px;
+}
+
+#fb{
+    background-color: #3b5998;
+}
+
+#twitter{
+    background-color: #55acee;
+}
+
+#linkedin{
+    background-color: #0082ca;
+}
+
+#yt{
+    background-color: #ed302f;
+}
+
