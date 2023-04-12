@@ -40,15 +40,20 @@
     <link rel="stylesheet" href="/styles/importer.css">
     <link rel="stylesheet" href="/styles/styles.css">
     <!--STYLES END-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+      rel="stylesheet"
+    />
   </head>
 
-  <body class ="bg-light">
+  <body class="bg-light">
     <header class="sticky-top">
       <div class="container-fluid text-center bg-light">
         <a href="/"><img src="/images/icon_schrift_daneben.png" /></a>
       </div>
-      <nav class="navbar navbar-expand-md ms-3 justify-content-end navbar-dark bg-success">
+      <nav
+        class="navbar navbar-expand-md ms-3 justify-content-end navbar-dark bg-primary"
+      >
         <button
           class="navbar-toggler me-3"
           type="button"
@@ -59,43 +64,59 @@
         >
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse ms-auto into-burger order-0" id="navbarNav">
+        <div
+          class="collapse navbar-collapse ms-auto into-burger order-0"
+          id="navbarNav"
+        >
           <ul class="navbar-nav">
-            <li class="nav-item"><a class="nav-item nav-link" href="#">Praxissuche</a></li>
-            <li class="nav-item"><a class="nav-item nav-link" href="#">Mein Profil</a></li>
-            <li class="nav-item"><a class="nav-item nav-link" href="#">Terminübersicht</a></li>
-            <li class="nav-item"><a class="nav-item nav-link" href="#">Praxis verwalten</a></li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Praxissuche</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Mein Profil</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Terminübersicht</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Praxis verwalten</a>
+            </li>
           </ul>
-          </div>
-          <div class="collapse navbar-collapse me-4 justify-content-end into-burger order-1">
-            <ul class="navbar-nav">
-              <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Registrieren</a></li>
-            </ul>
-          </div>
+        </div>
+        <div
+          class="collapse navbar-collapse me-4 justify-content-end into-burger order-1"
+        >
+          <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link text-white" href="#">Login</a></li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="#">Registrieren</a>
+            </li>
+          </ul>
         </div>
       </nav>
     </header>
 
     <%- body %>
 
-    <footer class="footer bg-light">
-      <div class="container">
-        <div class="row justify-content-center ">
-          <img class="" src="/images/icon_allein.png" style="width: 200px;">
+    <footer class="footer bg-light mt-2">
+      <div class="container-fluid">
+        <div class="row bg-dark p-2 mt-0"></div>
+        <div class="row justify-content-center">
+          <img class="" src="/images/icon_allein.png" style="width: 200px" />
         </div>
         <div class="row justify-content-center mt-4">
-            <a href="#" class="btn social-btn fa fa-facebook m-1" id="fb"></a>
-            <a href="#" class="btn social-btn fa fa-twitter m-1" id="twitter"> </a>
-            <a hraf="#" class="btn social-btn fa fa-linkedin m-1" id="linkedin"> </a>
-            <a href="#" class="btn social-btn fa fa-youtube m-1" id="yt"> </a>
+          <a href="#" class="btn social-btn fa fa-facebook m-1" id="fb"></a>
+          <a href="#" class="btn social-btn fa fa-twitter m-1" id="twitter">
+          </a>
+          <a hraf="#" class="btn social-btn fa fa-linkedin m-1" id="linkedin">
+          </a>
+          <a href="#" class="btn social-btn fa fa-youtube m-1" id="yt"> </a>
         </div>
         <div class="row justify-content-center mb-5 mt-4">
           <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Kontakt</a>
           <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Impressum</a>
         </div>
       </div>
-
     </footer>
 
     <!--
