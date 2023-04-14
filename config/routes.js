@@ -21,6 +21,12 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+  //Practice
+  'GET /practice': 'PracticeController.find',
+  'GET /practice/new': {view:'pages/practice/new'},
+  'GET /practice/:id': 'PracticeController.findOne',
+  'POST /practice' : 'PracticeController.create',
+
 
   /***************************************************************************
   *                                                                          *
