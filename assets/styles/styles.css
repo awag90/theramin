@@ -1,6 +1,6 @@
-.social-btn{
+.social-btn {
     display: flex;
-    width:40px;
+    width: 40px;
     height: 40px;
     border-radius: 20px;
     color: white;
@@ -8,31 +8,30 @@
     padding-top: 10px;
 }
 
-#fb{
+#fb {
     background-color: #3b5998;
 }
 
-#twitter{
+#twitter {
     background-color: #55acee;
 }
 
-#linkedin{
+#linkedin {
     background-color: #0082ca;
 }
 
-#yt{
+#yt {
     background-color: #ed302f;
 }
 
-h1{
+h1 {
     color: #5d5491;
 }
 
-h2{
+h2 {
     color: #7486a1;
 }
 
-h3{
+h3 {
     color: #686FA6;
 }
-

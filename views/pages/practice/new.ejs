@@ -1,31 +1,31 @@
-<div class="container mt-4">
-  <form action="/practice" method="post">
-    <div>
-      <div class="form-group">
-        <label class="form-label">Praxis-Name</label>
-        <input type="text" class="form-control" maxlength="50" name="name" />
-      </div>
-      <div class="row">
-        <div class="form-group col-md-8">
-          <label class="form-label">Straße</label>
-          <input type="text" class="form-control" maxlength="50" name="street"/>
+<div class="container pt-4">
+    <form action="/practice" method="post">
+        <div>
+            <div class="form-group">
+                <label class="form-label">Praxis-Name</label>
+                <input type="text" class="form-control" maxlength="50" name="name" />
+            </div>
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label class="form-label">Straße</label>
+                    <input type="text" class="form-control" maxlength="50" name="street" />
+                </div>
+                <div class="form-group col-md-4">
+                    <label class="form-label">Hausnummer</label>
+                    <input type="text" class="form-control" maxlength="10" name="streetnumber" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">PLZ</label>
+                    <input type="text" class="form-control" maxlength="10" name="zip" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label">Ort</label>
+                    <input type="text" class="form-control" maxlength="50" name="city" />
+                </div>
+            </div>
         </div>
-        <div class="form-group col-md-4">
-          <label class="form-label">Hausnummer</label>
-          <input type="text" class="form-control" maxlength="10" name="streetnumber"/>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-group col-md-6">
-          <label class="form-label">PLZ</label>
-          <input type="text" class="form-control" maxlength="10" name="zip" />
-        </div>
-        <div class="form-group col-md-6">
-          <label class="form-label">Ort</label>
-          <input type="text" class="form-control" maxlength="50" name="city" />
-        </div>
-      </div>
-    </div>
-    <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
-  </form>
+        <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
+    </form>
 </div>
