@@ -1,0 +1,36 @@
+<div class="container pt-4 pb-4">
+    <form class="row" action="/practice/filtered" method="get">
+        <form-group class="col-4">
+            <label class="form-label">Praxis-Name</label>
+            <input type="text" class="form-control" maxlength="50" name="name" />
+        </form-group>
+        <form-group class="col-2">
+            <label class="form-label">PLZ</label>
+            <input type="text" class="form-control" maxlength="10" name="zip" />
+        </form-group>
+        <button type="submit" class="btn btn-primary col-2">Suchen</button>
+    </form>
+    <%practices.forEach(function(practice){%>
+        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none">
+            <div class="card-body">
+                <h2 class="card-title">
+                    <%=practice.name%>
+                </h2>
+                <div class="row">
+                    <div class="col-6 text-body">
+                        <p>Praxis für:</p>
+                        <ul>
+                            <li>Platzhalter 1</li>
+                            <li>Platzhalter 2</li>
+                        </ul>
+                    </div>
+                    <div class=" col-6 text-body">
+                        <%=practice.street%> <%=practice.streetnumber%><br />
+                        <%=practice.zip%> <%=practice.city%>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <%}); %>
+
+</div>

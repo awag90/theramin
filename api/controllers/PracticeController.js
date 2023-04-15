@@ -11,13 +11,31 @@ module.exports = {
     find: async function (req, res) {
         sails.log.debug("Listing all practices...")
         let practices = await Practice.find()
-        res.view('pages/practice/index', { practices: practice })
+        sails.log.debug("Found practices")
+        res.view('pages/practice/search', { practices: practices })
+    },
+
+    findByCriteria: async function (req, res) {
+        sails.log.debug("Searching matching practices");
+        if (req.param('name') !== "" && req.param('zip') === ""){
+            let practices = await Practice.find({name:req.param('name')})
+            sails.log.debug("name: " + req.param('name') )
+            res.view('pages/practice/search', { practices: practices })
+        }else if (req.param('zip')!=="" && req.param('name') === ""){
+            let practices = await Practice.find({zip:req.param('zip')})
+            sails.log.debug("zip: " + req.param('zip'))
+            res.view('pages/practice/search', { practices: practices })
+        }else if (req.param('name') !== "" && req.param('zip') !== ""){
+            let practices = await Practice.find({zip:req.param('zip'), name:req.param('name')})
+            sails.log.debug("name: " + req.param('name')  +", zip: " + req.param('zip'))
+            res.view('pages/practice/search', { practices: practices })
+        }
     },
 
     findOne: async function (req, res) {
         sails.log.debug('Finding single practice...')
         let practice = await Practice.findOne({ id: req.params.id })
-        res.view('pages/meal/show', { practice: practice })
+        res.view('pages/practice/show', { practice: practice })
     },
 
     destroy: async function (req, res) {
