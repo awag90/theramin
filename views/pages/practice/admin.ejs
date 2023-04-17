@@ -1,0 +1,55 @@
+<div class="container pt-4 pb-4">
+    <div class="card row p-2">
+        <h2 class="card-title">Praxisdaten</h2>
+        <div class="card-body">
+            <table>
+                <tr>
+                    <td class="pr-3">Praxis-Name:</td>
+                    <td><%=practice.name %></td>
+                </tr>
+                <tr>
+                    <td class="pr-3">Straße und Hausnummer: </td>
+                    <td><%=practice.street %> <%=practice.streetnumber %></td>
+                </tr>
+                <tr>
+                    <td class="pr-3">PLZ und Ort:</td><td><%=practice.zip %> <%=practice.city %></td> 
+                </tr>
+            </table>
+        </div>
+        <a class="btn btn-primary m-2" href="/practice/<%=practice.id%>/edit">Anpassen</a>
+    </div>
+    <div class=" card row p-2">
+        <h2 class="card-title">Therapeuten</h2>
+        <div class="card-body">
+            <% if (therapists != undefined && practice.therapists.length > 0){ %>
+            <table class="table">
+                <thead>
+                    <th>Name</th>
+                    <th>Vorname</th>
+                    <th>Qualifikationen</th>
+                    <th>Wochenarbeitszeit</th>
+                </thead>
+                <tbody>
+                    <%therapists.forEach(function(therapist){ %>
+                        <tr>
+                            <td><%=therapist.name %></td>
+                            <td><%=therapist.firstname %></td>
+                            <td>
+                                <% if(therapist.specialisations != undefined && therapist.specialisations.length > 0){ %>
+                                <ul>
+                                    <%therapist.specialisations.forEach(function(specialisation){ %>
+                                        <li><%=specialisation.name %></li>
+                                    <%  }); %>
+                                </ul>
+                                <% } %>
+                        </td>
+                        </tr>
+                    <% }); %>
+                </tbody>
+                
+            </table>
+            <% } %> 
+        </div>
+        <a class="btn btn-primary m-2" href="/practice/<%=practice.id%>/addtherapist">Therapeut hinzufügen</a>
+    </div>
+</div>

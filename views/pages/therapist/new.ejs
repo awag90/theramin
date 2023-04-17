@@ -1,0 +1,47 @@
+<div class="container pt-4">
+    <form action="/therapist" method="post">
+        <div>
+            <input type="hidden" value="<%=practice.id%>" name="practice">
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" maxlength="50" name="name" />
+                </div>
+                <div class="form-group col-md-6">
+                    <label class="form-label">Vorname</label>
+                    <input type="text" class="form-control" maxlength="50" name="firstname" />
+                </div>
+            </div>
+            <div class ="row">
+                <div class="formgroup">
+                    <label class="form-label">Qualifikationen</label>
+                    <select multiple class="form-control" id="select" name="specialisations">
+                        <% specialisations.forEach(function(specialisation){ %>
+                            <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
+                        <%});%>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-check pl-3">
+                    <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" />
+                    <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
+    </form>
+</div>
+<script>
+    let element = document.getElementById('select')
+    element.onmousedown= function(event) {
+        if (event.shiftKey) return;
+    event.preventDefault();
+    this.focus();
+    var scroll = this.scrollTop;
+    event.target.selected = !event.target.selected;
+    this.scrollTop = scroll;
+    // make sure that other listeners (like Vue) pick up on the change
+    // even though we prevented the default.
+    this.dispatchEvent(new Event("change"));
+    }
+</script>
