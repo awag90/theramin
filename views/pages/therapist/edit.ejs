@@ -1,0 +1,17 @@
+<div class="container pt-4">
+    <form action="/therapist/<%=therapist.id%>/update" method="post">
+        <div>
+            <div class="form-group">
+                <label class="form-label">Therapeut-name</label>
+                <input type="text" class="form-control" maxlength="50" name="name" value="<%=therapist.name.firstname%>" />
+            </div>
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label class="form-label">Qualifikationen</label>
+                    <input type="text" class="form-control" maxlength="10" name="zip" value="<%=therapist.specialisation%>" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary mt-4 mb-4">Anpassen</button>
+    </form>
+</div>
