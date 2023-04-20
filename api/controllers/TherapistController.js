@@ -10,7 +10,7 @@ module.exports = {
     
     edit: async function (req,res){
         sails.log.debug("Opening Edit-Site for therpist...")
-        let therapist = await Therapist.findOne({id:req.params.id});
+        let therapist = await Therapist.findOne({id:req.params.id}).populate('specialisation');
         let specialisations = await Specialisation.find();
         res.view('pages/therapist/edit',{therapist:therapist, specialisations:specialisations})
     },
