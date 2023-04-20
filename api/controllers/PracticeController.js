@@ -11,8 +11,9 @@ module.exports = {
     find: async function (req, res) {
         sails.log.debug("Listing all practices...")
         let practices = await Practice.find().populate('therapists')
+        let specialisations = await Specialisation.find()
         sails.log.debug("Found practices")
-        res.view('pages/practice/search', { practices: practices })
+        res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
     },
 
     findByCriteria: async function (req, res) {
@@ -34,7 +35,7 @@ module.exports = {
 
     findOne: async function (req, res) {
         sails.log.debug('Finding single practice...')
-        let practice = await Practice.findOne({ id: req.params.id })
+        let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
         res.view('pages/practice/show', { practice: practice })
     },
 

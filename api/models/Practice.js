@@ -6,5 +6,5 @@ module.exports = {
         zip: { type: 'string', columnType: 'varchar(10)', required: true },
         city: { type: 'string', columnType: 'varchar(50)', required: true },
         therapists: {collection:'therapist', via:'practice'}
-    },
+        },
 }

@@ -20,8 +20,11 @@
                     <div class="col-6 text-body">
                         <p>Praxis für:</p>
                         <ul>
-                            <li>Platzhalter 1</li>
-                            <li>Platzhalter 2</li>
+                            <% specialisations.forEach(function(specialisation){%>
+                                <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
+                                    <li><%=specialisation.name%></li>
+                                <%}%>
+                            <%})%>
                         </ul>
                     </div>
                     <div class=" col-6 text-body">
@@ -32,5 +35,4 @@
             </div>
         </a>
         <%}); %>
-
 </div>
