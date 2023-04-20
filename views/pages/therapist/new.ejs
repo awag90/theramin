@@ -15,8 +15,8 @@
             </div>
             <div class ="row">
                 <div class="formgroup">
-                    <label class="form-label">Qualifikationen</label>
-                    <select multiple class="form-control" id="select" name="specialisations">
+                    <label class="form-label">Fachgebiet</label>
+                    <select class="form-control" id="select" name="specialisation">
                         <% specialisations.forEach(function(specialisation){ %>
                             <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
                         <%});%>
@@ -32,17 +32,3 @@
             <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
     </form>
 </div>
-<script>
-    let element = document.getElementById('select')
-    element.onmousedown= function(event) {
-        if (event.shiftKey) return;
-    event.preventDefault();
-    this.focus();
-    var scroll = this.scrollTop;
-    event.target.selected = !event.target.selected;
-    this.scrollTop = scroll;
-    // make sure that other listeners (like Vue) pick up on the change
-    // even though we prevented the default.
-    this.dispatchEvent(new Event("change"));
-    }
-</script>

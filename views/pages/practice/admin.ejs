@@ -26,7 +26,7 @@
                 <thead>
                     <th>Name</th>
                     <th>Vorname</th>
-                    <th>Qualifikationen</th>
+                    <th>Fachgebiet</th>
                     <th>Wochenarbeitszeit</th>
                 </thead>
                 <tbody>
@@ -34,15 +34,9 @@
                         <tr>
                             <td><%=therapist.name %></td>
                             <td><%=therapist.firstname %></td>
-                            <td>
-                                <% if(therapist.specialisations != undefined && therapist.specialisations.length > 0){ %>
-                                <ul>
-                                    <%therapist.specialisations.forEach(function(specialisation){ %>
-                                        <li><%=specialisation.name %></li>
-                                    <%  }); %>
-                                </ul>
-                                <% } %>
-                        </td>
+                            <td><%=therapist.specialisation.name %></td>
+                            <td></td>
+                            <td><a class="btn btn-primary" href="/therapist/<%=therapist.id%>/edit">Anpassen</a></td>
                         </tr>
                     <% }); %>
                 </tbody>

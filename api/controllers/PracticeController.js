@@ -54,7 +54,7 @@ module.exports = {
     admin: async function (req, res) {
         sails.log.debug('Opening Admin-Site for practice...')
         let practice = await Practice.findOne({ id: 1 }).populate('therapists')
-        let therapists = await Therapist.find({practice: practice.id}).populate('specialisations')
+        let therapists = await Therapist.find({practice: practice.id}).populate('specialisation')
         res.view('pages/practice/admin', { practice: practice, therapists: therapists })
     },
 
