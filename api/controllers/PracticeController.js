@@ -20,16 +20,19 @@ module.exports = {
         sails.log.debug("Searching matching practices");
         if (req.param('name') !== "" && req.param('zip') === "") {
             let practices = await Practice.find({ name: req.param('name') })
+            let specialisations = await Specialisation.find()
             sails.log.debug("name: " + req.param('name'))
-            res.view('pages/practice/search', { practices: practices })
+            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
         } else if (req.param('zip') !== "" && req.param('name') === "") {
             let practices = await Practice.find({ zip: req.param('zip') })
+            let specialisations = await Specialisation.find()
             sails.log.debug("zip: " + req.param('zip'))
-            res.view('pages/practice/search', { practices: practices })
+            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
         } else if (req.param('name') !== "" && req.param('zip') !== "") {
             let practices = await Practice.find({ zip: req.param('zip'), name: req.param('name') })
+            let specialisations = await Specialisation.find()
             sails.log.debug("name: " + req.param('name') + ", zip: " + req.param('zip'))
-            res.view('pages/practice/search', { practices: practices })
+            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
         }
     },
 
