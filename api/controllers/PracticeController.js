@@ -52,12 +52,12 @@ module.exports = {
         sails.log.debug('Updating practice...')
         let params = req.allParams()
         await Practice.updateOne({ id: req.params.id }).set(params)
-        res.redirect('/practice/admin')
+        res.redirect('/practice/'+req.params.id+'/admin')
     },
 
     admin: async function (req, res) {
         sails.log.debug('Opening Admin-Site for practice...')
-        let practice = await Practice.findOne({ id: 1 }).populate('therapists')
+        let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
         let therapists = await Therapist.find({practice: practice.id}).populate('specialisation')
         res.view('pages/practice/admin', { practice: practice, therapists: therapists })
     },

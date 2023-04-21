@@ -29,7 +29,7 @@ module.exports.routes = {
   'GET /practice/:id': 'PracticeController.findOne',
   'POST /practice': 'PracticeController.create',
   'GET /practice/filtered': 'PracticeController.findByCriteria',
-  'GET /practice/admin': 'PracticeController.admin',
+  'GET /practice/:id/admin': 'PracticeController.admin',
   'GET /practice/:id/edit': 'PracticeController.edit',
   'POST /practice/:id/update': 'PracticeController.update',
   'GET /practice/:id/addtherapist': 'PracticeController.addTherapist',

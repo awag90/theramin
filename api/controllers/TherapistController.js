@@ -5,7 +5,7 @@ module.exports = {
         sails.log.debug("Creating therapist...")
         let params = req.allParams()
         let therapist = await Therapist.create(params).fetch()
-        res.redirect('/practice/admin')
+        res.redirect('/practice/'+therapist.practice.id+'/admin')
     },
     
     edit: async function (req,res){
