@@ -35,3 +35,21 @@ h2 {
 h3 {
     color: #686FA6;
 }
+table {
+
+    border-collapse: collapse;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+th, td {
+    border: 1px solid #ddd;
+    text-align: left;
+    padding: 8px;
+}
+
+
+input[type="checkbox"] {
+    transform: scale(1.5);
+    
+}
