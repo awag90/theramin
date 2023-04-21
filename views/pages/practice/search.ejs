@@ -8,6 +8,15 @@
             <label class="form-label">PLZ</label>
             <input type="text" class="form-control" maxlength="10" name="zip" />
         </form-group>
+        <form-group class="col-3">
+            <label class="form-label">Fachgebiet</label>
+            <select type="text" class="form-control"  name="specialisation" >
+                <option value="-1">Alle Fachgebiete</option>
+                <% specialisations.forEach(function(specialisation){ %>
+                    <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
+                <%});%>
+            </select>
+        </form-group>
         <button type="submit" class="btn btn-primary col-2">Suchen</button>
     </form>
     <%practices.forEach(function(practice){%>

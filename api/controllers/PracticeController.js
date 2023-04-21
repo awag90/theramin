@@ -12,28 +12,27 @@ module.exports = {
         sails.log.debug("Listing all practices...")
         let practices = await Practice.find().populate('therapists')
         let specialisations = await Specialisation.find()
-        sails.log.debug("Found practices")
         res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
     },
 
     findByCriteria: async function (req, res) {
-        sails.log.debug("Searching matching practices");
-        if (req.param('name') !== "" && req.param('zip') === "") {
-            let practices = await Practice.find({ name: req.param('name') })
-            let specialisations = await Specialisation.find()
-            sails.log.debug("name: " + req.param('name'))
-            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
-        } else if (req.param('zip') !== "" && req.param('name') === "") {
-            let practices = await Practice.find({ zip: req.param('zip') })
-            let specialisations = await Specialisation.find()
-            sails.log.debug("zip: " + req.param('zip'))
-            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
-        } else if (req.param('name') !== "" && req.param('zip') !== "") {
-            let practices = await Practice.find({ zip: req.param('zip'), name: req.param('name') })
-            let specialisations = await Specialisation.find()
-            sails.log.debug("name: " + req.param('name') + ", zip: " + req.param('zip'))
-            res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
+        let practices = await Practice.find().populate('therapists')
+        if (req.param('name') !== undefined && req.param('name') !== ""){
+            sails.log.debug("Filter by name...")
+            practices = practices.filter(e => e.name === req.param('name'))
         }
+        if (req.param('zip') !== undefined && req.param('zip') !==""){
+            sails.log.debug("Filter by ZIP...")
+            practices = practices.filter(e => e.zip === req.param('zip'))
+        }
+        if (req.param('specialisation') !== '-1'){
+            sails.log.debug("Filter by specialisation...")
+            practices = practices.filter(function(e){
+                return (e.therapists.filter(t => t.specialisation.toString() === req.param('specialisation')).length > 0)
+            })
+        }
+        let specialisations = await Specialisation.find()
+        res.view('pages/practice/search',{specialisations:specialisations, practices:practices})
     },
 
     findOne: async function (req, res) {
