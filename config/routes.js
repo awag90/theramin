@@ -38,6 +38,7 @@ module.exports.routes = {
   'POST /therapist': 'TherapistController.create',
   'GET /therapist/new' : { view: 'pages/therapist/new'},
   'GET /therapist/:id/edit':'TherapistController.edit',
+  'POST /therapist/:id/update': 'Therapist.update',
 
   /***************************************************************************
   *                                                                          *
