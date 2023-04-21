@@ -36,7 +36,10 @@
                             <td><%=therapist.firstname %></td>
                             <td><%=therapist.specialisation.name %></td>
                             <td></td>
-                            <td><a class="btn btn-primary" href="/therapist/<%=therapist.id%>/edit">Anpassen</a></td>
+                            <td>
+                                <a class="btn btn-primary" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
+                                <a class="btn btn-danger" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
+                            </td>
                         </tr>
                     <% }); %>
                 </tbody>

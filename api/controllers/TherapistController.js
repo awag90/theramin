@@ -5,7 +5,7 @@ module.exports = {
         sails.log.debug("Creating therapist...")
         let params = req.allParams()
         let therapist = await Therapist.create(params).fetch()
-        res.redirect('/practice/'+therapist.practice.id+'/admin')
+        res.redirect('/practice/'+therapist.practice+'/admin')
     },
     
     edit: async function (req,res){
@@ -20,5 +20,11 @@ module.exports = {
         let params = req.allParams()
         await Therapist.updateOne({ id: req.params.id }).set(params)
         res.redirect('/practice/'+req.params.id+'/admin')
+    },
+
+    destroy: async function (req, res) {
+        sails.log.debug('Deleting therapist...')
+        let therapist = await Therapist.destroyOne({ id: req.params.id })
+        res.redirect('/practice/'+therapist.practice+'/admin')
     },
 }
