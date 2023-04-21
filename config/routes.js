@@ -33,6 +33,7 @@ module.exports.routes = {
   'GET /practice/:id/edit': 'PracticeController.edit',
   'POST /practice/:id/update': 'PracticeController.update',
   'GET /practice/:id/addtherapist': 'PracticeController.addTherapist',
+  'GET /practice/:id/destroy' : 'PracticeController.destroy',
 
   //Therapists
   'POST /therapist': 'TherapistController.create',

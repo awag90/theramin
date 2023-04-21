@@ -5,7 +5,7 @@ module.exports = {
         sails.log.debug("Creating practice...")
         let params = req.allParams()
         let practice = await Practice.create(params).fetch()
-        res.redirect('pages/practice/show', { id: practice.id })
+        res.redirect('practice/'+practice.id+'/admin')
     },
 
     find: async function (req, res) {
@@ -17,22 +17,22 @@ module.exports = {
 
     findByCriteria: async function (req, res) {
         let practices = await Practice.find().populate('therapists')
-        if (req.param('name') !== undefined && req.param('name') !== ""){
+        if (req.param('name') !== undefined && req.param('name') !== "") {
             sails.log.debug("Filter by name...")
             practices = practices.filter(e => e.name === req.param('name'))
         }
-        if (req.param('zip') !== undefined && req.param('zip') !==""){
+        if (req.param('zip') !== undefined && req.param('zip') !== "") {
             sails.log.debug("Filter by ZIP...")
             practices = practices.filter(e => e.zip === req.param('zip'))
         }
-        if (req.param('specialisation') !== '-1'){
+        if (req.param('specialisation') !== '-1') {
             sails.log.debug("Filter by specialisation...")
-            practices = practices.filter(function(e){
+            practices = practices.filter(function (e) {
                 return (e.therapists.filter(t => t.specialisation.toString() === req.param('specialisation')).length > 0)
             })
         }
         let specialisations = await Specialisation.find()
-        res.view('pages/practice/search',{specialisations:specialisations, practices:practices})
+        res.view('pages/practice/search', { specialisations: specialisations, practices: practices })
     },
 
     findOne: async function (req, res) {
@@ -43,21 +43,22 @@ module.exports = {
 
     destroy: async function (req, res) {
         sails.log.debug('Deleting practice...')
+        let therapists = await Therapist.destroy({practice: req.params.id})
         let practice = await Practice.destroyOne({ id: req.params.id })
-        res.redirect('/practice')
+        res.redirect('/')
     },
 
     update: async function (req, res) {
         sails.log.debug('Updating practice...')
         let params = req.allParams()
         await Practice.updateOne({ id: req.params.id }).set(params)
-        res.redirect('/practice/'+req.params.id+'/admin')
+        res.redirect('/practice/' + req.params.id + '/admin')
     },
 
     admin: async function (req, res) {
         sails.log.debug('Opening Admin-Site for practice...')
         let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
-        let therapists = await Therapist.find({practice: practice.id}).populate('specialisation')
+        let therapists = await Therapist.find({ practice: practice.id }).populate('specialisation')
         res.view('pages/practice/admin', { practice: practice, therapists: therapists })
     },
 
@@ -67,7 +68,7 @@ module.exports = {
         res.view('pages/practice/edit', { practice: practice })
     },
 
-    addTherapist: async function(req, res) {
+    addTherapist: async function (req, res) {
         sails.log.debug('Opening new therapist Site...')
         let practice = await Practice.findOne({ id: req.params.id })
         let specialisations = await Specialisation.find()
