@@ -1,14 +1,14 @@
 <div class="container pt-4 pb-4">
     <form class="row" action="/practice/filtered" method="get">
-        <form-group class="col-4">
+        <form-group class="col-md-4 pl-md-0">
             <label class="form-label">Praxis-Name</label>
             <input type="text" class="form-control" maxlength="50" name="name" />
         </form-group>
-        <form-group class="col-2">
+        <form-group class="col-md-2">
             <label class="form-label">PLZ</label>
             <input type="text" class="form-control" maxlength="10" name="zip" />
         </form-group>
-        <form-group class="col-3">
+        <form-group class="col-md-3">
             <label class="form-label">Fachgebiet</label>
             <select type="text" class="form-control"  name="specialisation" >
                 <option value="-1">Alle Fachgebiete</option>
@@ -17,7 +17,9 @@
                 <%});%>
             </select>
         </form-group>
-        <button type="submit" class="btn btn-primary col-2">Suchen</button>
+        <div class="col-md-2 text-center pt-4">
+            <button type="submit" class="btn btn-primary">Suchen</button>
+        </div>
     </form>
     <%practices.forEach(function(practice){%>
         <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none">

@@ -1,26 +1,36 @@
-<div class="container pt-4 pb-4">
+<div class="container pt-md-4 pb-4">
     <div class="card row p-2">
         <h2 class="card-title">Praxisdaten</h2>
         <div class="card-body">
             <table>
                 <tr>
-                    <td class="pr-3">Praxis-Name:</td>
-                    <td><%=practice.name %></td>
+                    <td class="pb-2 align-text-top col-3"><b>Praxis-Name:</b></td>
+                    <td class="text-wrap align-text-top col-9"><%=practice.name %></td>
                 </tr>
                 <tr>
-                    <td class="pr-3">Straße und Hausnummer: </td>
-                    <td><%=practice.street %> <%=practice.streetnumber %></td>
+                    <td class="pb-2 align-text-top col-3"><b>Straße und Hausnummer: </b></td>
+                    <td class="text-wrap align-text-top col-9"><%=practice.street %> <%=practice.streetnumber %></td>
                 </tr>
                 <tr>
-                    <td class="pr-3">PLZ und Ort:</td><td><%=practice.zip %> <%=practice.city %></td> 
+                    <td class="pb-2 align-text-top col-md-3"><b>PLZ und Ort:</b></td>
+                    <td class="text-wrap align-text-top col-md-9"><%=practice.zip %> <%=practice.city %></td> 
                 </tr>
             </table>
         </div>
-        <a class="btn btn-primary m-2" href="/practice/<%=practice.id%>/edit">Anpassen</a>
+        <div>
+            <h3 class="">Beschreibung</h3>
+            <details class="display-md-none">
+                <summary>Anzeigen</summary>
+                <p><%=practice.description%></p>
+            </details>
+        </div>
+        <div class="row justify-content-center">
+            <a class="btn btn-primary m-2" href="/practice/<%=practice.id%>/edit">Anpassen</a>
+        </div>
     </div>
-    <div class=" card row p-2">
+    <div class="card row p-2">
         <h2 class="card-title">Therapeuten</h2>
-        <div class="card-body">
+        <div class="card-body table-responsive">
             <% if (therapists != undefined && practice.therapists.length > 0){ %>
             <table class="table">
                 <thead>
@@ -28,6 +38,7 @@
                     <th>Vorname</th>
                     <th>Fachgebiet</th>
                     <th>Wochenarbeitszeit</th>
+                    <th></th>
                 </thead>
                 <tbody>
                     <%therapists.forEach(function(therapist){ %>
@@ -37,8 +48,8 @@
                             <td><%=therapist.specialisation.name %></td>
                             <td></td>
                             <td>
-                                <a class="btn btn-primary" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
-                                <a class="btn btn-danger" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
+                                <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
+                                <a class="btn btn-danger tbl-btn" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
                             </td>
                         </tr>
                     <% }); %>
@@ -47,7 +58,9 @@
             </table>
             <% } %> 
         </div>
-        <a class="btn btn-primary mt-2" href="/practice/<%=practice.id%>/addtherapist">Therapeut hinzufügen</a>
+        <div class="row justify-content-center">
+            <a class="btn btn-primary mt-2" href="/practice/<%=practice.id%>/addtherapist">Therapeut hinzufügen</a>
+        </div>
     </div>
     <div class="row justify-content-end">
         <a class="btn btn-danger mt-3" href="/practice/<%=practice.id%>/destroy">Praxis löschen</a>
