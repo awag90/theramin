@@ -5,12 +5,14 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const Sails = require("sails/lib/app/Sails");
+
 module.exports = {
     create: async function (req, res) {
         sails.log.debug("Creating worktime...")
         let params = req.allParams()
-        let worktime = await Worktime.create(params).fetch()
-       // res.redirect('/practice/' + therapist.practice + '/admin')
+        let worktime = await Worktime.create(params)
+        let.redirect('/therapist/' + req.params.id )
     },
     edit: async function (req, res) {
         sails.log.debug("Edit worktimes for therapist...")
@@ -18,7 +20,7 @@ module.exports = {
         let worktime = await Worktime.find();
         res.view('pages/therapist/edit', { therapist: therapist, worktime:worktime })
     },
-    
+
     update: async function (req, res) {
         sails.log.debug('Updating therapist...')
         let params = req.allParams()

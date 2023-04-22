@@ -1,14 +1,14 @@
 <div class="container pt-4 pb-4">
-    <form class="row" action="/practice/filtered" method="get">
-        <form-group class="col-md-4 pl-md-0">
+    <form class="row align-items-end" action="/practice/filtered" method="get">
+        <form-group class="col-md-4 pl-md-3">
             <label class="form-label">Praxis-Name</label>
             <input type="text" class="form-control" maxlength="50" name="name" />
         </form-group>
-        <form-group class="col-md-2">
+        <form-group class="col-md-2 mt-3">
             <label class="form-label">PLZ</label>
             <input type="text" class="form-control" maxlength="10" name="zip" />
         </form-group>
-        <form-group class="col-md-3">
+        <form-group class="col-md-3 mt-3">
             <label class="form-label">Fachgebiet</label>
             <select type="text" class="form-control"  name="specialisation" >
                 <option value="-1">Alle Fachgebiete</option>
@@ -17,18 +17,18 @@
                 <%});%>
             </select>
         </form-group>
-        <div class="col-md-2 text-center pt-4">
+        <form-group  class="col-md-2 mt-3" >
             <button type="submit" class="btn btn-primary">Suchen</button>
-        </div>
+        </form-group>
     </form>
     <%practices.forEach(function(practice){%>
-        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none">
-            <div class="card-body">
+        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none card m-1 d-md-flex card border-dark">
+               <div class="card-body">
                 <h2 class="card-title">
                     <%=practice.name%>
                 </h2>
-                <div class="row">
-                    <div class="col-6 text-body">
+                <div class="row d-flex flex-wrap justify-content-between">
+                    <div class="col- md-6 text-body mb-3">
                         <p>Praxis für:</p>
                         <ul>
                             <% specialisations.forEach(function(specialisation){%>
@@ -38,12 +38,12 @@
                             <%})%>
                         </ul>
                     </div>
-                    <div class=" col-6 text-body">
+                    <div class=" col-md-6 text-body ">
                         <%=practice.street%> <%=practice.streetnumber%><br />
                         <%=practice.zip%> <%=practice.city%>
                     </div>
-                </div>
             </div>
+        </div>
         </a>
         <%}); %>
 </div>
