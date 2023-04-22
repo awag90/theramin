@@ -20,6 +20,6 @@ module.exports = {
         //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
         practice: { model: 'practice', required: true },
         specialisation: { model: 'specialisation', required: true },
-        appointments: {collection: 'appointment', via: 'therapist'}
+        appointments: {collection: 'appointment', via: 'therapist'},
     },
 }

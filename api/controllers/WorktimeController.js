@@ -14,9 +14,16 @@ module.exports = {
     },
     edit: async function (req, res) {
         sails.log.debug("Edit worktimes for therapist...")
-        let worktime = await Therapist.findOne({ id: req.params.id }).populate('worktime');
-        let sWorktime = await Worktime.find();
+        let therapist = await Therapist.findOne({ id: req.params.id }).populate('worktime');
+        let worktime = await Worktime.find();
         res.view('pages/therapist/edit', { therapist: therapist, worktime:worktime })
+    },
+    
+    update: async function (req, res) {
+        sails.log.debug('Updating therapist...')
+        let params = req.allParams()
+        await Therapist.updateOne({ id: req.params.id }).set(params)
+        res.redirect('/practice/' + req.params.id + '/admin')
     },
 };
 
