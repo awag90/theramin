@@ -15,16 +15,17 @@
             </div>
               <div>
                    <form action="/worktime" method="post">
-                       
-                    <table>
-                         <tr>
+                    <div class="card-body table-responsive">     
+                    <table class="table">
+                         <thead>
                             <th></th>
                             <th><lable class="time" name="weekday">Monday</lable></th>
                             <th><lable class="time" name="weekday">Dienstag</lable></th>
                             <th><lable class="time" name="weekday">Mittwoch</lable></th>
                             <th><lable class="time" name="weekday">Donnerstag</lable></th>
                             <th><lable class="time" name="weekday">Freitag</lable></th>
-                        </tr> 
+                         </thead> 
+                         <tbody>
                         <tr>
                             <td>Von</td>                         
                             <td><input type="time" name="from" ></td>                  
@@ -41,7 +42,9 @@
                             <td><input type="time" name="till"></td>
                             <td><input type="time" name="till"></td>
                         </tr>
+                    </tbody>
                     </table>
+                    </div>
                     <div class="row justify-content-center">
                         <button type="submit" class="btn btn-primary mt-4 mb-4">Arbeitszeit festlegen</button>
                     </div>
