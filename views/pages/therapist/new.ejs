@@ -14,9 +14,10 @@
                 </div>
             </div>
                 <div>
+                    <form action="/worktime" method="post">
                     <table>
                         <tr>
-                            <th>Zeit</th>
+                            <th></th>
                             <th>Montag</th>
                             <th>Dienstag</th>
                             <th>Mittwoch</th>
@@ -24,22 +25,23 @@
                             <th>Freitag</th>
                         </tr>
                         <tr>
-                            <td>08:00 - 12:00</td>
-                            <td><input type="checkbox" name="Monday1"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
+                            <td>Von</td>
+                            <td><input type="time" name="MondayF"></td>
+                            <td><input type="time" name="TuesdayF"></td>
+                            <td><input type="time" name="WednesdayF"></td>
+                            <td><input type="time" name="ThursdayF"></td>
+                            <td><input type="time" name="FridayF"></td>
                         </tr>
                         <tr>
-                            <td>13:00 - 16:00</td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
-                            <td><input type="checkbox"></td>
+                            <td>Bis</td>
+                            <td><input type="time" name="MondayT"></td>
+                            <td><input type="time" name="TuesdayT"></td>
+                            <td><input type="time" name="WednesdayT"></td>
+                            <td><input type="time" name="ThursdayT"></td>
+                            <td><input type="time" name="FridayT"></td>
                         </tr>
                     </table>
+                </form>
                 
                     </div> 
             <div class ="row">
