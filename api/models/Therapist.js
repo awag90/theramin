@@ -7,10 +7,19 @@
 
 module.exports = {
     attributes: {
+
+        //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+        //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+        //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
         name: { type: 'string', columnType: 'varchar(50)', required: true },
         firstname: { type: 'string', columnType: 'varchar(50)', required: true },
         isAdmin: { type: 'boolean', columnType: 'boolean', required: false },
+
+        //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+        //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+        //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
         practice: { model: 'practice', required: true },
-        specialisation: { model: 'specialisation', required: true }
+        specialisation: { model: 'specialisation', required: true },
+        appointments: {collection: 'appointment', via: 'therapist'}
     },
 }
