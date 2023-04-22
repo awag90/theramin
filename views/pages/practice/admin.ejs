@@ -17,9 +17,12 @@
                 </tr>
             </table>
         </div>
-        <div>
-            <h3 class="">Beschreibung</h3>
-            <details class="display-md-none">
+        <div class="px-2 py-4">
+            <h3>Beschreibung</h3>
+            <div class="d-none d-md-flex">
+                <%=practice.description%>
+            </div>
+            <details class="d-md-none">
                 <summary>Anzeigen</summary>
                 <p><%=practice.description%></p>
             </details>

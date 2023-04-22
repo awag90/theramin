@@ -1,0 +1,51 @@
+<div class="container py-4 px-4">
+  <div class="row">
+    <div class="card row px-0 mx-0">
+      <h2 class="card-title px-2"><%=practice.name%></h2>
+      <div class="card-header px-2">
+        <h3>Beschreibung</h3>
+        <div class="d-none d-md-flex"><%=practice.description%></div>
+        <div class="d-md-none">
+          <details>
+            <summary>Anzeigen</summary>
+            <p><%=practice.description%></p>
+          </details>
+        </div>
+      </div>
+      <div class="card-body table-responsive px-2">
+        <h3>Therapeuten</h3>
+        <!--Platzhalter-->
+        <table class="table">
+          <tableHead>
+            <th>Name</th>
+            <th>Fachgebiet</th>
+            <% for(i = 7; i<= 19; i++){%> <%if (i<10){%>
+            <th><%='0'+i.toString()+':00'%></th>
+            <%} else {%>
+            <th><%=i.toString()+':00'%></th>
+            <%}%> <%}%>
+          </tableHead>
+          <tableBody>
+            <%therapists.forEach(function(therapist){%>
+            <tr>
+              <td><%=therapist.firstname%> <%=therapist.name%></td>
+              <td><%=therapist.specialisation.name%></td>
+              <%for(i = 7; i<= 19; i++){%>
+              <td></td>
+              <%}%>
+            </tr>
+            <%})%>
+          </tableBody>
+        </table>
+        <!--Platzhalter Ende-->
+      </div>
+      <div class="card-footer px-2">
+        <address>
+          <strong><%=practice.name%></strong><br />
+          <%=practice.street%> <%=practice.streetnumber%><br />
+          <%=practice.zip%> <%=practice.city%>
+        </address>
+      </div>
+    </div>
+  </div>
+</div>
