@@ -49,9 +49,16 @@
                             <td><%=therapist.name %></td>
                             <td><%=therapist.firstname %></td>
                             <td><%=therapist.specialisation.name %></td>
-                            <td></td>
+                            <%let workhours = 0%>
+                            <%if (therapist.worktimes !== undefined){%>
+                                <%therapist.worktimes.forEach(function(worktime){%>
+                                    <%workhours += ((new Date("1970-01-01T" + worktime.till) - new Date("1970-01-01T" + worktime.from))/3600000)%>
+                                <%})%>
+                            <%}%>
+                            <td><%=workhours.toFixed(1)%> h</td>
                             <td>
                                 <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
+                                <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/worktimes">Arbeitszeiten</a>
                                 <a class="btn btn-danger tbl-btn" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
                             </td>
                         </tr>
