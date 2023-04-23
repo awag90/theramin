@@ -1,0 +1,49 @@
+<div class="container py-4 px-2">
+    <form action="/worktime" method="post">
+        <input type="hidden" name="therapist" value="<%=therapist.id%>" />
+        <table>
+            <tr>
+                <th></th>
+                <th>
+                    <lable class="time">Montag</lable>
+                </th>
+                <th>
+                    <lable class="time">Dienstag</lable>
+                </th>
+                <th>
+                    <lable class="time">Mittwoch</lable>
+                </th>
+                <th>
+                    <lable class="time">Donnerstag</lable>
+                </th>
+                <th>
+                    <lable class="time">Freitag</lable>
+                </th>
+            </tr>
+            <tr>
+                <th>Von</th>
+                <% let days=['monday', 'tuesday' , 'wednesday' , 'thursday' , 'friday' ]%>
+                <% days.forEach(function(day){%>
+                    <% if (therapist.worktimes !==undefined && therapist.worktimes.filter(e=> e.weekday ===day).length > 0){%>
+                        <td><input type="time" name="<%=day + '.from'%>" value="<%=therapist.worktimes.filter(e=> e.weekday === day)[0].from%>" /></td>
+                    <% }else{%>
+                        <td><input type="time" name="<%=day+'.from'%>" /></td>
+                    <%}%>
+                <%})%>
+            </tr>
+            <tr>
+                <th>Bis</th>
+                <% days.forEach(function(day){%>
+                    <% if (therapist.worktimes !==undefined && therapist.worktimes.filter(e=> e.weekday === day).length> 0){%>
+                        <td><input type="time" name="<%=day + '.till'%>" value="<%=therapist.worktimes.filter(e=> e.weekday === day)[0].till%>" /></td>
+                    <% }else{%>
+                        <td><input type="time" name="<%=day+'.till'%>" /></td>
+                    <%}%>
+                <%})%>
+            </tr>
+        </table>
+        <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary mt-4 mb-4">Arbeitszeit festlegen</button>
+        </div>
+    </form>
+</div>

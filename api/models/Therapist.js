@@ -21,5 +21,6 @@ module.exports = {
         practice: { model: 'practice', required: true },
         specialisation: { model: 'specialisation', required: true },
         appointments: {collection: 'appointment', via: 'therapist'},
+        worktimes: {collection: 'worktime', via: 'therapist'}
     },
 }

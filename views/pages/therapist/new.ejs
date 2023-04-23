@@ -1,72 +1,39 @@
 <div class="container p-4">
-    <form action="/therapist" method="post">
-        <div>
-            <input type="hidden" value="<%=practice.id%>" name="practice">
+  <form action="/therapist" method="post">
+    <div>
+      <input type="hidden" value="<%=practice.id%>" name="practice" />
 
-            <div class="row">
-                <div class="form-group col-md-6 px-0">
-                    <label class="form-label">Name</label>
-                    <input type="text" class="form-control" maxlength="50" name="name" />
-                </div>
-                <div class="form-group col-md-6 px-0 pl-md-4">
-                    <label class="form-label">Vorname</label>
-                    <input type="text" class="form-control" maxlength="50" name="firstname" />
-                </div>
-            </div>
-              <div>
-                   <form action="/worktime" method="post">
-                       
-                    <table>
-                         <tr>
-                            <th></th>
-                            <th><lable class="time" name="weekday">Monday</lable></th>
-                            <th><lable class="time" name="weekday">Dienstag</lable></th>
-                            <th><lable class="time" name="weekday">Mittwoch</lable></th>
-                            <th><lable class="time" name="weekday">Donnerstag</lable></th>
-                            <th><lable class="time" name="weekday">Freitag</lable></th>
-                        </tr> 
-                        <tr>
-                            <td>Von</td>                         
-                            <td><input type="time" name="from" ></td>                  
-                            <td><input type="time" name="from"></td>                           
-                            <td><input type="time" name="from"></td>                          
-                            <td><input type="time" name="from"></td>                          
-                            <td><input type="time" name="from"></td>
-                        </tr>
-                        <tr>
-                            <td>Bis</td>
-                            <td><input type="time" name="till"></td>
-                            <td><input type="time" name="till"></td>
-                            <td><input type="time" name="till"></td>
-                            <td><input type="time" name="till"></td>
-                            <td><input type="time" name="till"></td>
-                        </tr>
-                    </table>
-                    <div class="row justify-content-center">
-                        <button type="submit" class="btn btn-primary mt-4 mb-4">Arbeitszeit festlegen</button>
-                    </div>
-                </form>
-                
-                    </div> 
-            <div class ="row">
-                <div class="formgroup">
-                    <label class="form-label">Fachgebiet</label>
-                    <select class="form-control" id="select" name="specialisation">
-                        <% specialisations.forEach(function(specialisation){ %>
-                            <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
-                        <%});%>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="form-check p-4">
-                    <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" />
-                    <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
-                </div>
-            </div>
-            <div class="row justify-content-center">
-                <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
-            </div>
-            </div>
-    </form>
+      <div class="row">
+        <div class="form-group col-md-6 px-0">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" maxlength="50" name="name" />
+        </div>
+        <div class="form-group col-md-6 px-0 pl-md-4">
+          <label class="form-label">Vorname</label>
+          <input type="text" class="form-control" maxlength="50" name="firstname" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="formgroup">
+          <label class="form-label">Fachgebiet</label>
+          <select class="form-control" id="select" name="specialisation">
+            <% specialisations.forEach(function(specialisation){ %>
+            <option value="<%=specialisation.id%>">
+              <%=specialisation.name%>
+            </option>
+            <%});%>
+          </select>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-check p-4">
+          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
+          <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
+        </div>
+      </div>
+      <div class="row justify-content-center">
+        <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
+      </div>
+    </div>
+  </form>
 </div>
