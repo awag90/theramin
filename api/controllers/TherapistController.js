@@ -24,8 +24,11 @@ module.exports = {
     update: async function (req, res) {
         sails.log.debug('Updating therapist...')
         let params = req.allParams()
-        await Therapist.updateOne({ id: req.params.id }).set(params)
-        res.redirect('/practice/' + req.params.id + '/admin')
+        let therapist = await Therapist.updateOne({ id: req.params.id }).set(params)
+        if (params.isAdmin === undefined){
+            therapist = await Therapist.updateOne({ id: req.params.id }).set({isAdmin:false})
+        }
+        res.redirect('/practice/' + therapist.practice + '/admin')
     },
 
     destroy: async function (req, res) {

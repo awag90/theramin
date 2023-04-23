@@ -41,6 +41,7 @@
                     <th>Vorname</th>
                     <th>Fachgebiet</th>
                     <th>Wochenarbeitszeit</th>
+                    <th>Admin</th>
                     <th></th>
                 </thead>
                 <tbody>
@@ -56,6 +57,11 @@
                                 <%})%>
                             <%}%>
                             <td><%=workhours.toFixed(1)%> h</td>
+                            <%if (therapist.isAdmin){%>
+                                <td class="text-center">✅</td>
+                            <%}else{%>
+                                <td></td>
+                            <%}%>
                             <td>
                                 <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
                                 <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/worktimes">Arbeitszeiten</a>
