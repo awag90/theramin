@@ -1,5 +1,5 @@
-<div class="container pt-md-4 pb-4">
-    <div class="card row p-2">
+<div class="container pt-4 pb-4 px-4 ">
+    <div class="card row p-2 mb-3 border-dark  ">
         <h2 class="card-title">Praxisdaten</h2>
         <div class="card-body">
             <table>
@@ -17,7 +17,7 @@
                 </tr>
             </table>
         </div>
-        <div class="px-2 py-4">
+        <div class=" px-3 py-4 ">
             <h3>Beschreibung</h3>
             <div class="d-none d-md-flex">
                 <%=practice.description%>
@@ -31,8 +31,8 @@
             <a class="btn btn-primary m-2" href="/practice/<%=practice.id%>/edit">Anpassen</a>
         </div>
     </div>
-    <div class="card row p-2">
-        <h2 class="card-title">Therapeuten</h2>
+    <div class="card row p-2 border-dark">
+        <h3 class="card-title">Therapeuten</h3>
         <div class="card-body table-responsive">
             <% if (therapists != undefined && practice.therapists.length > 0){ %>
             <table class="table">
@@ -63,9 +63,9 @@
                                 <td></td>
                             <%}%>
                             <td>
-                                <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
-                                <a class="btn btn-primary tbl-btn" href="/therapist/<%=therapist.id%>/worktimes">Arbeitszeiten</a>
-                                <a class="btn btn-danger tbl-btn" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
+                                <a class="btn btn-primary tbl-btn mb-1" href="/therapist/<%=therapist.id%>/edit">Anpassen</a>
+                                <a class="btn btn-primary tbl-btn mb-1" href="/therapist/<%=therapist.id%>/worktimes">Arbeitszeiten</a>
+                                <a class="btn btn-danger tbl-btn mb-1" href="/therapist/<%=therapist.id%>/destroy">Löschen</a>
                             </td>
                         </tr>
                     <% }); %>
@@ -79,6 +79,6 @@
         </div>
     </div>
     <div class="row justify-content-end">
-        <a class="btn btn-danger mt-3" href="/practice/<%=practice.id%>/destroy">Praxis löschen</a>
+        <a class="btn btn-danger mt-3 " href="/practice/<%=practice.id%>/destroy">Praxis löschen</a>
     </div>
 </div>

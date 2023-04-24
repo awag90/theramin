@@ -1,7 +1,9 @@
 <div class="container py-4 px-2">
     <form action="/worktime" method="post">
         <input type="hidden" name="therapist" value="<%=therapist.id%>" />
-        <table>
+        <h3>Arbeitszeit festlegen</h3>
+        <div class="table-responsive">
+        <table class="table">
             <tr>
                 <th></th>
                 <th>
@@ -42,6 +44,7 @@
                 <%})%>
             </tr>
         </table>
+    </div>
         <div class="row justify-content-center">
             <button type="submit" class="btn btn-primary mt-4 mb-4">Arbeitszeit festlegen</button>
         </div>

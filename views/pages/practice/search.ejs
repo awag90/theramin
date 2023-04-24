@@ -1,5 +1,5 @@
-<div class="container pt-4 pb-4">
-    <form class="row align-items-end" action="/practice/filtered" method="get">
+<div class="container pt-4 pb-4 px-2">
+    <form class="row align-items-end px-2" action="/practice/filtered" method="get">
         <form-group class="col-md-4 pl-md-3">
             <label class="form-label">Praxis-Name</label>
             <input type="text" class="form-control" maxlength="50" name="name" />
@@ -22,13 +22,13 @@
         </form-group>
     </form>
     <%practices.forEach(function(practice){%>
-        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none card m-1 d-md-flex card border-dark">
-               <div class="card-body">
+        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none card m-1 d-md-flex card border-dark ">
+               <div class="card-body px-2">
                 <h2 class="card-title">
                     <%=practice.name%>
                 </h2>
                 <div class="row d-flex flex-wrap justify-content-between">
-                    <div class="col- md-6 text-body mb-3">
+                    <div class="col- md-6 text-body mb-3 px-3">
                         <p>Praxis für:</p>
                         <ul>
                             <% specialisations.forEach(function(specialisation){%>
