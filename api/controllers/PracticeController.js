@@ -26,7 +26,7 @@ module.exports = {
         let practices = await Practice.find().populate('therapists')
         if (req.param('name') !== undefined && req.param('name') !== "") {
             sails.log.debug("Filter by name...")
-            practices = practices.filter(e => e.name === req.param('name'))
+            practices = practices.filter(e => e.name.toLowerCase().includes(req.param('name').toLowerCase()))
         }
         if (req.param('zip') !== undefined && req.param('zip') !== "") {
             sails.log.debug("Filter by ZIP...")
