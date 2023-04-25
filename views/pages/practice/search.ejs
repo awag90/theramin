@@ -22,7 +22,8 @@
         </form-group>
     </form>
     <%practices.forEach(function(practice){%>
-        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none card m-1 d-md-flex card border-dark ">
+        
+        <a href="/practice/<%=practice.id%>" class="card row mt-3 text-decoration-none card m-1 d-md-flex card  shadow  ">
                <div class="card-body px-2">
                 <h2 class="card-title">
                     <%=practice.name%>
@@ -38,12 +39,13 @@
                             <%})%>
                         </ul>
                     </div>
-                    <div class=" col-md-6 text-body ">
+                    <div class=" col-md-6 text-body pt-4 ">
                         <%=practice.street%> <%=practice.streetnumber%><br />
                         <%=practice.zip%> <%=practice.city%>
                     </div>
             </div>
         </div>
         </a>
+   
         <%}); %>
 </div>
