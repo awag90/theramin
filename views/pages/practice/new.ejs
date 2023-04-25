@@ -1,39 +1,72 @@
-<div class="container py-4 px-3">
-    <form class="form" action="/practice" method="post">
-        <div class="container-fluid">
+<div class="container  py-4 px-3 ">
+    <div class=" card shadow border-none px-2 pt-2">
+    <form class="needs-validation" novalidate action="/practice" method="post" >
+           <div class="container-fluid ">
             <div class="form-group row px-0">
                 <label class="form-label">Praxis-Name</label>
-                <input type="text" class="form-control" maxlength="50" name="name" />
+                <input type="text" class="form-control" maxlength="50" name="name"  placeholder="Praxis-Name" required/>
             </div>
             <div class="row">
                 <div class="form-group col-md-8 px-0">
                     <label class="form-label">Straße</label>
-                    <input type="text" class="form-control" maxlength="50" name="street" />
+                    <input type="text" class="form-control" maxlength="50" name="street" placeholder="Straße"  required/>
+                    <div class="valid-tooltip"></div>
                 </div>
                 <div class="form-group col-md-4 px-0 pl-md-4">
                     <label class="form-label">Hausnummer</label>
-                    <input type="text" class="form-control" maxlength="10" name="streetnumber" />
+                    <input type="text" class="form-control" maxlength="10" name="streetnumber" placeholder="Hausnummer" required />
                 </div>
             </div>
             <div class="row">
                 <div class="form-group col-md-6 px-0">
                     <label class="form-label">PLZ</label>
-                    <input type="text" class="form-control" maxlength="10" name="zip" />
+                    <input type="text" class="form-control" maxlength="10" name="zip" placeholder="PLZ" required/>
                 </div>
                 <div class="form-group col-md-6 px-0 pl-md-4">
                     <label class="form-label">Ort</label>
-                    <input type="text" class="form-control" maxlength="50" name="city" />
+                    <input type="text" class="form-control" maxlength="50" name="city" placeholder="Ort" required/>
                 </div>
             </div>
             <div class="row">
                 <div class="form-group w-100">
                     <label class="form-label">Beschreibung</label>
-                    <textarea class="form-control" id="descriptionEdit" rows="5" name="description"></textarea>
+                    <textarea class="form-control" id="descriptionEdit" rows="5" name="description" placeholder="Beschreibung" required></textarea>
                 </div>
             </div>
             <div class="row justify-content-center">
                 <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
             </div>
         </div>
+    </div>
     </form>
 </div>
+<script>
+let form = document.querySelector('.needs-validation');
+
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  event.stopPropagation();
+
+  let nameInput = document.querySelector('input[name="name"]');
+  let streetInput = document.querySelector('input[name="street"]');
+  let streetNumberInput = document.querySelector('input[name="streetnumber"]');
+  let zipInput = document.querySelector('input[name="zip"]');
+  let cityInput = document.querySelector('input[name="city"]');
+  let descriptionInput = document.querySelector('textarea[name="description"]');
+
+  if (form.checkValidity() === false || !nameInput.value || !streetInput.value || !streetNumberInput.value || !zipInput.value || !cityInput.value || !descriptionInput.value) {
+    form.classList.add('was-validated');
+    return;
+  }
+
+  let response = await fetch('/practice', {
+    method: 'POST',
+    body: new FormData(form)
+  });
+
+  if (response.ok) {
+    let practice = await response.json();
+    window.location.href = '/practice/' + practice.id + '/admin';
+  }
+});
+</script>
