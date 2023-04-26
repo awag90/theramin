@@ -12,7 +12,7 @@ module.exports = {
         sails.log.debug("Creating practice...")
         let params = req.allParams()
         let practice = await Practice.create(params).fetch()
-        res.redirect('practice/'+practice.id+'/admin')
+        res.redirect('practice/'+ practice.id + '/admin')
     },
 
     find: async function (req, res) {
