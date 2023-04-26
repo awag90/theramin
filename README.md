@@ -12,9 +12,12 @@ a [Sails v1](https://sailsjs.com) application
 + [Professional / enterprise options](https://sailsjs.com/enterprise)
 
 
-### Version info
+### Hinweise zur Abgabe 3
+- Die Verlinkung für die Praxisverwaltung ist aktuell hardcodiert. Später soll hier die Verlinkung vom eingeloggten Benutzer abhängen
+- Der Kalender in den Praxisseiten ist aktuell noch ein Platzhalter. Dieser soll im Rahmen des Use Case Transaction für die Terminreservierung implementiert werden
+- Die Version auf main ist mit der Produktiv-DB verknüpft 
 
-This app was originally generated on Thu Apr 06 2023 12:35:03 GMT+0200 (Mitteleuropäische Sommerzeit) using Sails v1.5.4.
+
 
 <!-- Internally, Sails used [`sails-generate@2.0.7`](https://github.com/balderdashy/sails-generate/tree/v2.0.7/lib/core-generators/new). -->
 
