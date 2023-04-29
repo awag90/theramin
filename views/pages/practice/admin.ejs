@@ -58,10 +58,10 @@
                         <%therapists.forEach(function(therapist){ %>
                             <tr>
                                 <td>
-                                    <%=therapist.name %>
+                                    <%=therapist.user.name %>
                                 </td>
                                 <td>
-                                    <%=therapist.firstname %>
+                                    <%=therapist.user.firstname %>
                                 </td>
                                 <td>
                                     <%=therapist.specialisation.name %>
@@ -75,7 +75,7 @@
                                 <td>
                                     <%=workhours.toFixed(1)%> h
                                 </td>
-                                <%if (therapist.isAdmin){%>
+                                <%if (therapist.user.isPracticeAdmin){%>
                                     <td class="text-center">✅</td>
                                 <%}else{%>
                                     <td></td>

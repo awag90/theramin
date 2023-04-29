@@ -1,7 +1,7 @@
 module.exports = {
 
 
-  friendlyName: 'Signup',
+  friendlyName: 'UserSignup',
 
 
   description: 'Sign up for a new user account.',
@@ -35,12 +35,26 @@ the account verification message.)`,
       description: 'The unencrypted password to use for the new account.'
     },
 
-    fullName:  {
+    name:  {
       required: true,
       type: 'string',
-      example: 'Frida Kahlo de Rivera',
-      description: 'The user\'s full name.',
-    }
+      example: 'Wunderlich',
+      description: 'The user\'s name.',
+    },
+
+    fistname:  {
+      required: true,
+      type: 'string',
+      example: 'Fiona',
+      description: 'The user\'s firstname.',
+    },
+
+    dob: {
+      required: true, 
+      type: 'string',
+      example: '01.01.2000',
+      description: 'The patients dob'
+    },
 
   },
 
@@ -72,14 +86,15 @@ the account verification message.)`,
   },
 
 
-  fn: async function ({emailAddress, password, fullName}) {
+  fn: async function ({emailAddress, password, name, firstname, dob}) {
 
     var newEmailAddress = emailAddress.toLowerCase();
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     var newUserRecord = await User.create(_.extend({
-      fullName,
+      name,
+      firstname,
       emailAddress: newEmailAddress,
       password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip
@@ -92,6 +107,8 @@ the account verification message.)`,
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
 
+
+    var patient = await Patient.create({dob: dob, user: newUserRecord.id})
 
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;

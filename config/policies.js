@@ -16,7 +16,7 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-
+  /*
   '*': 'is-logged-in',
 
   // Bypass the `is-logged-in` policy for:
@@ -33,4 +33,5 @@ module.exports.policies = {
   CategoryController: {
     '*': 'is-super-admin',
   }
+  */
 };
