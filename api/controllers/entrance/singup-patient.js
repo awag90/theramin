@@ -1,10 +1,10 @@
 module.exports = {
 
 
-  friendlyName: 'UserSignup',
+  friendlyName: 'PatientSignup',
 
 
-  description: 'Sign up for a new user account.',
+  description: 'Sign up for a new patient account.',
 
 
   extendedDescription:
@@ -62,19 +62,19 @@ the account verification message.)`,
   exits: {
 
     success: {
-      description: 'New user account was created successfully.'
+      description: 'Neuer Account wurde erstellt'
     },
 
     invalid: {
       responseType: 'badRequest',
-      description: 'The provided fullName, password and/or email address are invalid.',
+      description: 'Daer eingegeben Name, Emial oder Passwort nicht nicht valide',
       extendedDescription: 'If this request was sent from a graphical user interface, the request '+
       'parameters should have been validated/coerced _before_ they were sent.'
     },
 
     emailAlreadyInUse: {
       statusCode: 409,
-      description: 'The provided email address is already in use.',
+      description: 'Die Emial wird bereits benutzt',
     },
 
     redirect: {

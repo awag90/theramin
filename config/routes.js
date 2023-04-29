@@ -23,6 +23,7 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+
   //Practice
   'GET /practice': 'PracticeController.find',
   'GET /practice/new': { view: 'pages/practice/new' },
@@ -44,7 +45,12 @@ module.exports.routes = {
   'GET /therapist/:id/worktimes': 'Worktime.manage',
 
   //Worktime
-  'POST /worktime': 'WorktimeController.createOrUpdate'
+  'POST /worktime': 'WorktimeController.createOrUpdate',
+
+
+  //Patient
+
+  'GET /entrance/signup':{view: 'pages/entrance/signup'}
 
   /***************************************************************************
   *                                                                          *
