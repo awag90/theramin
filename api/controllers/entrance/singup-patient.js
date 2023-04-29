@@ -67,7 +67,7 @@ the account verification message.)`,
 
     invalid: {
       responseType: 'badRequest',
-      description: 'Daer eingegeben Name, Emial oder Passwort nicht nicht valide',
+      description: 'Der eingegeben Name, Emial oder Passwort nicht nicht valide',
       extendedDescription: 'If this request was sent from a graphical user interface, the request '+
       'parameters should have been validated/coerced _before_ they were sent.'
     },
@@ -87,19 +87,23 @@ the account verification message.)`,
 
 
   fn: async function ({emailAddress, password, name, firstname, dob}) {
-
-    var newEmailAddress = emailAddress.toLowerCase();
+sails.log.debug("Creating patient..")
+    let newEmailAddress = emailAddress.toLowerCase();
+    let params = req.allParams()
+    let hashed = await sails.helpers.passwords.hashPassword(params.password)
+   
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
-    var newUserRecord = await User.create(_.extend({
-      name,
-      firstname,
+    let newUserRecord = await User.create(_.extend({
+      name: params.name,
+      firstname: params.firstname,
+      dob: params.dob,
       emailAddress: newEmailAddress,
-      password: await sails.helpers.passwords.hashPassword(password),
+      password: hashed,
       tosAcceptedByIp: this.req.ip
     }, sails.config.custom.verifyEmailAddresses? {
-      emailProofToken: await sails.helpers.strings.random('url-friendly'),
+      emailProofToken: await Sails.helpers.strings.random('url-friendly'),
       emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
       emailStatus: 'unconfirmed'
     }:{}))
@@ -108,13 +112,13 @@ the account verification message.)`,
     .fetch();
 
 
-    var patient = await Patient.create({dob: dob, user: newUserRecord.id})
+    let patient = await Patient.create({dob: dob, user: newUserRecord.id})
 
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;
   
     if (!this.req.wantsJSON) {
-      throw {redirect: '/'};
+      throw {redirect: '/pages/homepage'};
     }
   }
 
