@@ -48,10 +48,13 @@ module.exports.routes = {
   'POST /worktime': 'WorktimeController.createOrUpdate',
 
 
-  //Signip
+  //Signup
 
-  'GET /entrance/signup':{view: 'pages/entrance/signup'},
- 
+ 'GET /entrance/signup':{view: 'pages/entrance/signup'},
+ 'POST /signup-patient' :{action: 'entrance/signup-patient'},
+ 'GET /signup': {action: 'entrance/view-signup'},
+
+
 
   /***************************************************************************
   *                                                                          *

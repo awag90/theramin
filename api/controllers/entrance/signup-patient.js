@@ -42,7 +42,7 @@ the account verification message.)`,
       description: 'The user\'s name.',
     },
 
-    fistname:  {
+    firstname:  {
       required: true,
       type: 'string',
       example: 'Fiona',
@@ -67,14 +67,14 @@ the account verification message.)`,
 
     invalid: {
       responseType: 'badRequest',
-      description: 'Der eingegeben Name, Emial oder Passwort nicht nicht valide',
+      description: 'Der eingegeben Name, Email oder Passwort ist nicht valide',
       extendedDescription: 'If this request was sent from a graphical user interface, the request '+
       'parameters should have been validated/coerced _before_ they were sent.'
     },
 
     emailAlreadyInUse: {
       statusCode: 409,
-      description: 'Die Emial wird bereits benutzt',
+      description: 'Die Email wird bereits benutzt',
     },
 
     redirect: {
@@ -86,24 +86,23 @@ the account verification message.)`,
   },
 
 
-  fn: async function ({emailAddress, password, name, firstname, dob}) {
-sails.log.debug("Creating patient..")
+  fn: async function ({emailAddress, password,firstname,dob,name}) {
+
     let newEmailAddress = emailAddress.toLowerCase();
-    let params = req.allParams()
-    let hashed = await sails.helpers.passwords.hashPassword(params.password)
+    
    
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     let newUserRecord = await User.create(_.extend({
-      name: params.name,
-      firstname: params.firstname,
-      dob: params.dob,
+      name,
+      firstname,
+      dob,
       emailAddress: newEmailAddress,
-      password: hashed,
+      password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip
     }, sails.config.custom.verifyEmailAddresses? {
-      emailProofToken: await Sails.helpers.strings.random('url-friendly'),
+      emailProofToken: await sails.helpers.strings.random('url-friendly'),
       emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
       emailStatus: 'unconfirmed'
     }:{}))
@@ -111,14 +110,11 @@ sails.log.debug("Creating patient..")
     .intercept({name: 'UsageError'}, 'invalid')
     .fetch();
 
-
-    let patient = await Patient.create({dob: dob, user: newUserRecord.id})
-
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;
   
     if (!this.req.wantsJSON) {
-      throw {redirect: '/pages/homepage'};
+      throw {redirect: '/'};
     }
   }
 
