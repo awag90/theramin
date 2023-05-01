@@ -112,6 +112,9 @@ the account verification message.)`,
 
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;
+
+    //Create the Patient Entry for new User
+    let patient = await Patient.create({dob: dob, user: newUserRecord.id});
   
     if (!this.req.wantsJSON) {
       throw {redirect: '/'};

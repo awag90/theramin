@@ -12,7 +12,7 @@ module.exports = {
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    date: {type: 'string', columnType: 'date', required: true},
+    date: {type: 'ref', columnType: 'date', required: true},
     from: {type: 'string', columnType: 'time', required: true},
     till: {type: 'string', columnType: 'time', required: true},
     indication: {type: 'string', columnType: 'text', required: true},
