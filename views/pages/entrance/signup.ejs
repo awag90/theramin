@@ -15,19 +15,19 @@
             <input type="text" class="form-control" maxlength="50" name="firstname" placeholder="Vorname" required />
           </div>
         </div>
-        <div class="row px-0">
+        <div class="row px-0 ">
           <label class="form-label">Geburtstag</label>
           <input type="date" class="form-control" maxlength="100" name="dob" placeholder="01.01.1999" required/>
         </div>
-        <div class="row px-0">
+        <div class="row px-0 pt-2">
           <label class="form-label">E-Mail</label>
           <input type="email" class="form-control" maxlength="100" name="emailAddress" placeholder="email@adresse.de" required/>
         </div>
-        <div class="row px-0">
+        <div class="row px-0 pt-2">
           <label class="form-label">Initiales Passwort</label>
           <input type="password" class="form-control" maxlength="100" name="password" placeholder="••••••••" required/>
         </div>
-        <div class="row px-0">
+        <div class="row px-0 pt-2">
           <label for="confirm-password">Passwort bestätigen</label>
           <input class="form-control" id="confirm-password" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password" required>
         </div>
@@ -35,7 +35,7 @@
         <div class="row">
         <div class="form-check p-4">
           <input class="form-check-input" id="terms-agreement" name="termsAgreement" type="checkbox" v-model="formData.agreed" required>
-          <label for="terms-agreement" class="form-check-label" >ich habe die Nutzungsbedingungen gelesen &amp; stimme zu<a target="_blank" href="/terms">  Nutzungsbedingungen</a>.</label>
+          <label for="terms-agreement" class="form-check-label" >Ich habe die Nutzungsbedingungen gelesen &amp; stimme zu<a target="_blank" href="/terms">  Nutzungsbedingungen</a>.</label>
         </div>
       </div>
         <span>Für diese Email Adresse existiert bereits ein Account. Wenn Sie ihr Passwort vergessen haben, könne Sie es zurück setzten <a href="password/forgot">here</a>.</span>

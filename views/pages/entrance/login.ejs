@@ -1,27 +1,31 @@
 <div id="login">
   <div class="container-fluid pt-5 pb-5">
-    <h1 class="text-center">Sign in to your account</h1>
+    <h1 class="text-center">Loggen Sie sich ein</h1>
     <div style="max-width: 450px;" class="mx-auto">
       <hr/>
       <form action="login" method="POST">
-        <div class="form-group">
-          <input type="email" name="emailAddress" class="form-control" placeholder="Email address" autocomplete="email" focus-first>
-          <div class="invalid-feedback">Please provide a valid email address.</div>
+        <div class="row px-0">
+          <label class="form-label">Email Adresse</label>
+          <input type="email" name="emailAddress" class="form-control" placeholder="Email Adresse" autocomplete="email" focus-first required>
+         
         </div>
-        <div class="form-group">
-          <input name="password" type="password" class="form-control" placeholder="Password" autocomplete="current-password">
-          <div class="invalid-feedback">Please enter your password.</div>
+        <div class="row px-0 pt-2">
+          <lable class="form-label"> Passwort</lable>
+          <input name="password" type="password" class="form-control" placeholder="Passwort" autocomplete="current-password" required>
+         
         </div>
+        <div class="row pt-2">
         <div class="form-group form-check">
           <input class="form-check-input" type="checkbox" id="remember" name="rememberMe"/>
-          <label class="form-check-label" for="remember">Remember me</label>
+          <label class="form-check-label" for="remember">Anmeldedaten merken</label>
         </div>
-        <span>The credentials you entered are not associated with an account. Please check your email and/or password and try again.</span>
-        <div class="form-group">
-          <button type="submit"class="btn-dark btn-lg btn-block">Sign in</button>
+        </div>
+        <span>Die eingegebenen Anmeldeinformationen sind keinem Account zugeordnet. Bitte überprüfen Sie Ihre E-Mail und/oder Ihr Passwort und versuchen Sie es erneut.</span>
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-primary mt-4 mb-4">Einloggen</button>
         </div>
       </form>
-      <p class="text-center"><a href="/password/forgot">Forgot your password?</a></p>
+      <p class="text-center"><a href="/password/forgot">Passwort vergessen?</a></p>
     </div>
   </div>
 </div>
