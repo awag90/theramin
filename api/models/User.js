@@ -72,7 +72,12 @@ email status until they click the link in the confirmation email.`
     isPracticeAdmin:{
       type: 'boolean',
       description: 'User has the role of Practice Admin for a practice'
-    }
+    },
+
+    isMegaAdmin:{
+      type: 'boolean', 
+      description: 'Has access to all pages and practices'
+    },
   },
 
 
