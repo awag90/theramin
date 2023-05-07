@@ -16,22 +16,29 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
-  /*
+  
   '*': 'is-logged-in',
 
   // Bypass the `is-logged-in` policy for:
   'entrance/*': true,
   'account/logout': true,
 
-  MenuController: {
-    '*': true,
+  PracticeController: {
+    'find': true,
+    'create': true,
+    'findByCriteria': true,
+    'findOne': true,
+    '*': 'is-practice-admin'
   },
 
-  MealController: {
-    '*': 'is-super-admin',
+  TherapistController: {
+    '*': 'is-practice-admin',
   },
-  CategoryController: {
-    '*': 'is-super-admin',
+
+  WorktimeController: {
+    '*': 'is-practice-admin',
   }
-  */
+
+  
+  
 };
