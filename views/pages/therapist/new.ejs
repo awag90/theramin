@@ -39,7 +39,11 @@
       </div>
       <div class="row">
         <div class="form-check p-4">
-          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
+          <%if(req.me){%>
+            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
+          <%}else{%>
+            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" checked disabled/>
+          <%}%>
           <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
         </div>
       </div>

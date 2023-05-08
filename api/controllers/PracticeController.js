@@ -12,7 +12,8 @@ module.exports = {
         sails.log.debug("Creating practice...")
         let params = req.allParams()
         let practice = await Practice.create(params).fetch()
-        res.redirect('practice/'+ practice.id + '/admin')
+        let specialisations = await Specialisation.find()
+        res.view('pages/therapist/new', { practice: practice, specialisations: specialisations })
     },
 
     find: async function (req, res) {
