@@ -1,9 +1,10 @@
-<div id="login">
-  <div class="container-fluid pt-5 pb-5">
+<div id="login"> 
+  <div class="container py-4 px-3 ">
+    <div class=" card shadow border-none px-2 pt-5  ">
     <h1 class="text-center">Loggen Sie sich ein</h1>
     <div style="max-width: 450px;" class="mx-auto">
       <hr/>
-      <form action="login" method="POST">
+      <form action="/login" method="POST">
         <div class="row px-0">
           <label class="form-label">Email Adresse</label>
           <input type="email" name="emailAddress" class="form-control" placeholder="Email Adresse" autocomplete="email" focus-first required>
@@ -28,5 +29,6 @@
       <p class="text-center"><a href="/password/forgot">Passwort vergessen?</a></p>
     </div>
   </div>
+</div>
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
