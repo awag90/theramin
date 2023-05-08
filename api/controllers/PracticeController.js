@@ -66,6 +66,18 @@ module.exports = {
 
     admin: async function (req, res) {
         sails.log.debug('Opening Admin-Site for practice...')
+        let loggedInTherapist = await Therapist.findOne({user:req.session.userId}).populate('user');
+        if (loggedInTherapist){
+            let practice = await Practice.findOne({ id: loggedInTherapist.practice }).populate('therapists')
+            let therapists = await Therapist.find({ practice: practice.id }).populate('specialisation').populate('worktimes').populate('user')
+            res.view('pages/practice/admin', { practice: practice, therapists: therapists })
+        } else {
+            res.forbidden();
+        }
+    },
+
+    megaAdmin: async function(req, res){
+        sails.log.debug('Opening Admin-Site for practice...')
         let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
         let therapists = await Therapist.find({ practice: practice.id }).populate('specialisation').populate('worktimes').populate('user')
         res.view('pages/practice/admin', { practice: practice, therapists: therapists })

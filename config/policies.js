@@ -24,11 +24,12 @@ module.exports.policies = {
   'account/logout': true,
 
   PracticeController: {
+    '*': 'is-practice-admin',
     'find': true,
     'create': true,
     'findByCriteria': true,
     'findOne': true,
-    '*': 'is-practice-admin'
+    'megaAdmin': 'is-mega-admin'
   },
 
   TherapistController: {
