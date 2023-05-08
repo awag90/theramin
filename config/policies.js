@@ -33,6 +33,7 @@ module.exports.policies = {
 
   TherapistController: {
     '*': 'is-practice-admin',
+    'create': true
   },
 
   WorktimeController: {

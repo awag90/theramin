@@ -31,7 +31,11 @@ module.exports = {
           .fetch();
         
         let therapist = await Therapist.create({specialisation: params.specialisation, practice: params.practice, user: newUserRecord.id}).fetch()
-        res.redirect('practice/'+therapist.practice+'/admin')
+        
+        if(!req.session.userId){
+            req.session.userId = newUserRecord.id;
+        }
+        res.redirect('/practice/' + therapist.practice + '/admin')
     },
 
     edit: async function (req, res) {
