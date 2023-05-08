@@ -58,30 +58,41 @@
           <li class="nav-item">
             <a class="nav-link text-white" href="/practice">Praxissuche</a>
           </li>
-          <!--TODO:
-            <li class="nav-item ">
+          <%if(req.me && !req.me.isTherapist){%>
+          <li class="nav-item ">
             <a class="nav-link text-white" href="#">Mein Profil</a>
           </li>
+          <%}else if(req.me && req.me.isTherapist){%>
           <li class="nav-item">
             <a class="nav-link text-white" href="#">Terminübersicht</a>
-          </li> 
-            -->
+          </li>
+          <%}%> 
+          <%if(req.me && req.me.isPracticeAdmin){%>
           <li class="nav-item">
             <a class="nav-link text-white" href="/practice/1/admin">Praxis verwalten</a>
           </li>
+          <%}%>
+          <%if (!req.me){%>
           <li class="nav-item">
             <a class="nav-link text-white" href="/practice/new">Praxis registrieren</a>
           </li>
+          <%}%>
         </ul>
       </div>
       <div class="collapse navbar-collapse me-5 justify-content-end into-burger order-1">
         <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/entrance/login">Login</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link text-white" href="/entrance/signup">Registrieren</a>
-          </li>
+          <%if (!req.me){%>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/login">Login</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/entrance/signup">Registrieren</a>
+            </li>
+          <% }else{%> 
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/logout">Logout</a>
+            </li>
+          <%}%>
         </ul>
       </div>
     </nav>

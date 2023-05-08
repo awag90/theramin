@@ -49,16 +49,17 @@ module.exports.routes = {
 
 
   //Signup
-
  'GET /entrance/signup':{view: 'pages/entrance/signup'},
  'POST /signup-patient' :{action: 'entrance/signup-patient'},
  'GET /signup': {action: 'entrance/view-signup'},
 
   //Login
-
   'GET /login': {action:'entrance/view-login'},
   'GET /entrance/login':{view: 'pages/entrance/login'},
   'POST /login':{action:'entrance/login'},
+
+  //Logout
+  'GET /logout': {action:'account/logout'},
 
   /***************************************************************************
   *                                                                          *
