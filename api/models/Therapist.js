@@ -11,9 +11,6 @@ module.exports = {
         //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
         //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
         //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-        name: { type: 'string', columnType: 'varchar(50)', required: true },
-        firstname: { type: 'string', columnType: 'varchar(50)', required: true },
-        isAdmin: { type: 'boolean', columnType: 'boolean', required: false },
 
         //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
         //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
@@ -21,6 +18,7 @@ module.exports = {
         practice: { model: 'practice', required: true },
         specialisation: { model: 'specialisation', required: true },
         appointments: {collection: 'appointment', via: 'therapist'},
-        worktimes: {collection: 'worktime', via: 'therapist'}
+        worktimes: {collection: 'worktime', via: 'therapist'},
+        user: {model: 'user'},
     },
 }

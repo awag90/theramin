@@ -23,13 +23,15 @@ module.exports.routes = {
 
   '/': { view: 'pages/homepage' },
 
+
   //Practice
   'GET /practice': 'PracticeController.find',
   'GET /practice/new': { view: 'pages/practice/new' },
   'GET /practice/:id': 'PracticeController.findOne',
   'POST /practice': 'PracticeController.create',
   'GET /practice/filtered': 'PracticeController.findByCriteria',
-  'GET /practice/:id/admin': 'PracticeController.admin',
+  'GET /practice/:id/admin': 'PracticeController.megaAdmin',
+  'GET /practice/admin' : 'PracticeController.admin',
   'GET /practice/:id/edit': 'PracticeController.edit',
   'POST /practice/:id/update': 'PracticeController.update',
   'GET /practice/:id/addtherapist': 'PracticeController.addTherapist',
@@ -44,7 +46,21 @@ module.exports.routes = {
   'GET /therapist/:id/worktimes': 'Worktime.manage',
 
   //Worktime
-  'POST /worktime': 'WorktimeController.createOrUpdate'
+  'POST /worktime': 'WorktimeController.createOrUpdate',
+
+
+  //Signup
+ 'GET /entrance/signup':{view: 'pages/entrance/signup'},
+ 'POST /signup-patient' :{action: 'entrance/signup-patient'},
+ 'GET /signup': {action: 'entrance/view-signup'},
+
+  //Login
+  'GET /login': {action:'entrance/view-login'},
+  'GET /entrance/login':{view: 'pages/entrance/login'},
+  'POST /login':{action:'entrance/login'},
+
+  //Logout
+  'GET /logout': {action:'account/logout'},
 
   /***************************************************************************
   *                                                                          *

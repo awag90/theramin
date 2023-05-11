@@ -16,7 +16,31 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
+  
+  '*': 'is-logged-in',
 
-  // '*': true,
+  // Bypass the `is-logged-in` policy for:
+  'entrance/*': true,
+  'account/logout': true,
 
+  PracticeController: {
+    '*': 'is-practice-admin',
+    'find': true,
+    'create': true,
+    'findByCriteria': true,
+    'findOne': true,
+    'megaAdmin': 'is-mega-admin'
+  },
+
+  TherapistController: {
+    '*': 'is-practice-admin',
+    'create': true
+  },
+
+  WorktimeController: {
+    '*': 'is-practice-admin',
+  }
+
+  
+  
 };

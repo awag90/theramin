@@ -3,7 +3,6 @@
   <form action="/therapist" method="post">
     <div>
       <input type="hidden" value="<%=practice.id%>" name="practice" />
-
       <div class="row">
         <div class="form-group col-md-6 px-0">
           <label class="form-label">Name</label>
@@ -13,6 +12,18 @@
           <label class="form-label">Vorname</label>
           <input type="text" class="form-control" maxlength="50" name="firstname" placeholder="Vorname" required />
         </div>
+      </div>
+      <div class="row px-0">
+        <label class="form-label">E-Mail</label>
+        <input type="email" class="form-control" maxlength="100" name="emailAddress" placeholder="email@adresse.de" required/>
+      </div>
+      <div class="row px-0">
+        <label class="form-label">Initiales Passwort</label>
+        <input type="password" class="form-control" maxlength="100" name="password" placeholder="••••••••" required/>
+      </div>
+      <div class="row px-0">
+        <label for="confirm-password">Passwort bestätigen</label>
+        <input class="form-control" id="confirm-password" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password">
       </div>
       <div class="row">
         <div class="formgroup">
@@ -28,7 +39,11 @@
       </div>
       <div class="row">
         <div class="form-check p-4">
-          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
+          <%if(req.me){%>
+            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
+          <%}else{%>
+            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" checked disabled/>
+          <%}%>
           <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
         </div>
       </div>
