@@ -16,10 +16,44 @@
         <h3>Therapeuten</h3>
         <!--Vue App-->
         <div id="app">
-
+          <table class="table">
+            <tr>
+              <th>Therapeut</th>
+              <th>Fachgebiet</th>
+              <th v-for="time in times" v-bind:value="time">{{time.toTimeString().slice(0,5)}}</th>
+            </tr>
+            <tr v-for="therapist in therapists" v-bind:value="therapist">
+              <td>{{therapist.user.firstname}} {{therapist.user.name}}</td>
+              <td>{{therapist.specialisation.name}}</td>
+              <td v-for="time in times" v-bind:value="time"></td>
+            </tr>
+          </table>
         </div>
         <script>
-          
+          const {createApp} = Vue
+
+          createApp({
+            data: () => {
+              return{
+                therapists: [], 
+                times: []
+              }
+            },
+            methods: {
+                
+            },
+            created() {
+                let url = new URL(origin + '/practice/<%=practice.id%>/therapists');
+                fetch(url)
+                    .then(res => res.json())
+                    .then(data => this.therapists = data)
+                
+                for (let i = (3600000*8); i < (3600000*20); i+=(1800000)){
+                  this.times.push(new Date(i));
+                }
+            }
+          }).mount("#app")
+
         </script>
         <!--Vue Ende-->
       </div>

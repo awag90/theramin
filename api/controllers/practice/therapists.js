@@ -10,7 +10,7 @@ module.exports = {
     inputs: {
       practice: {
         description: 'The Id of the practice',
-        type: 'int',
+        type: 'number',
         required: true,
       }
     },
@@ -24,7 +24,8 @@ module.exports = {
   
   
     fn: async function (inputs) {
-      let therapists = await Therapist.find({practice: inputs.practice}).poulate('specialisation').poulate('user').poulate(worktimes); 
+      sails.log.debug("Lade Therapeuten für Praxis")
+      let therapists = await Therapist.find({practice: inputs.practice}).populate('specialisation').populate('user').populate('worktimes'); 
       return therapists;
     }
   
