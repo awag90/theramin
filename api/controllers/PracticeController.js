@@ -46,8 +46,7 @@ module.exports = {
     findOne: async function (req, res) {
         sails.log.debug('Finding single practice...')
         let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
-        let therapists = await Therapist.find({practice: practice.id}).populate('specialisation')
-        res.view('pages/practice/show', { practice: practice, therapists: therapists })
+        res.view('pages/practice/show', { practice: practice})
     },
 
     destroy: async function (req, res) {

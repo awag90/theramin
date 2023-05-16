@@ -62,6 +62,9 @@ module.exports.routes = {
   //Logout
   'GET /logout': {action:'account/logout'},
 
+  //REST-Endpoints
+  'GET /practice/:practice/therapists': {action: 'practice/therapists'},
+
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

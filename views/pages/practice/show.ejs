@@ -14,30 +14,14 @@
       </div>
       <div class="card-body table-responsive px-2">
         <h3>Therapeuten</h3>
-        <!--Platzhalter-->
-        <table class="table">
-          <tableHead>
-            <th>Name</th>
-            <th>Fachgebiet</th>
-            <% for(i = 7; i<= 19; i++){%> <%if (i<10){%>
-            <th><%='0'+i.toString()+':00'%></th>
-            <%} else {%>
-            <th><%=i.toString()+':00'%></th>
-            <%}%> <%}%>
-          </tableHead>
-          <tableBody>
-            <%therapists.forEach(function(therapist){%>
-            <tr>
-              <td><%=therapist.firstname%> <%=therapist.name%></td>
-              <td><%=therapist.specialisation.name%></td>
-              <%for(i = 7; i<= 19; i++){%>
-              <td></td>
-              <%}%>
-            </tr>
-            <%})%>
-          </tableBody>
-        </table>
-        <!--Platzhalter Ende-->
+        <!--Vue App-->
+        <div id="app">
+
+        </div>
+        <script>
+          
+        </script>
+        <!--Vue Ende-->
       </div>
       <div class="card-footer px-2">
         <address>
