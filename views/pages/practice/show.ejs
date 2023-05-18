@@ -1,8 +1,8 @@
 <script>
 </script>
 <div class="container py-4 px-4">
-  <div class="row">
-    <div class="card row px-0 mx-0 ">
+  <div class="row w-100">
+    <div class="card col-12 px-0 mx-0 ">
       <h2 class="card-title px-2"><%=practice.name%></h2>
       <div class="card-header px-2">
         <h3>Beschreibung</h3>
@@ -14,7 +14,7 @@
           </details>
         </div>
       </div>
-      <div class="card-body  table-responsive px-2">
+      <div class="card-body table-responsive px-2">
         <h3>Termine</h3>
         <!--Vue App-->
         <div id="app">
@@ -23,20 +23,26 @@
             <p class="col-md-2 col-4 text-center">{{getGermanWeekdayForDatetime(day)}}, {{day.toLocaleDateString()}}</p>
             <button class="btn btn-primary col-md-2 col-3" @click="increment">Weiter</button>
           </div>
-          <div class="row  my-2">
+          <div class="calendar row  my-2 mx-1">
             <table class="table">
+              <thead class="cal-head">
               <tr>
-                <th>Therapeut</th>
-                <th>Fachgebiet</th>
-                <th v-for="time in times" v-bind:value="time">{{time.toTimeString().slice(0,5)}}</th>
+                <th></th>
+                <th class="text-center" v-for="therapist in therapists" v-bind:value="therapist">{{therapist.user.firstname}} {{therapist.user.name}}</th>
               </tr>
-              <tr v-for="therapist in therapists" v-bind:value="therapist">
-                <td>{{therapist.user.firstname}} {{therapist.user.name}}</td>
-                <td>{{therapist.specialisation.name}}</td>
-                <td class="cell" v-for="time in times" :key="time.getTime()">
+              <tr>
+                <td></td>
+                <td class="text-center" v-for="therapist in therapists" v-bind:value="therapist">{{therapist.specialisation.name}}</td>
+              </tr>
+            </thead>
+            <tbody class="cal-body">
+              <tr  v-for="time in times" :key="time.getTime()">
+                <th class="text-center">{{time.toTimeString().slice(0,5)}}</th>               
+                <td class="text-center" v-for="therapist in therapists" :value="therapist">
                   <calendarcell :time="time" :therapist="therapist"></calendarcell>
                 </td>
               </tr>
+            </tbody>
             </table>
           </div>
         </div>
@@ -115,9 +121,6 @@
           })
           app.component("calendarcell", calendarCell)
           app.mount("#app")
-
-        
-
         </script>
         <!--Vue Ende-->
       </div>
@@ -127,9 +130,9 @@
             <%=practice.name%>
           </strong><br />
           <%=practice.street%>
-            <%=practice.streetnumber%><br />
-              <%=practice.zip%>
-                <%=practice.city%>
+          <%=practice.streetnumber%><br />
+          <%=practice.zip%>
+          <%=practice.city%>
         </address>
       </div>
     </div>
