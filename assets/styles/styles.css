@@ -60,3 +60,21 @@ input[type="checkbox"] {
     width: 8em;
 }
 
+.cal{
+    width:4em;
+    height:4em;
+    display: block;
+}
+
+.free{
+    background-color: #7486a1;
+}
+
+.notWorking{
+    background-color: white;
+}
+
+.cell{
+    padding: 0;
+}
+

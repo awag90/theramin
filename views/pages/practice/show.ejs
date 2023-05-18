@@ -1,3 +1,5 @@
+<script>
+</script>
 <div class="container py-4 px-4">
   <div class="row">
     <div class="card row px-0 mx-0 ">
@@ -25,34 +27,37 @@
             <tr v-for="therapist in therapists" v-bind:value="therapist">
               <td>{{therapist.user.firstname}} {{therapist.user.name}}</td>
               <td>{{therapist.specialisation.name}}</td>
-              <td v-for="time in times" v-bind:value="time"></td>
+              <td class="cell" v-for="time in times"><calendarcell :time="time" :therapist="therapist"></calendarcell></td>
             </tr>
           </table>
         </div>
-        <script>
+        <script type="module">
+          import calendarCell from '/vue/CalendarCell.js'
           const {createApp} = Vue
 
-          createApp({
-            data: () => {
+          const app = createApp({
+            data(){
               return{
                 therapists: [], 
-                times: []
+                times: [], 
+                date: new Date().setHours(0,0,0)
               }
             },
             methods: {
                 
             },
-            created() {
+            async created() {
                 let url = new URL(origin + '/practice/<%=practice.id%>/therapists');
-                fetch(url)
+                await fetch(url)
                     .then(res => res.json())
                     .then(data => this.therapists = data)
-                
-                for (let i = (3600000*8); i < (3600000*20); i+=(1800000)){
+                for (let i = (this.date+3600000*8); i < (this.date+3600000*20); i+=(1800000)){
                   this.times.push(new Date(i));
                 }
             }
-          }).mount("#app")
+          })
+          app.component("calendarcell", calendarCell)
+          app.mount("#app")
 
         </script>
         <!--Vue Ende-->
