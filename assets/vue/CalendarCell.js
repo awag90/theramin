@@ -14,7 +14,7 @@ export default{
             this.status = 'btn btn-primary cal free';
             this.text = 'Termin verfügbar'
         }else{
-            this.status = 'btn cal notWorking';
+            this.status = 'btn cal not-free';
             this.disabled = true;
         }
     },
