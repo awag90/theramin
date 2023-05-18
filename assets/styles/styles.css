@@ -61,10 +61,10 @@ input[type="checkbox"] {
 }
 
 .cal{
-    width:4em;
-    height:4em;
-    display: block;
     margin:auto;
+    color:white;
+    text-align: center;
+    padding: 1em 1em;
 }
 
 .free{
@@ -73,6 +73,7 @@ input[type="checkbox"] {
 
 .notWorking{
     background-color: white;
+    padding: 1.75em 6em;
 }
 
 .cell{

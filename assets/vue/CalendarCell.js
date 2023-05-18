@@ -3,20 +3,22 @@ export default{
     data: function () {
         return {
           status: '',
-          disabled: false
+          disabled: false,
+          text: '  '
         }
     },
     created() {
         let working = isWorking(this.time, this.therapist.worktimes); 
         let booked = false;
         if (working && !booked){
-            this.status = 'cal free';
+            this.status = 'btn btn-primary cal free';
+            this.text = 'Termin verfügbar'
         }else{
-            this.status = 'cal notWorking';
+            this.status = 'btn cal notWorking';
             this.disabled = true;
         }
     },
-    template: '<div :class="status" :disabled="disabled"></div>'
+    template: '<button :class="status" :disabled="disabled">{{text}}</button>'
 }
 
 function isWorking(time,worktimes){
