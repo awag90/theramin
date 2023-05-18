@@ -2,7 +2,8 @@ export default{
     props:['time', 'therapist'], 
     data: function () {
         return {
-          status: '' 
+          status: '',
+          disabled: false
         }
     },
     created() {
@@ -12,9 +13,10 @@ export default{
             this.status = 'cal free';
         }else{
             this.status = 'cal notWorking';
+            this.disabled = true;
         }
     },
-    template: '<div :class="status"></div>'
+    template: '<div :class="status" :disabled="disabled"></div>'
 }
 
 function isWorking(time,worktimes){

@@ -14,59 +14,122 @@
           </details>
         </div>
       </div>
-      <div class="card-body table-responsive px-2">
-        <h3>Therapeuten</h3>
+      <div class="card-body  table-responsive px-2">
+        <h3>Termine</h3>
         <!--Vue App-->
         <div id="app">
-          <table class="table">
-            <tr>
-              <th>Therapeut</th>
-              <th>Fachgebiet</th>
-              <th v-for="time in times" v-bind:value="time">{{time.toTimeString().slice(0,5)}}</th>
-            </tr>
-            <tr v-for="therapist in therapists" v-bind:value="therapist">
-              <td>{{therapist.user.firstname}} {{therapist.user.name}}</td>
-              <td>{{therapist.specialisation.name}}</td>
-              <td class="cell" v-for="time in times"><calendarcell :time="time" :therapist="therapist"></calendarcell></td>
-            </tr>
-          </table>
+          <div class="row justify-content-center my-2">
+            <button class="btn btn-primary col-md-2 col-3" @click="decrement">Zurück</button>
+            <p class="col-md-2 col-4 text-center">{{getGermanWeekdayForDatetime(day)}}, {{day.toLocaleDateString()}}</p>
+            <button class="btn btn-primary col-md-2 col-3" @click="increment">Weiter</button>
+          </div>
+          <div class="row  my-2">
+            <table class="table">
+              <tr>
+                <th>Therapeut</th>
+                <th>Fachgebiet</th>
+                <th v-for="time in times" v-bind:value="time">{{time.toTimeString().slice(0,5)}}</th>
+              </tr>
+              <tr v-for="therapist in therapists" v-bind:value="therapist">
+                <td>{{therapist.user.firstname}} {{therapist.user.name}}</td>
+                <td>{{therapist.specialisation.name}}</td>
+                <td class="cell" v-for="time in times" :key="time.getTime()">
+                  <calendarcell :time="time" :therapist="therapist"></calendarcell>
+                </td>
+              </tr>
+            </table>
+          </div>
         </div>
         <script type="module">
           import calendarCell from '/vue/CalendarCell.js'
-          const {createApp} = Vue
+          const { createApp } = Vue
 
           const app = createApp({
-            data(){
-              return{
-                therapists: [], 
-                times: [], 
-                date: new Date().setHours(0,0,0)
+            data() {
+              return {
+                therapists: [],
+                times: [],
+                day: new Date()
               }
             },
             methods: {
+              increment: function(){
+                if (this.day.getDay() != 5){
+                  this.day = new Date(this.day.getTime() + 24 * 60 * 60 * 1000)
+                }else{
+                  this.day = new Date(this.day.getTime() + 3 * 24 * 60 * 60 * 1000);
+                }
+                this.setTimes()
+              },
+
+              decrement: function(){
+                if(this.day.getTime() > new Date().getTime()){
+                  if (this.day.getDay() != 1){
+                    this.day = new Date(this.day.getTime() - 24 * 60 * 60 * 1000)
+                  }else{
+                    this.day = new Date(this.day.getTime() - 3 * 24 * 60 * 60 * 1000);
+                  }
+                }
+                this.setTimes()
                 
-            },
-            async created() {
-                let url = new URL(origin + '/practice/<%=practice.id%>/therapists');
-                await fetch(url)
-                    .then(res => res.json())
-                    .then(data => this.therapists = data)
-                for (let i = (this.date+3600000*8); i < (this.date+3600000*20); i+=(1800000)){
+              },
+
+              setTimes: function(){
+                this.day.setHours(0, 0, 0)
+                this.times = []
+                for (let i = (this.day.getTime() + 3600000 * 8); i < (this.day.getTime() + 3600000 * 20); i += (1800000)) {
                   this.times.push(new Date(i));
                 }
+              },
+
+              getGermanWeekdayForDatetime: function(day){
+                let dayNum = day.getDay();
+                  switch (dayNum){
+                      case 1:
+                          return 'Montag'
+                      case 2:
+                          return 'Dienstag'
+                      case 3:
+                          return 'Mittwoch'
+                      case 4:
+                          return 'Donnerstag'
+                      case 5:
+                          return 'Freitag'
+                }
+              },
+
+            },
+            async created() {
+              let url = new URL(origin + '/practice/<%=practice.id%>/therapists');
+              await fetch(url)
+                .then(res => res.json())
+                .then(data => this.therapists = data)
+              
+              if (this.day.getDay() == 6){
+                this.day = new Date(this.day.getTime() + 2 * 24 * 60 * 60 * 1000)
+              }else if (this.day.getDay() == 0){
+                this.day = new Date(this.day.getTime() - 24 * 60 * 60 * 1000)
+              }
+              this.setTimes()
             }
           })
           app.component("calendarcell", calendarCell)
           app.mount("#app")
+
+        
 
         </script>
         <!--Vue Ende-->
       </div>
       <div class="card-footer px-2">
         <address>
-          <strong><%=practice.name%></strong><br />
-          <%=practice.street%> <%=practice.streetnumber%><br />
-          <%=practice.zip%> <%=practice.city%>
+          <strong>
+            <%=practice.name%>
+          </strong><br />
+          <%=practice.street%>
+            <%=practice.streetnumber%><br />
+              <%=practice.zip%>
+                <%=practice.city%>
         </address>
       </div>
     </div>
