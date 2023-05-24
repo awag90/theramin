@@ -7,6 +7,11 @@ export default{
           text: '  '
         }
     },
+    methods: {
+        emitEvent: function(){
+            this.$emit('createAppointment', this.therapist, this.time);
+        }
+    },
     created() {
         let working = isWorking(this.time, this.therapist.worktimes); 
         let booked = false;
@@ -18,7 +23,7 @@ export default{
             this.disabled = true;
         }
     },
-    template: '<button :class="status" :disabled="disabled">{{text}}</button>'
+    template: '<button :class="status" :disabled="disabled" @click="emitEvent">{{text}}</button>'
 }
 
 function isWorking(time,worktimes){
