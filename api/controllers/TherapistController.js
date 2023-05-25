@@ -9,6 +9,7 @@ const Therapist = require("../models/Therapist");
 const Appointment = require("../models/Appointment");
 
 module.exports = {
+
     create: async function (req, res) {
         sails.log.debug("Creating therapist...")
         let params = req.allParams()
@@ -63,10 +64,5 @@ module.exports = {
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
 
-    find: async function (req, res) {
-        sails.log.debug("get therapist...")
-        let therapist = await Therapist.find({user:req.session.userId}).populate('user')
-        sails.log.debug(therapist)
-          res.view('pages/therapist/appointments', { therapist: therapist })
-    },
+    
 }

@@ -3,8 +3,8 @@
         <div class="card col-12 px-0 mx-0">
             <h2 class="card-title px-2"> <%=patient.user.firstname%> <%=patient.user.name%></h2> 
             <div class="card-body table-responsive px-2">
-                <h5><%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7) + '.'+patient.dob.toISOString().slice(0, 4) %></h5>
-                <h5 ><%= patient.user.emailAddress%></h5>
+                <h5>Geburtstag: <%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7) + '.'+patient.dob.toISOString().slice(0, 4) %></h5>
+                <h5 > Email: <%= patient.user.emailAddress%></h5>
                 
                 </div>
                 
