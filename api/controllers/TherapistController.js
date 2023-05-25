@@ -63,10 +63,10 @@ module.exports = {
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
 
-    find: async function (req,res){
-        sails.log.debug('get therapist...')
-        let therapist = await Therapist.findOne({user: req.session.userId}).populate('user');
-        let appointments = await Appointment.find({appointments:appointments.id})
-        res.view('pages/therapist/appointments', { therapist:therapist})
-    }
+    find: async function (req, res) {
+        sails.log.debug("get therapist...")
+        let therapist = await Therapist.find({user:req.session.userId}).populate('user')
+        sails.log.debug(therapist)
+          res.view('pages/therapist/appointments', { therapist: therapist })
+    },
 }
