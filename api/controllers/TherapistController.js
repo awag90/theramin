@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const Sails = require("sails/lib/app/Sails");
+const Therapist = require("../models/Therapist");
+const Appointment = require("../models/Appointment");
 
 module.exports = {
     create: async function (req, res) {
@@ -60,4 +62,11 @@ module.exports = {
         let therapist = await Therapist.destroyOne({ id: req.params.id })
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
+
+    find: async function (req,res){
+        sails.log.debug('get therapist...')
+        let therapist = await Therapist.findOne({user: req.session.userId}).populate('user');
+        let appointments = await Appointment.find({appointments:appointments.id})
+        res.view('pages/therapist/appointments', { therapist:therapist})
+    }
 }
