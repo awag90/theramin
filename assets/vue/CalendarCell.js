@@ -1,5 +1,6 @@
 export default{
     props:['time', 'therapist'], 
+    emits: ['createAppointment'],
     data: function () {
         return {
           status: '',
