@@ -67,11 +67,11 @@
           </li>
           <%if(req.me && !req.me.isTherapist){%>
           <li class="nav-item ">
-            <a class="nav-link text-white" href="#">Mein Profil</a>
+            <a class="nav-link text-white" href="/patient/show">Mein Profil</a>
           </li>
           <%}else if(req.me && req.me.isTherapist){%>
           <li class="nav-item">
-            <a class="nav-link text-white" href="#">Terminübersicht</a>
+            <a class="nav-link text-white" href="/therapist/appointments">Terminübersicht</a>
           </li>
           <%}%> 
           <%if(req.me && req.me.isPracticeAdmin){%>

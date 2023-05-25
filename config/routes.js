@@ -44,6 +44,10 @@ module.exports.routes = {
   'POST /therapist/:id/update': 'Therapist.update',
   'GET /therapist/:id/destroy': 'Therapist.destroy',
   'GET /therapist/:id/worktimes': 'Worktime.manage',
+  'GET /therapist/appointments' : {view: 'pages/therapist/appointments'},
+
+  //Patient
+  'GET /patient/show': {view: 'pages/patient/show'},
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',

@@ -30,7 +30,7 @@
                 <div class="row justify-content-between pt-3">
                     <div class="col- md-6 text-body mb-3 px-3">
                         <p>Praxis für:</p>
-                        <ul>
+                         <ul>
                             <% specialisations.forEach(function(specialisation){%>
                                 <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
                                     <li><%=specialisation.name%></li>
