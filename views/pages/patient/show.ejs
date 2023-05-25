@@ -5,10 +5,13 @@
             <div class="card-body table-responsive px-2">
                 <h5>Geburtstag: <%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7) + '.'+patient.dob.toISOString().slice(0, 4) %></h5>
                 <h5 > Email: <%= patient.user.emailAddress%></h5>
+                <br>
+                 <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-profile">Profil bearbeiten</a>
+                <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-password">Passwort ändern</a>
                 
                 </div>
-                
 
+               
                 <div class="card-body px-2">
                 <h3 >Termine</h3> 
                 <div class="card-body table-responsive">
@@ -45,7 +48,7 @@
                 </div>
     
                 </div>
-           
+                
         </div>
     </div>
 </div>
