@@ -1,33 +1,35 @@
 <div id="edit-profile" v-cloak>
   <account-notification-banner></account-notification-banner>
   <div class="container pt-5 pb-5">
-    <h1>Update personal info</h1>
+    <h1>Persönliche Informationen bearbeiten</h1>
     <hr/>
     <form action="/updateProfile" method="POST">
       <div class="row">
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="full-name">Full name</label>
-            <input class="form-control" id="full-name" name="fullName" type="text"  placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first value="<%= req.me.fullName %>">
-            <div class="invalid-feedback">Please enter your full name.</div>
+            <label for="full-name">Vorname</label>
+            <input class="form-control" id="firstname" name="firstname" type="text"  placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first value="<%= req.me.firstname %>">
+            <label for="full-name">Name</label>
+            <input class="form-control" id="name" name="name" type="text"  placeholder="Sturgis P. Sturgeon" autocomplete="name" focus-first value="<%= req.me.name %>">
+            <div class="invalid-feedback">Geben Sie Ihren Namen ein</div>
           </div>
         </div>
         <div class="col-sm-6">
           <div class="form-group">
-            <label for="email-address">Email address</label>
+            <label for="email-address">Email Adresse</label>
             <input class="form-control" id="email-address" name="emailAddress" type="email" placeholder="sturgeon@example.com" autocomplete="email" value="<%= req.me.emailAddress %>">
-            <div class="invalid-feedback">Please enter a valid email address.</div>
+            <div class="invalid-feedback">Geben Sie eine E-Mail Adresse ein</div>
           </div>
         </div>
       </div>
       <div class="row">
         <div class="col-sm-6">
-          There is already an account using that email address.
+          Es existiert bereits ein Account mit dieser Email Adresse
         </div>
         <div class="col-sm-6">
           <div class="form-group text-right">
-            <a class="btn btn-outline-info" href="/account">Cancel</a>
-            <button type="submit"  class="btn btn-dark">Save changes</button>
+            <a class="btn btn-outline-info" href="/account">Abbruch</a>
+            <button type="submit"  class="btn btn-dark">Änderungen speichern</button>
           </div>
         </div>
       </div>

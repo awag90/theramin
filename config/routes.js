@@ -47,9 +47,8 @@ module.exports.routes = {
   'GET /therapist/:id/worktimes': 'Worktime.manage',
   'GET /therapist/appointments' : 'TherapistController.find',
 
-  //Patient
-  
-  'GET /patient/show': 'PatientController.find',
+  //Account
+   'GET /account/account-overview': 'PatientController.find',
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',
