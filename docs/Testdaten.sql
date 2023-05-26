@@ -84,6 +84,19 @@ INSERT INTO theramin_prod.worktime
 (createdAt, updatedAt, id, weekday, `from`, till, therapist)
 VALUES(1682513749902, 1682513749902, 9, 'friday', '09:00:00', '17:00:00', 6);
 
+--Appointment
+INSERT INTO theramin_prod.appointment
+(createdAt, updatedAt, `date`, `from`, till, indication, patient, therapist)
+VALUES(1682500360971, 1682500360971, '2023-05-29', '08:00:00', '08:30:00', 'Rückenschmerzen',1 , 2);
+
+INSERT INTO theramin_prod.appointment
+(createdAt, updatedAt, `date`, `from`, till, indication, patient, therapist)
+VALUES(1682500360971, 1682500360971, '2023-06-05', '08:00:00', '08:30:00', 'Rückenschmerzen',1 , 2);
+
+--Patient
+INSERT INTO theramin_prod.patient
+(createdAt, updatedAt, dob, name, firstname, `user`)
+VALUES(1682513536502, 1682513536502, '31.03.2000', 'Blanco', 'Nik', 10);
 
 
 
