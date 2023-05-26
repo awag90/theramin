@@ -22,8 +22,9 @@ module.exports.policies = {
   // Bypass the `is-logged-in` policy for:
   'entrance/*': true,
   'account/logout': true,
-  'practice/therapists': true,
+  'therapist/therapists-for-practice': true,
   'therapist/get-therapist': true,
+  'therapist/get-appointment-for-time': true,
 
   PracticeController: {
     '*': 'is-practice-admin',

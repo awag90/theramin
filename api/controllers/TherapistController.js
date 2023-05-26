@@ -5,8 +5,6 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const Sails = require("sails/lib/app/Sails");
-const Therapist = require("../models/Therapist");
-const Appointment = require("../models/Appointment");
 
 module.exports = {
 
@@ -42,6 +40,7 @@ module.exports = {
     edit: async function (req, res) {
         sails.log.debug("Opening Edit-Site for therapist...")
         let therapist = await Therapist.findOne({ id: req.params.id }).populate('specialisation').populate('user');
+        delete therapist.user.password
         let specialisations = await Specialisation.find();
         res.view('pages/therapist/edit', { therapist: therapist, specialisations: specialisations })
     },

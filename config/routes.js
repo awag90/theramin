@@ -8,8 +8,6 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
-const PatientController = require("../api/controllers/PatientController");
-const TherapistController = require("../api/controllers/TherapistController");
 
 module.exports.routes = {
 
@@ -41,7 +39,6 @@ module.exports.routes = {
   //Therapists
   'POST /therapist': 'TherapistController.create',
   'GET /therapist/new' : { view: 'pages/therapist/new'},
-  'GET /therapist/:id' : {action: 'therapist/get-therapist'},
   'GET /therapist/:id/edit':'TherapistController.edit',
   'POST /therapist/:id/update': 'Therapist.update',
   'GET /therapist/:id/destroy': 'Therapist.destroy',
@@ -55,13 +52,13 @@ module.exports.routes = {
   'POST /worktime': 'WorktimeController.createOrUpdate',
 
   //Appointments
-  'GET /appointments' :'AppointmentController',
+  'POST /appointment': 'AppointmentController.create',
 
 
   //Signup
- 'GET /entrance/signup':{view: 'pages/entrance/signup'},
- 'POST /signup-patient' :{action: 'entrance/signup-patient'},
- 'GET /signup': {action: 'entrance/view-signup'},
+  'GET /entrance/signup':{view: 'pages/entrance/signup'},
+  'POST /signup-patient' :{action: 'entrance/signup-patient'},
+  'GET /signup': {action: 'entrance/view-signup'},
 
   //Login
   'GET /login': {action:'entrance/view-login'},
@@ -72,7 +69,10 @@ module.exports.routes = {
   'GET /logout': {action:'account/logout'},
 
   //REST-Endpoints
-  'GET /practice/:practice/therapists': {action: 'practice/therapists'},
+  'GET /practice/:practice/therapists': {action: 'therapist/therapists-for-practice'},
+  'GET /therapist/:id' : {action: 'therapist/get-therapist'},
+  'GET /therapist/:id/appointment/:time': {action: 'therapist/get-appointment-for-time'}
+
 
   /***************************************************************************
   *                                                                          *

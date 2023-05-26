@@ -3,7 +3,7 @@ export default{
     emits: ['createAppointment'],
     data: function () {
         return {
-          status: '',
+          status: 'btn cal not-free',
           disabled: false,
           text: '  '
         }
@@ -13,10 +13,13 @@ export default{
             this.$emit('createAppointment', this.therapist, this.time);
         }
     },
-    created() {
+    async created() {
         let working = isWorking(this.time, this.therapist.worktimes); 
-        let booked = false;
-        if (working && !booked){
+        let free = false;
+        if (working){
+            free = await isFree(this.time, this.therapist);
+        }
+        if (working && free){
             this.status = 'btn btn-primary cal free';
             this.text = 'Termin verfügbar'
         }else{
@@ -48,5 +51,18 @@ function getWeekdayForDatetime(time){
             return 'friday'
     }
 
+}
+
+async function isFree(time, therapist){
+    let url = new URL(origin + '/therapist/' + therapist.id +'/appointment/'+ time.getTime() )
+    let appointments =[]
+    await fetch(url)
+    .then((res) => res.json())
+    .then((data) => (appointments = data));
+    if (appointments.length == 0){
+        return true
+    }else {
+        return false
+    }
 }
     
