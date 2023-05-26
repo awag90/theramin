@@ -35,7 +35,7 @@ export default {
     },
 
     setTimes: function () {
-      this.day.setHours(0, 0, 0);
+      this.day.setHours(0, 0, 0, 0);
       this.times = [];
       for (
         let i = this.day.getTime() + 3600000 * 8;
