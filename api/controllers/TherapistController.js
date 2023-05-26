@@ -18,8 +18,6 @@ module.exports = {
         let hashed = await sails.helpers.passwords.hashPassword(params.password)
 
         let newUserRecord = await User.create(_.extend({
-            name : params.name,
-            firstname: params.firstname,
             isTherapist: true,
             isPracticeAdmin: isAdmin,
             emailAddress: newEmailAddress,
@@ -33,7 +31,7 @@ module.exports = {
           .intercept({name: 'UsageError'}, 'invalid')
           .fetch();
         
-        let therapist = await Therapist.create({specialisation: params.specialisation, practice: params.practice, user: newUserRecord.id}).fetch()
+        let therapist = await Therapist.create({specialisation: params.specialisation, practice: params.practice, user: newUserRecord.id, name: params.name, firstname: params.firstname}).fetch()
         
         if(!req.session.userId){
             req.session.userId = newUserRecord.id;
@@ -53,8 +51,8 @@ module.exports = {
         let params = req.allParams()
         let newEmailAddress = params.emailAddress.toLowerCase()
         let isAdmin = (params.isAdmin !== undefined)
-        let therapist = await Therapist.updateOne({ id: params.id }).set({specialisation: params.specialisation})
-        let user = await User.updateOne({id: therapist.user}).set({name: params.name, firstname: params.firstname, emailAddress: newEmailAddress, isPracticeAdmin: isAdmin})
+        let therapist = await Therapist.updateOne({ id: params.id }).set({name: params.name, firstname: params.firstname, specialisation: params.specialisation})
+        let user = await User.updateOne({id: therapist.user}).set({ emailAddress: newEmailAddress, isPracticeAdmin: isAdmin})
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
 

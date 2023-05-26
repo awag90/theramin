@@ -6,19 +6,20 @@
  */
 
 module.exports = {
-    attributes: {
-
-        //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-        //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-        //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-
-        //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-        //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-        //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-        practice: { model: 'practice', required: true },
-        specialisation: { model: 'specialisation', required: true },
-        appointments: {collection: 'appointment', via: 'therapist'},
-        worktimes: {collection: 'worktime', via: 'therapist'},
-        user: {model: 'user'},
-    },
-}
+  attributes: {
+    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+    name: {type: "string", required: true, maxLength: 50, example: "Wunderlich"},
+    firstname: { type: "string", required: true, maxLength: 50, example: "Fiona"},
+    
+    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    practice: { model: "practice", required: true },
+    specialisation: { model: "specialisation", required: true },
+    appointments: { collection: "appointment", via: "therapist" },
+    worktimes: { collection: "worktime", via: "therapist" },
+    user: { model: "user" },
+  },
+};

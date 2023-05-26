@@ -48,22 +48,6 @@ email status until they click the link in the confirmation email.`
       example: '2$28a8eabna301089103-13948134nad'
     },
 
-    name: {
-      type: 'string',
-      required: true,
-      description: 'Representation of the user\'s name.',
-      maxLength: 50,
-      example: 'Wunderlich'
-    },
-
-    firstname: {
-      type: 'string',
-      required: true,
-      description: 'Full representation of the user\'s name.',
-      maxLength: 50,
-      example: 'Fiona'
-    },
-
     isTherapist: {
       type: 'boolean',
       description: 'User has the Role of therapist'

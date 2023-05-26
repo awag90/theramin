@@ -16,7 +16,8 @@ export default {
       .then((res) => res.json())
       .then((data) => (this.therapist = data));
 
-    this.therapistName = this.therapist.user.firstname + " " + this.therapist.user.name;
+    this.therapistName = this.therapist.firstname + " " + this.therapist.name;
+
   },
   template: `
         <form>

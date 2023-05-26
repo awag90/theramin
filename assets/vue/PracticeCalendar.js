@@ -93,7 +93,7 @@ export default {
             <thead class="cal-head">
                 <tr>
                     <th></th>
-                    <th class="text-center" v-for="therapist in therapists" v-bind:value="therapist">{{therapist.user.firstname}}<br> {{therapist.user.name}}</th>
+                    <th class="text-center" v-for="therapist in therapists" v-bind:value="therapist">{{therapist.firstname}}<br> {{therapist.name}}</th>
                 </tr>
                 <tr>
                     <td></td>
