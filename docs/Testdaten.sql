@@ -20,32 +20,32 @@ Die interdisziplinäre Zusammenarbeit von Physiotherapie und Ergotherapie bietet
 
 --Therapeuten
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682500360971, 1682500360971, 1, 'Rebecca', 'Pfänder', 1, 10, 2);
+(createdAt, updatedAt, name, firstname, practice, specialisation, `user`)
+VALUES(1682500360971, 1682500360971, 'Pfänder', 'Rebecca', 10, 1, 1);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682502187800, 1682502187800, 3, 'Pfänder', 'Markus', 0, 10, 1);
+(createdAt, updatedAt, name, firstname, practice, specialisation, `user`)
+VALUES(1682502187800, 1682502187800, 'Pfänder', 'Markus', 10, 1, 2);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682502266841, 1682502266841, 4, 'Pfänder', 'Calli', 0, 10, 4);
+(createdAt, updatedAt, name, firstname, practice, specialisation,`user`)
+VALUES(1682502266841, 1682502266841,  'Pfänder', 'Calli', 10, 2, 3);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682513536502, 1682513669805, 5, 'Schmidt', 'Susanne', 1, 1, 1);
+(createdAt, updatedAt, name, firstname, practice, specialisation,`user`)
+VALUES(1682513536502, 1682513669805, 'Schmidt', 'Susanne', 1, 1, 4);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682513560040, 1682513722615, 6, 'Planhotjuk', 'Frieda', 1, 1, 1);
+(createdAt, updatedAt, name, firstname,  practice, specialisation,`user`)
+VALUES(1682513560040, 1682513722615, 'Planhotjuk', 'Frieda', 1, 1, 5);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682513613252, 1682513613252, 7, 'Lieb', 'Thomas', 1, 7, 3);
+(createdAt, updatedAt, name, firstname, practice, specialisation,`user`)
+VALUES(1682513613252, 1682513613252, 'Lieb', 'Thomas', 7, 2, 6);
 
 INSERT INTO theramin_prod.therapist
-(createdAt, updatedAt, id, name, firstname, isAdmin, practice, specialisation)
-VALUES(1682513632539, 1682513644204, 8, 'Schmidt', 'Susanne', 0, 7, 3);
+(createdAt, updatedAt, name, firstname, practice, specialisation,`user`)
+VALUES(1682513632539, 1682513644204, 'Schmidt', 'Susanne', 7, 3, 7);
 
 --Arbeitszeiten
 INSERT INTO theramin_prod.worktime
