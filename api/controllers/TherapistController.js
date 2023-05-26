@@ -5,8 +5,11 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 const Sails = require("sails/lib/app/Sails");
+const Therapist = require("../models/Therapist");
+const Appointment = require("../models/Appointment");
 
 module.exports = {
+
     create: async function (req, res) {
         sails.log.debug("Creating therapist...")
         let params = req.allParams()
@@ -60,4 +63,6 @@ module.exports = {
         let therapist = await Therapist.destroyOne({ id: req.params.id })
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
+
+    
 }

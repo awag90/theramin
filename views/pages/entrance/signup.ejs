@@ -9,28 +9,28 @@
         <div class="row">
           <div class="form-group col-md-6 px-0">
             <label class="form-label">Name</label>
-            <input type="text" class="form-control" maxlength="50" name="name" placeholder="Name" required/>
+            <input type="text" class="form-control" maxlength="50"  minlength ="0" name="name" placeholder="Name" required/>
           </div>
           <div class="form-group col-md-6 px-0 pl-md-4">
             <label class="form-label">Vorname</label>
-            <input type="text" class="form-control" maxlength="50" name="firstname" placeholder="Vorname" required />
+            <input type="text" class="form-control" maxlength="50" minlength ="0" name="firstname" placeholder="Vorname" required />
           </div>
         </div>
         <div class="row px-0 ">
           <label class="form-label">Geburtstag</label>
-          <input type="date" class="form-control" maxlength="100" name="dob" placeholder="01.01.1999" required/>
+          <input type="date" class="form-control" maxlength="50"  minlength ="0"name="dob" placeholder="01.01.1999" required/>
         </div>
         <div class="row px-0 pt-2">
           <label class="form-label">E-Mail</label>
-          <input type="email" class="form-control" maxlength="100" name="emailAddress" placeholder="email@adresse.de" required/>
+          <input type="email" class="form-control" maxlength="100" minlength ="5" name="emailAddress" placeholder="email@adresse.de" required/>
         </div>
         <div class="row px-0 pt-2">
           <label class="form-label">Initiales Passwort</label>
-          <input type="password" class="form-control" maxlength="100" name="password" placeholder="••••••••" required/>
+          <input type="password" class="form-control" maxlength="100" maxlength="50" minlength ="10" name="password" placeholder="••••••••" required/>
         </div>
         <div class="row px-0 pt-2">
           <label for="confirm-password">Passwort bestätigen</label>
-          <input class="form-control" id="confirm-password" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password" required>
+          <input class="form-control" id="confirm-password" name="confirmPassword" type="password" maxlength="50" minlength ="10" placeholder="••••••••" autocomplete="new-password" required>
         </div>
        
         <div class="row">

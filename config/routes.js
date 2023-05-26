@@ -8,6 +8,7 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
+const PatientController = require("../api/controllers/PatientController");
 const TherapistController = require("../api/controllers/TherapistController");
 
 module.exports.routes = {
@@ -45,13 +46,16 @@ module.exports.routes = {
   'POST /therapist/:id/update': 'Therapist.update',
   'GET /therapist/:id/destroy': 'Therapist.destroy',
   'GET /therapist/:id/worktimes': 'Worktime.manage',
-  'GET /therapist/appointments' : {view: 'pages/therapist/appointments'},
+  'GET /therapist/appointments' : 'TherapistController.find',
 
-  //Patient
-  'GET /patient/show': {view: 'pages/patient/show'},
+  //Account
+   'GET /patient/show': 'PatientController.find',
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',
+
+  //Appointments
+  'GET /appointments' :'AppointmentController',
 
 
   //Signup
