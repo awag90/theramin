@@ -1,54 +1,141 @@
 <div class="container py-4 px-4">
     <div class="row w-100">
         <div class="card col-12 px-0 mx-0">
-            <h2 class="card-title px-2"> <%=patient.firstname%> <%=patient.name%></h2> 
+            <h2 class="card-title px-2">
+                <%=patient.firstname%>
+                    <%=patient.name%>
+            </h2>
             <div class="card-body table-responsive px-2">
-                <h5>Geburtstag: <%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7) + '.'+patient.dob.toISOString().slice(0, 4) %></h5>
-                <h5 > Email: <%= patient.user.emailAddress%></h5>
-                <br>
-                 <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-profile">Profil bearbeiten</a>
-                <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-password">Passwort ändern</a>
-                
-                </div>
+                <h5>
+                    Geburtstag: <%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7)
+                        + '.' +patient.dob.toISOString().slice(0, 4) %>
+                </h5>
+                <h5>Email: <%= patient.user.emailAddress%>
+                </h5>
+                <br />
+                <a class="btn btn-primary btn btn mb-1" href="/patient/edit-profile">Profil bearbeiten</a>
+                <a class="btn btn-primary btn btn mb-1" href="/account/edit-password">Passwort ändern</a>
+            </div>
 
-               
-                <div class="card-body px-2">
-                <h3 >Termine</h3> 
-                <div class="card-body table-responsive">
-                    <table class="table">
-                    <thead>
-                    <th></th>
-                    <th>Therapeut</th>
-                    <th>Datum</th>
-                    <th>Uhrzeit</th>
-                    <th></th>
-                    </thead>
-                    <tbody>
-                        <% if (patient.appointments && patient.appointments.length >0) {%>
-                        <% patient.appointments.forEach(function(appointment){%>
-                       <tr>
-                            <td><%=appointment.indication%></td>
-                            <td><%=appointment.therapist%></td>
-                            <td><%=appointment.date%></td>
-                            <td><%appointment.from%></td>
-                    <td class="text-center">                  
-                        <a class="btn btn-primary btn-btn mb-1" href="#">Dokumente hochladen</a>
-                       <a class="btn btn-danger tbl-btn mb-1" href="#">Stornieren</a>
-                    </td> 
-                </tr>
-                    <% }); %>
-                    <% } else { %>
-                        <tr>
-                            <td>Keine Termine vorhanden</td>
-                          </tr>
-               
-            <%}%>
-                </tbody>
-                    </table>
+            <div class="card-body px-2">
+                <div id="app">
+                    <h3>Termine</h3>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th>Datum</th>
+                                <th>Uhrzeit</th>
+                                <th>Praxis</th>
+                                <th>Therapeut</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="appointment in appointments" :key="appointment.id">
+                                    <td>{{new Date(appointment.date).toLocaleDateString()}}</td>
+                                    <td>{{ appointment.from.substring(0, 5) }}</td>
+                                    <td>
+                                        <a :href="getPracticeUrl(appointment)">{{
+                                            getPracticeForAppointment(appointment).name
+                                            }}</a>
+                                    </td>
+                                    <td>
+                                        {{ appointment.therapist.firstname }}
+                                        {{ appointment.therapist.name }}
+                                    </td>
+                                    <td class="text-center">
+                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Dokumente hochladen</a>
+                                        <button class="btn btn-danger tbl-btn mb-1 mx-3"
+                                            @click="deleteAppointment(appointment)">
+                                            Stornieren
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr v-if="noAppointments">
+                                    <td colspan="100%" class="text-center">
+                                        Keine Termine vorhanden
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-    
-                </div>
-                
+            </div>
         </div>
     </div>
 </div>
+<script type="module">
+    const app = Vue.createApp({
+        data: function () {
+            return {
+                appointments: [],
+                practices: [],
+                noAppointments: true,
+            };
+        },
+        methods: {
+            fetchPractice: async function (appointment) {
+                let practice = "";
+                let url = new URL(
+                    origin + "/practice/" + appointment.therapist.practice + "/getInfo"
+                );
+                await fetch(url)
+                    .then((res) => res.json())
+                    .then((data) => (practice = data));
+
+                this.practices.push(practice);
+            },
+            getPracticeForAppointment: function (appointment) {
+                let practice = this.practices.find(
+                    (e) => e.id == appointment.therapist.practice
+                );
+                if (practice) {
+                    return practice;
+                } else {
+                    return { name: "Lade Praxis" };
+                }
+            },
+
+            getPracticeUrl: function (appointment) {
+                let practice = this.getPracticeForAppointment(appointment);
+                if (practice) {
+                    return "/practice/" + practice.id;
+                }
+                return "/practice";
+            },
+
+            getDeleteUrl: function (appointment) {
+                return "/appointment/" + practice.id + "/id";
+            },
+
+            deleteAppointment: async function (appointment) {
+                if (
+                    confirm(
+                        "Sind Sie sicher, dass Sie diesen Termin stornieren möchten?"
+                    ) == true
+                ) {
+                    await fetch(origin + "/appointment/" + appointment.id + "/delete");
+                    window.location.reload();
+                }
+            },
+        },
+        async created() {
+            let url = new URL(origin + "/patient/<%=patient.id%>/appointments");
+            await fetch(url)
+                .then((res) => res.json())
+                .then((data) => (this.appointments = data));
+
+            if (this.appointments.length > 0) {
+                this.noAppointments = false;
+                this.appointments.forEach((a) => {
+                    if (
+                        this.practices.filter((e) => e.id == a.therapist.practice).length ==
+                        0
+                    ) {
+                        this.fetchPractice(a);
+                    }
+                });
+            }
+        },
+    });
+    app.mount("#app");
+</script>

@@ -1,7 +1,7 @@
 <div class="container p-4 px-3">
   <div class=" card shadow  px-4 pt-2">
   <form action="/therapist" method="post">
-    <div>
+    <div id="app">
       <input type="hidden" value="<%=practice.id%>" name="practice" />
       <div class="row">
         <div class="form-group col-md-6 px-0">
@@ -19,11 +19,11 @@
       </div>
       <div class="row px-0">
         <label class="form-label">Initiales Passwort</label>
-        <input type="password" class="form-control" maxlength="100" name="password" placeholder="••••••••" required/>
+        <input type="password" @change="validate" v-model="password" class="form-control" minlength="8" maxlength="60" name="password" placeholder="••••••••" required/>
       </div>
       <div class="row px-0">
         <label for="confirm-password">Passwort bestätigen</label>
-        <input class="form-control" id="confirm-password" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password">
+        <input :class="fieldclass" @change="validate" v-model="confirm" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password">
       </div>
       <div class="row">
         <div class="formgroup">
@@ -48,10 +48,34 @@
         </div>
       </div>
       <div class="row justify-content-center">
-        <button type="submit" class="btn btn-primary mt-4 mb-4">Hinzufügen</button>
+        <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">Hinzufügen</button>
       </div>
     </div>
   </form>
 </div>
 </div>
-
+<script>
+  const app = Vue.createApp({
+   data: function () {
+     return {
+       password: '',
+       confirm: '',
+       disabled: true,
+       fieldclass: 'form-control'
+     };
+   },
+   methods: {
+    validate: function(){
+       if ( this.password == this.confirm){
+         this.disabled = false
+         this.fieldclass = "form-control border-success border-2"
+       }else{
+         this.disabled = true
+         this.fieldclass = "form-control border-danger border-2"
+       }
+     }
+   },
+   
+ });
+ app.mount("#app");
+</script>

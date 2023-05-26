@@ -1,0 +1,38 @@
+<div id="edit-profile" v-cloak>
+  <account-notification-banner></account-notification-banner>
+  <div class="container pt-5 pb-5">
+    <h1>Persönliche Informationen bearbeiten</h1>
+    <hr/>
+    <form action="/patient/update" method="POST">
+        <div class="row">
+          <div class="form-group px-0 col-md-5">
+            <label class="form-label">Vorname</label>
+            <input class="form-control" name="firstname" type="text" maxlength="50" autocomplete="name" focus-first value="<%= patient.firstname %>" required>
+          </div>
+          <div class="form-group px-0 pl-md-4 col-md-5">
+            <label class="form-label">Name</label>
+            <input class="form-control"name="name" type="text"  maxlength="50" autocomplete="name"  value="<%= patient.name %>" required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-10 px-0">
+            <label for="email-address">Email Adresse</label>
+            <input class="form-control" id="email-address" name="emailAddress" type="email"  autocomplete="email" value="<%= req.me.emailAddress %>"  required >
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group col-md-10 px-0">
+            <label for="email-address">Geburtstdatum</label>
+            <input class="form-control"  name="dob" type="date" value="<%= new Date(patient.dob.getTime() +2*60*60*1000).toISOString().substring(0,10) %>"  required >
+          </div>
+        </div>
+      <div class="row">
+          <div class="col-md-10 text-right pr-0">
+            <a class="btn btn-outline-info" href="/patient/show">Abbruch</a>
+            <button type="submit"  class="btn btn-dark">Änderungen speichern</button>
+          </div>
+      </div>
+    </form>
+  </div>
+</div>
+<%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

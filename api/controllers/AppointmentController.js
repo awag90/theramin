@@ -5,6 +5,7 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+
 module.exports = {
   create: async function (req, res) {
     sails.log.debug("Creating appointment...");
@@ -21,5 +22,11 @@ module.exports = {
     });
     res.redirect("/");
   },
+
+  delete: async function (req, res) {
+    sails.log.debug("Deleting appointment...")
+    let appoinment = await Appointment.destroyOne({id: req.params.id});
+    res.ok()
+  }
 
 };

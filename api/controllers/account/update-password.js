@@ -43,7 +43,7 @@ module.exports = {
     .set({
       password: hashed
     });
-    throw {redirect: '/account'};
+    throw {redirect: '/'};
 
   }
 
