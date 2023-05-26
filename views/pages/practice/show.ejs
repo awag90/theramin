@@ -41,9 +41,9 @@
             },
             methods:{
               createAppointment: function(therapist, time){
-                if(this.me.length > 0){
+                if(this.me.length > 0 && !this.me[0].isTherapist){
                   router.push('/createAppointment/'+therapist.id+'/'+time.getTime())
-                }else{
+                }else if (this.me.length == 0) {
                   window.location.replace("/login")
                 }
               }
