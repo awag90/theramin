@@ -78,7 +78,7 @@ module.exports = {
 
     megaAdmin: async function(req, res){
         sails.log.debug('Opening Admin-Site for practice...')
-        let practice = await Practice.findOne({ id: req.params.id }).populate('therapists')
+        let practice = await Practice.findOne({ id: req.params.id }).populate('therapists').populate('user')
         let therapists = await Therapist.find({ practice: practice.id }).populate('specialisation').populate('worktimes')
         res.view('pages/practice/admin', { practice: practice, therapists: therapists })
     },
