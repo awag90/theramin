@@ -72,7 +72,10 @@ module.exports.routes = {
   'GET /practice/:practice/therapists': {action: 'therapist/therapists-for-practice'},
   'GET /therapist/:id' : {action: 'therapist/get-therapist'},
   'GET /therapist/:id/appointment/:time': {action: 'therapist/get-appointment-for-time'},
-  'GET /me': {action: 'account/get-me'}
+  'GET /me': {action: 'account/get-me'}, 
+  'GET /patient/:id/appointments': {action: 'patient/get-appointments'},
+  'GET /practice/:id/getInfo': {action: 'practice/get-practice'},
+  'GET /appointment/:id/delete': 'AppointmentController.delete',
 
 
   /***************************************************************************
