@@ -95,9 +95,6 @@ the account verification message.)`,
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
     let newUserRecord = await User.create(_.extend({
-      name,
-      firstname,
-      dob,
       emailAddress: newEmailAddress,
       password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip
@@ -114,7 +111,7 @@ the account verification message.)`,
     this.req.session.userId = newUserRecord.id;
 
     //Create the Patient Entry for new User
-    let patient = await Patient.create({dob: dob, user: newUserRecord.id});
+    let patient = await Patient.create({dob: dob, user: newUserRecord.id, name: name, firstname: firstname});
   
     if (!this.req.wantsJSON) {
       throw {redirect: '/'};

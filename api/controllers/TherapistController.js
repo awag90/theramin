@@ -7,6 +7,7 @@
 const Sails = require("sails/lib/app/Sails");
 
 module.exports = {
+
     create: async function (req, res) {
         sails.log.debug("Creating therapist...")
         let params = req.allParams()
@@ -15,8 +16,6 @@ module.exports = {
         let hashed = await sails.helpers.passwords.hashPassword(params.password)
 
         let newUserRecord = await User.create(_.extend({
-            name : params.name,
-            firstname: params.firstname,
             isTherapist: true,
             isPracticeAdmin: isAdmin,
             emailAddress: newEmailAddress,
@@ -30,7 +29,7 @@ module.exports = {
           .intercept({name: 'UsageError'}, 'invalid')
           .fetch();
         
-        let therapist = await Therapist.create({specialisation: params.specialisation, practice: params.practice, user: newUserRecord.id}).fetch()
+        let therapist = await Therapist.create({specialisation: params.specialisation, practice: params.practice, user: newUserRecord.id, name: params.name, firstname: params.firstname}).fetch()
         
         if(!req.session.userId){
             req.session.userId = newUserRecord.id;
@@ -41,6 +40,7 @@ module.exports = {
     edit: async function (req, res) {
         sails.log.debug("Opening Edit-Site for therapist...")
         let therapist = await Therapist.findOne({ id: req.params.id }).populate('specialisation').populate('user');
+        delete therapist.user.password
         let specialisations = await Specialisation.find();
         res.view('pages/therapist/edit', { therapist: therapist, specialisations: specialisations })
     },
@@ -50,8 +50,8 @@ module.exports = {
         let params = req.allParams()
         let newEmailAddress = params.emailAddress.toLowerCase()
         let isAdmin = (params.isAdmin !== undefined)
-        let therapist = await Therapist.updateOne({ id: params.id }).set({specialisation: params.specialisation})
-        let user = await User.updateOne({id: therapist.user}).set({name: params.name, firstname: params.firstname, emailAddress: newEmailAddress, isPracticeAdmin: isAdmin})
+        let therapist = await Therapist.updateOne({ id: params.id }).set({name: params.name, firstname: params.firstname, specialisation: params.specialisation})
+        let user = await User.updateOne({id: therapist.user}).set({ emailAddress: newEmailAddress, isPracticeAdmin: isAdmin})
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
 
@@ -60,4 +60,6 @@ module.exports = {
         let therapist = await Therapist.destroyOne({ id: req.params.id })
         res.redirect('/practice/' + therapist.practice + '/admin')
     },
+
+    
 }

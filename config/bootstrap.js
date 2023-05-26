@@ -27,8 +27,8 @@ module.exports.bootstrap = async function() {
   // Set up fake development data 
   if (await User.count() === 0) {
     await User.createEach([
-      { emailAddress: 'an741wag@htwg-konstanz.de',name: 'Wagner', firstname:'Andreas', password: await sails.helpers.passwords.hashPassword('start123'), isTherapist: true, isPracticeAdmin: true, isMegaAdmin: true },
-      { emailAddress: 'fi741wun@htwg-konstanz.de',name: 'Wunderlich', firstname:'Fiona', password: await sails.helpers.passwords.hashPassword('start123'), isTherapist: true, isPracticeAdmin: true, isMegaAdmin: true },
+      { emailAddress: 'an741wag@htwg-konstanz.de', password: await sails.helpers.passwords.hashPassword('start123'), isTherapist: true, isPracticeAdmin: true, isMegaAdmin: true },
+      { emailAddress: 'fi741wun@htwg-konstanz.de', password: await sails.helpers.passwords.hashPassword('start123'), isTherapist: true, isPracticeAdmin: true, isMegaAdmin: true },
       ]);
   }
 
@@ -38,8 +38,8 @@ module.exports.bootstrap = async function() {
 
   if (await Therapist.count() === 0){
     await Therapist.createEach([
-      {specialisation: 1, practice: 1, user: 1},
-      {specialisation: 2, practice: 1, user: 2}
+      {specialisation: 1, practice: 1, user: 1, name: 'Wagner', firstname:'Andreas',},
+      {specialisation: 2, practice: 1, user: 2, name: 'Wunderlich', firstname:'Fiona',}
     ]);
   }
 

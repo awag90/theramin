@@ -13,6 +13,8 @@ module.exports = {
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     dob: {type: 'ref', columnType: 'datetime', required: true},
+    name: {type: "string", required: true, maxLength: 50, example: "Wunderlich"},
+    firstname: { type: "string", required: true, maxLength: 50, example: "Fiona"},
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗

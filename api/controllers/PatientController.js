@@ -6,7 +6,13 @@
  */
 
 module.exports = {
-  
 
+    find: async function (req, res) {
+        sails.log.debug("get patient...")
+        let patient = await Patient.findOne({user:req.session.userId}).populate('user')
+        delete patient.user.password
+          res.view('pages/patient/show', { patient: patient })
+    },
+  
 };
 

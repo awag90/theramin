@@ -98,7 +98,7 @@ module.exports = {
     await User.updateOne({id: this.req.me.id })
     .set(valuesToSet);
 
-    throw {redirect: '/account'};
+    throw {redirect: '/account/edit-profile'};
 
   }
 

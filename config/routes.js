@@ -8,7 +8,6 @@
  * https://sailsjs.com/anatomy/config/routes-js
  */
 
-const TherapistController = require("../api/controllers/TherapistController");
 
 module.exports.routes = {
 
@@ -44,15 +43,22 @@ module.exports.routes = {
   'POST /therapist/:id/update': 'Therapist.update',
   'GET /therapist/:id/destroy': 'Therapist.destroy',
   'GET /therapist/:id/worktimes': 'Worktime.manage',
+  'GET /therapist/appointments' : 'TherapistController.find',
+
+  //Account
+   'GET /patient/show': 'PatientController.find',
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',
 
+  //Appointments
+  'POST /appointment': 'AppointmentController.create',
+
 
   //Signup
- 'GET /entrance/signup':{view: 'pages/entrance/signup'},
- 'POST /signup-patient' :{action: 'entrance/signup-patient'},
- 'GET /signup': {action: 'entrance/view-signup'},
+  'GET /entrance/signup':{view: 'pages/entrance/signup'},
+  'POST /signup-patient' :{action: 'entrance/signup-patient'},
+  'GET /signup': {action: 'entrance/view-signup'},
 
   //Login
   'GET /login': {action:'entrance/view-login'},
@@ -61,6 +67,12 @@ module.exports.routes = {
 
   //Logout
   'GET /logout': {action:'account/logout'},
+
+  //REST-Endpoints
+  'GET /practice/:practice/therapists': {action: 'therapist/therapists-for-practice'},
+  'GET /therapist/:id' : {action: 'therapist/get-therapist'},
+  'GET /therapist/:id/appointment/:time': {action: 'therapist/get-appointment-for-time'}
+
 
   /***************************************************************************
   *                                                                          *

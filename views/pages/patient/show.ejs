@@ -1,0 +1,54 @@
+<div class="container py-4 px-4">
+    <div class="row w-100">
+        <div class="card col-12 px-0 mx-0">
+            <h2 class="card-title px-2"> <%=patient.firstname%> <%=patient.name%></h2> 
+            <div class="card-body table-responsive px-2">
+                <h5>Geburtstag: <%= patient.dob.toISOString().slice(8, 10) +'.'+ patient.dob.toISOString().slice(5, 7) + '.'+patient.dob.toISOString().slice(0, 4) %></h5>
+                <h5 > Email: <%= patient.user.emailAddress%></h5>
+                <br>
+                 <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-profile">Profil bearbeiten</a>
+                <a  class=" btn btn-primary btn btn mb-1 " href="/account/edit-password">Passwort ändern</a>
+                
+                </div>
+
+               
+                <div class="card-body px-2">
+                <h3 >Termine</h3> 
+                <div class="card-body table-responsive">
+                    <table class="table">
+                    <thead>
+                    <th></th>
+                    <th>Therapeut</th>
+                    <th>Datum</th>
+                    <th>Uhrzeit</th>
+                    <th></th>
+                    </thead>
+                    <tbody>
+                        <% if (patient.appointments && patient.appointments.length >0) {%>
+                        <% patient.appointments.forEach(function(appointment){%>
+                       <tr>
+                            <td><%=appointment.indication%></td>
+                            <td><%=appointment.therapist%></td>
+                            <td><%=appointment.date%></td>
+                            <td><%appointment.from%></td>
+                    <td class="text-center">                  
+                        <a class="btn btn-primary btn-btn mb-1" href="#">Dokumente hochladen</a>
+                       <a class="btn btn-danger tbl-btn mb-1" href="#">Stornieren</a>
+                    </td> 
+                </tr>
+                    <% }); %>
+                    <% } else { %>
+                        <tr>
+                            <td>Keine Termine vorhanden</td>
+                          </tr>
+               
+            <%}%>
+                </tbody>
+                    </table>
+                </div>
+    
+                </div>
+                
+        </div>
+    </div>
+</div>
