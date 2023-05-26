@@ -25,6 +25,7 @@ module.exports.policies = {
   'therapist/therapists-for-practice': true,
   'therapist/get-therapist': true,
   'therapist/get-appointment-for-time': true,
+  'account/get-me': true,
 
   PracticeController: {
     '*': 'is-practice-admin',

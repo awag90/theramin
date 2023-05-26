@@ -13,11 +13,11 @@ export default{
             this.$emit('createAppointment', this.therapist, this.time);
         }
     },
-    async created() {
+    created() {
         let working = isWorking(this.time, this.therapist.worktimes); 
         let free = false;
         if (working){
-            free = await isFree(this.time, this.therapist);
+            free =  isFree(this.time, this.therapist);
         }
         if (working && free){
             this.status = 'btn btn-primary cal free';
@@ -53,16 +53,12 @@ function getWeekdayForDatetime(time){
 
 }
 
-async function isFree(time, therapist){
-    let url = new URL(origin + '/therapist/' + therapist.id +'/appointment/'+ time.getTime() )
-    let appointments =[]
-    await fetch(url)
-    .then((res) => res.json())
-    .then((data) => (appointments = data));
-    if (appointments.length == 0){
-        return true
-    }else {
-        return false
-    }
+function isFree(utcTime, therapist){
+    let datetime = new Date(Number(utcTime)); 
+    let date = datetime.toLocaleDateString()
+    let time = datetime.toLocaleTimeString()
+    let appointments = therapist.appointments.filter((e) => (new Date(e.date).toLocaleDateString() == date && new Date('1970-01-01T'+e.from).toLocaleTimeString() == time));
+    return (appointments.length == 0)
+
 }
     

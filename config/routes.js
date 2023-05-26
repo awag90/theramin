@@ -71,7 +71,8 @@ module.exports.routes = {
   //REST-Endpoints
   'GET /practice/:practice/therapists': {action: 'therapist/therapists-for-practice'},
   'GET /therapist/:id' : {action: 'therapist/get-therapist'},
-  'GET /therapist/:id/appointment/:time': {action: 'therapist/get-appointment-for-time'}
+  'GET /therapist/:id/appointment/:time': {action: 'therapist/get-appointment-for-time'},
+  'GET /me': {action: 'account/get-me'}
 
 
   /***************************************************************************
