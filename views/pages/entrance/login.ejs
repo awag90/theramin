@@ -1,21 +1,21 @@
 <div id="login"> 
   <div class="container py-4 px-3 ">
     <div class=" card shadow border-none px-2 pt-5  ">
-    <h1 class="text-center">Loggen Sie sich ein</h1>
-    <div style="max-width: 450px;" class="mx-auto">
+    <div class="container-fluid">
+      <h1 class="text-center">Loggen Sie sich ein</h1>
       <hr/>
       <form action="/login" method="POST">
-        <div class="row px-0">
+        <div class="form-group row px-0">
           <label class="form-label">Email Adresse</label>
           <input type="email" name="emailAddress" class="form-control" maxlength="100"  minlength ="0" placeholder="Email Adresse" autocomplete="email" focus-first required>
          
         </div>
-        <div class="row px-0 pt-2">
+        <div class="form-group row px-0">
           <lable class="form-label"> Passwort</lable>
           <input name="password" type="password" class="form-control" placeholder="Passwort" autocomplete="current-password" required>
          
         </div>
-        <div class="row pt-2">
+        <div class="form-group row px-0">
         <div class="form-group form-check">
           <input class="form-check-input" type="checkbox" id="remember" name="rememberMe" value="true"/>
           <label class="form-check-label" for="remember" >Anmeldedaten merken</label>
@@ -27,8 +27,9 @@
         </div>
       </form>
       <p class="text-center"><a href="#">Passwort vergessen?</a></p>
-    </div>
+   
   </div>
+</div>
 </div>
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>
