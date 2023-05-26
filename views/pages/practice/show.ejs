@@ -26,7 +26,7 @@
 
           const routes = [
             {path: '/', component: practiceCalendar, props: {practiceId: "<%= practice.id %>"}},
-            {path:'/createAppointment/:therapist/:time', name: 'create', component: appointmentForm, props: true}
+            {path:'/createAppointment/:therapistId/:time', name: 'create', component: appointmentForm, props: true}
           ]
 
           const router = VueRouter.createRouter({

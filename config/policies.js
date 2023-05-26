@@ -23,6 +23,7 @@ module.exports.policies = {
   'entrance/*': true,
   'account/logout': true,
   'practice/therapists': true,
+  'therapist/get-therapist': true,
 
   PracticeController: {
     '*': 'is-practice-admin',
