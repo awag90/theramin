@@ -13,11 +13,11 @@ export default{
             this.$emit('createAppointment', this.therapist, this.time);
         }
     },
-    async created() {
+    created() {
         let working = isWorking(this.time, this.therapist.worktimes); 
         let free = false;
         if (working){
-            free = await isFree(this.time, this.therapist);
+            free =  isFree(this.time, this.therapist);
         }
         if (working && free){
             this.status = 'btn btn-primary cal free';
