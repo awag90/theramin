@@ -44,6 +44,8 @@ module.exports.routes = {
   'GET /therapist/:id/destroy': 'Therapist.destroy',
   'GET /therapist/:id/worktimes': 'Worktime.manage',
   'GET /therapist/appointments' : 'TherapistController.find',
+  'GET /therapist/overview' : 'TherapistController.show',
+ 
 
   //Patient
    'GET /patient/show': 'PatientController.find',
@@ -83,6 +85,7 @@ module.exports.routes = {
   'GET /patient/:id/appointments': {action: 'patient/get-appointments'},
   'GET /practice/:id/getInfo': {action: 'practice/get-practice'},
   'GET /appointment/:id/delete': 'AppointmentController.delete',
+  'GET /therapist/:id/appointments/from/:fromDate/till/:tillDate': {action: 'therapist/get-appointment-by-criteria'},
 
 
   /***************************************************************************

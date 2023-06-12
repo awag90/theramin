@@ -1,0 +1,127 @@
+<div class="container py-4 px-4">
+    <div class="row w-100">
+        <div class="card col-12 px-0 mx-0">
+            <h2 class="card-title px-2">
+                <%=therapist.firstname%>
+                    <%=therapist.name%>
+            </h2>
+            <div class="card-body table-responsive px-2">
+                <br />
+                <a class="btn btn-primary btn btn mb-1" href="/patient/edit-profile">Profil bearbeiten</a>
+                <a class="btn btn-primary btn btn mb-1" href="/account/edit-password">Passwort ändern</a>
+            </div>
+
+            <div class="card-body px-2">
+                <div id="app">
+                    <h3>Termine</h3>
+                    <div class="row justify-content-center my-2">
+                        <button class="btn btn-primary col-md-2 col-5 mx-2 my-2" @click="today">Heute</button>
+                        <button class="btn btn-primary col-md-2 col-5 mx-2 my-2" @click="week">Diese Woche</button>
+                        <div class="form-group pl-md-4 col-md-3">
+                            <label class="form-label">Von</label>
+                            <input type="date" class="form-control" v-model="fromDate" @input="getAppointments"/>
+                        </div>
+                        <div class="form-group pl-md-4 col-md-3">
+                            <label class="form-label">Bis</label>
+                            <input type="date" class="form-control" v-model="tillDate" @input="getAppointments"/>
+                        </div>
+                        
+                    </div>
+                    <div class="card-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <th>Datum</th>
+                                <th>Von</th>
+                                <th>Bis</th>
+                                <th>Patient</th>
+                                <th></th>
+                            </thead>
+                            <tbody>
+                                <tr v-for="appointment in appointments" :key="appointment.id">
+                                    <td>{{new Date(appointment.date).toLocaleDateString()}}</td>
+                                    <td>{{ appointment.from.substring(0, 5) }}</td>
+                                    <td>{{ appointment.till.substring(0, 5) }}</td>
+                                    <td>{{ appointment.patient.name }}, {{ appointment.patient.firstname }} ({{new Date(appointment.patient.dob).toLocaleDateString()}})</td>
+                                    <td class="text-center">
+                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Dokumente hochladen</a>
+                                        <button class="btn btn-danger tbl-btn mb-1 mx-3"
+                                            @click="deleteAppointment(appointment)">
+                                            Stornieren
+                                        </button>
+                                    </td>
+                                </tr>
+                                <tr v-if="noAppointments">
+                                    <td colspan="100%" class="text-center">
+                                        Keine Termine vorhanden
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    const app = Vue.createApp({
+        data: function () {
+            return {
+                appointments: [],
+                practices: [],
+                noAppointments: true,
+                fromDate: new Date().toISOString().substring(0,10),
+                tillDate: new Date().toISOString().substring(0,10)
+            };
+        },
+        methods: {
+            today: function(){
+                this.fromDate = new Date().toISOString().substring(0,10),
+                this.tillDate = new Date().toISOString().substring(0,10)
+            },
+
+            week: function(){
+                let today = new Date()
+                let monday = today.getDate() - today.getDay() + 1
+                let friday = monday + 4
+
+                this.fromDate = new Date(today.setDate(monday)).toISOString().substring(0,10),
+                this.tillDate = new Date(today.setDate(friday)).toISOString().substring(0,10)
+            },
+
+            getDeleteUrl: function (appointment) {
+                return "/appointment/" + practice.id + "/id";
+            },
+
+            deleteAppointment: async function (appointment) {
+                if (
+                    confirm(
+                        "Sind Sie sicher, dass Sie diesen Termin stornieren möchten?"
+                    ) == true
+                ) {
+                    await fetch(origin + "/appointment/" + appointment.id + "/delete");
+                    window.location.reload();
+                }
+            },
+
+            getAppointments: async function(){
+                let url = new URL(origin + "/therapist/<%=therapist.id%>/appointments/from/" + new Date(this.fromDate).getTime() +"/till/"+ new Date(this.tillDate).getTime());
+                await fetch(url)
+                    .then((res) => res.json())
+                    .then((data) => (this.appointments = data));
+
+                if (this.appointments.length > 0) {
+                    this.noAppointments = false;
+                }else{
+                    this.noAppointments = true;
+                }
+            }
+    
+            
+        },
+        async created() {
+            this.getAppointments()
+        },
+    });
+    app.mount("#app");
+</script>
