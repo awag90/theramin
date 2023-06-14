@@ -46,23 +46,23 @@ module.exports.routes = {
   'GET /therapist/appointments' : 'TherapistController.find',
   'GET /therapist/overview' : 'TherapistController.show',
  
-
   //Patient
-   'GET /patient/show': 'PatientController.find',
-   'GET /patient/edit-profile': 'PatientController.edit',
-   'POST /patient/update': 'PatientController.update',
+  'GET /patient/show': 'PatientController.find',
+  'GET /patient/edit-profile': 'PatientController.edit',
+  'POST /patient/update': 'PatientController.update',
 
 
-   //Account
-   'GET /account/edit-password': {action: 'account/view-edit-password'},
-   'POST /update-password': {action: 'account/update-password'},
+  //Account
+  'GET /account/edit-password': {action: 'account/view-edit-password'},
+  'POST /update-password': {action: 'account/update-password'},
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',
 
   //Appointments
-  'POST /appointment': 'AppointmentController.create',
-
+  'POST /appointment-as-pat': 'AppointmentController.createAsPatient',
+  'GET /appointment/:id/delete': 'AppointmentController.delete',
+  'GET /appointment/new' : 'AppointmentController.new',
 
   //Signup
   'GET /entrance/signup':{view: 'pages/entrance/signup'},
@@ -84,7 +84,6 @@ module.exports.routes = {
   'GET /me': {action: 'account/get-me'}, 
   'GET /patient/:id/appointments': {action: 'patient/get-appointments'},
   'GET /practice/:id/getInfo': {action: 'practice/get-practice'},
-  'GET /appointment/:id/delete': 'AppointmentController.delete',
   'GET /therapist/:id/appointments/from/:fromDate/till/:tillDate': {action: 'therapist/get-appointment-by-criteria'},
 
 

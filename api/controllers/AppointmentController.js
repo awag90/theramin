@@ -6,8 +6,9 @@
  */
 
 
+
 module.exports = {
-  create: async function (req, res) {
+  createAsPatient: async function (req, res) {
     sails.log.debug("Creating appointment...");
     let patient = await Patient.findOne({ user: req.session.userId });
     let params = req.allParams()
@@ -21,6 +22,12 @@ module.exports = {
       indication: params.indication,
     });
     res.redirect("/");
+  },
+
+  new: async function (req, res) {
+    sails.log.debug("Opening new Appointments site...")
+    let therapist = await Therapist.findOne({ user: req.session.userId })
+    res.view("pages/therapist/create-appointment", {therapist: therapist})
   },
 
   delete: async function (req, res) {

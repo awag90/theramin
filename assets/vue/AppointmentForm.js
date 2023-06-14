@@ -33,7 +33,7 @@ export default {
 
   },
   template: `
-        <form action="/appointment" method="post">
+        <form action="/appointment-as-pat" method="post">
             <input type="hidden" name="therapist" :value="therapistId">
             <input type="hidden" name="date" :value="dateStr">
             <input type="hidden" name="from" :value="startTimeStr">
