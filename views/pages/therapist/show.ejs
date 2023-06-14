@@ -7,7 +7,7 @@
             </h2>
             <div class="card-body table-responsive px-2">
                 <br />
-                <a class="btn btn-primary btn btn mb-1" href="/patient/edit-profile">Profil bearbeiten</a>
+                <a class="btn btn-primary btn btn mb-1" href="/therapist/<%=therapist.id%>/edit">Profil bearbeiten</a>
                 <a class="btn btn-primary btn btn mb-1" href="/account/edit-password">Passwort ändern</a>
             </div>
 
@@ -43,7 +43,7 @@
                                     <td>{{ appointment.till.substring(0, 5) }}</td>
                                     <td>{{ appointment.patient.name }}, {{ appointment.patient.firstname }} ({{new Date(appointment.patient.dob).toLocaleDateString()}})</td>
                                     <td class="text-center">
-                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Dokumente hochladen</a>
+                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Termin-Details anzeigen</a>
                                         <button class="btn btn-danger tbl-btn mb-1 mx-3"
                                             @click="deleteAppointment(appointment)">
                                             Stornieren

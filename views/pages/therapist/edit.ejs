@@ -34,6 +34,7 @@
                     </select>
                 </div>
             </div>
+            <% if (req.me.isPracticeAdmin){%>
             <div class="row">
                 <div class="form-check p-4">
                     <% if (therapist.user.isPracticeAdmin){%>
@@ -44,6 +45,7 @@
                     <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
                 </div>
             </div>
+            <%}%>
             <div class="row justify-content-center">
                 <button type="submit" class="btn btn-primary mt-4 mb-4">
                     Anpassen

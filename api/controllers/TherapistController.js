@@ -79,7 +79,11 @@ module.exports = {
       emailAddress: newEmailAddress,
       isPracticeAdmin: isAdmin,
     });
-    res.redirect("/practice/" + therapist.practice + "/admin");
+    if (user.id = req.session.userId){    
+        res.redirect("/therapist/overview")
+    }else{
+        res.redirect("/practice/" + therapist.practice + "/admin")
+    }
   },
 
   destroy: async function (req, res) {
