@@ -16,6 +16,7 @@ module.exports = {
     from: {type: 'ref', columnType: 'time', required: true},
     till: {type: 'ref', columnType: 'time', required: true},
     indication: {type: 'string', columnType: 'text', required: true},
+    image: { type: 'string', columnType: 'varchar(128)' },
     
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗

@@ -5,6 +5,8 @@
  * @help        :: See https://sailsjs.com/docs/concepts/actions
  */
 
+const Appointment = require('../models/Appointment');
+
 
 
 module.exports = {
@@ -34,6 +36,37 @@ module.exports = {
     sails.log.debug("Deleting appointment...")
     let appoinment = await Appointment.destroyOne({id: req.params.id});
     res.ok()
-  }
+  },
+  uploadImageForm: async function (req, res) {
+    sails.log.debug("Upload image form....")
+    let appointment = await Appointment.findOne({ id: req.params.id })
+    res.view('pages/patient/uploadfile', { appointment: appointment });
+  },
+  uploadImage: async function (req, res) {
+    sails.log("Upload image for appoinment...")
+    
+        let params = {
+    
+    adapter: require('skipper-s3'),
+    key: sails.config.s3accesskey,
+    secret: sails.config.s3secret,
+    bucket: 'wetebucket',
+    region: 'us-west-2'
+    };
+
+    let callback = async function (err, uploadedFiles) {
+      if (err) {
+        return res.serverError(err);
+      } else {
+        sails.log("Uploaded!")
+      }
+      let fname = require('path').basename(uploadedFiles[0].fd);
+      await Appointment.updateOne({ id: req.params.id }).set({ image:fname });
+      return res.redirect('/show');
+    };
+
+      await req.file('image').upload(params, callback);
+      
+    },
 
 };
