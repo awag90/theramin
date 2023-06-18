@@ -28,6 +28,8 @@ module.exports.policies = {
   'account/get-me': true,
   'practice/get-practice': true,
   'therapist/get-appointment-by-criteria': true,
+  'therapist/get-patients-for-therapist': true,
+  'therapist/get-free-times': true,
 
   PracticeController: {
     '*': 'is-practice-admin',

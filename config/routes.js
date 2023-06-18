@@ -61,6 +61,7 @@ module.exports.routes = {
 
   //Appointments
   'POST /appointment-as-pat': 'AppointmentController.createAsPatient',
+  'POST /appointment-as-therapist' : 'Appointmentcontroller.createAsTherapist',
   'GET /appointment/:id/delete': 'AppointmentController.delete',
   'GET /appointment/new' : 'AppointmentController.new',
   'GET /appointment/:id/uploadImageForm':  'AppointmentController.uploadImageForm' ,
@@ -87,6 +88,8 @@ module.exports.routes = {
   'GET /patient/:id/appointments': {action: 'patient/get-appointments'},
   'GET /practice/:id/getInfo': {action: 'practice/get-practice'},
   'GET /therapist/:id/appointments/from/:fromDate/till/:tillDate': {action: 'therapist/get-appointment-by-criteria'},
+  'GET /therapist/:id/patients' : {action: 'therapist/get-patients-for-therapist'},
+  'GET /therapist/:id/free/date' : {action: 'therapist/get-free-times'},
 
 
   /***************************************************************************

@@ -1,6 +1,103 @@
 <div class="container py-4 px-4">
-
+    <div id="app">
+        <form action="/therapist/<%=therapist.id%>/update" method="post">
+            <input type="hidden" value="<%=therapist.id%>">
+            <div class="row">
+                <div class="form-group col-md-3 px-3">
+                    <input type="radio" class="form-check-input" name="existing-patient" v-model="existingPatient" :value="true" checked>
+                    <label class="form-check-label">Registrierter Patient</label>
+                </div>
+                <div class="form-group col-md-3 px-3">
+                    <input type="radio" class="form-check-input" name="existing-patient" v-model="existingPatient" :value="false">
+                    <label class="form-check-label">Neuer Patient</label>
+                </div>
+            </div>
+            <div class="form-group col-md-6 px-0" v-if="existingPatient">
+                <label class="form-label">Patient</label>
+                <select class="form-control" name="time" required>
+                    <option v-for="patient in patients" :value="patient.id">{{patient.name}}, {{patient.firstname}}</option>
+                </select>
+            </div>
+            <div class="row" v-else>
+                <div class="form-group col-md-6 px-3">
+                    <label class="form-label">Name</label>
+                    <input type="text" class="form-control" maxlength="50" minlength ="0" name="patName" placeholder="Name"  />
+                </div>
+                <div class="form-group col-md-6 px-3 pl-md-4">
+                    <label class="form-label">Vorname</label>
+                    <input type="text" class="form-control" maxlength="50" minlength ="0" name="patFirstname" placeholder="Vorname"  />
+                </div>
+            </div>
+            <div class="form-group col-md-6 px-0">
+                    <label class="form-label">Datum</label>
+                    <input type="date" class="form-control" min="<%= new Date().toISOString().substring(0,10)%>"  name="date" v-model="dateStr" @change="getTimes" required />
+            </div>
+            <div class="form-group col-md-6 px-0">
+                <label class="form-label">Uhrzeit</label>
+                <select class="form-control" name="time" required>
+                    <option v-for="time in times" :value="time">{{time.substring(0,5)}}</option>
+                </select>
+            </div>
+        </form>
+    </div>
 </div>
 <script>
+    const app = Vue.createApp({
+        data: function () {
+        return {
+            existingPatient: true, 
+            patients: [], 
+            times: [], 
+            therapist: [],
+            dateStr: ""
+        };
+        },
+        methods: {
+            getTimes: async function(){
+                this.times = []
+                let date = new Date(this.dateStr)
+                let weekday = getWeekdayForDatetime(date)
+                let worktime = this.therapist.worktimes.find(e => (e.weekday == weekday))
+                if (worktime != undefined){
+                    let time = worktime.from
+                    while (new Date(this.dateStr+'T'+time).getTime() < new Date(this.dateStr+'T'+worktime.till).getTime()){
+                        if(this.therapist.appointments.filter(e => ((e.from == time) && (new Date(new Date(e.date).getTime()+120*60*1000).toISOString() == date.toISOString()))).length == 0){
+                            this.times.push(time)
+                        }
+                        time = new Date(new Date(this.dateStr+'T'+time).getTime() + 30*60*1000).toLocaleTimeString()
+                    }
+                }
+            }
+        },
+        async created(){
+            let url = new URL(origin + "/therapist/<%=therapist.id%>/patients");
+              await fetch(url)
+                .then((res) => res.json())
+                .then((data) => (this.patients = data));
 
+            url = new URL(origin + "/therapist/<%=therapist.id%>");
+              await fetch(url)
+                .then((res) => res.json())
+                .then((data) => (this.therapist = data));          
+        }
+    
+    });
+  app.mount("#app");
+
+  function getWeekdayForDatetime(date){
+    let dayNum = date.getDay();
+    switch (dayNum){
+        case 1:
+            return 'monday'
+        case 2:
+            return 'tuesday'
+        case 3:
+            return 'wednesday'
+        case 4:
+            return 'thursday'
+        case 5:
+            return 'friday'
+    }
+
+}
 </script>
