@@ -44,13 +44,14 @@
                                         {{ appointment.therapist.name }}
                                     </td>
                                     
+                                    
                                       
                                      <td>
-                                        Bild
-                                       
+                                        <a href ="https://wetebucket.s3.us-west-2.amazonaws.com/${document.name}">document.name</a>
+                                        
                                     </td>
                                     <td class="text-center">
-                                      <a class="btn btn-primary btn-btn mb-1 mx-3"  href="'/appointment/' + appointment.id +'/uploadImageForm'">Dokumente hochladen</a> 
+                                      <a class="btn btn-primary btn-btn mb-1 mx-3"  :href="'/appointment/' + appointment.id + '/uploadImageForm'">Dokumente hochladen</a> 
                                         <button class="btn btn-danger tbl-btn mb-1 mx-3"
                                             @click="deleteAppointment(appointment)">
                                             Stornieren
@@ -76,7 +77,9 @@
             return {
                 appointments: [],
                 practices: [],
+                document: [],
                 noAppointments: true,
+                
             };
         },
         methods: {
@@ -123,7 +126,9 @@
                     await fetch(origin + "/appointment/" + appointment.id + "/delete");
                     window.location.reload();
                 }
+                
             },
+           
         },
         async created() {
             let url = new URL(origin + "/patient/<%=patient.id%>/appointments");

@@ -16,13 +16,14 @@ module.exports = {
     from: {type: 'ref', columnType: 'time', required: true},
     till: {type: 'ref', columnType: 'time', required: true},
     indication: {type: 'string', columnType: 'text'},
-    image: { type: 'string', columnType: 'varchar(128)' },
+    
     
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     patient: {model: 'patient', required: true},
-    therapist: {model: 'therapist', required: true}
+    therapist: {model: 'therapist', required: true},
+    document: { collection: "document", via: "appointment" }
   },
 
 };
