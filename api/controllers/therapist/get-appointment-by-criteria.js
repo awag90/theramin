@@ -39,6 +39,7 @@ module.exports = {
       let tillDate = new Date(Number(inputs.tillDate))
       let appointments = await Appointment.find({therapist : inputs.id}).populate('patient')
       appointments = appointments.filter(e => (new Date(new Date(e.date).getTime() + 180*60*1000).getTime() >= fromDate.getTime() && new Date(e.date).getTime() <= tillDate.getTime()))
+      appointments.sort(function(a,b){return new Date(a.date.getTime() +new Date('1970-01-01T'+a.from).getTime()) - new Date(b.date.getTime()+new Date('1970-01-01T'+b.from).getTime())})
       return appointments
     }
   };
