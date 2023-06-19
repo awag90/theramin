@@ -44,14 +44,13 @@
                                         {{ appointment.therapist.name }}
                                     </td>
                                     
-                                        <% if(appointment.image){ %>
+                                      
                                      <td>
                                         Bild
-                                        <img src="https://wetebucket.s3.us-west-2.amazonaws.com/<%=appointment.image%>">
-                                        <%} %>
+                                       
                                     </td>
                                     <td class="text-center">
-                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="/patient/<%=patient.id%>/uploadfile">Dokumente hochladen</a>
+                                      <a class="btn btn-primary btn-btn mb-1 mx-3"  href="'/appointment/' + appointment.id +'/uploadImageForm'">Dokumente hochladen</a> 
                                         <button class="btn btn-danger tbl-btn mb-1 mx-3"
                                             @click="deleteAppointment(appointment)">
                                             Stornieren

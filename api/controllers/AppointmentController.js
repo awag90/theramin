@@ -38,8 +38,12 @@ module.exports = {
 
   uploadImageForm: async function (req, res) {
     sails.log.debug("Upload image form....");
-    let appointment = await Appointment.findOne({ id: req.params.id });
-    res.view("pages/patient/uploadfile", { appointment: appointment });
+    let appoinment = await Appointment.findOne({ id: req.params.id });
+    if(!appointment){
+      return res.serverError("Termin nicht gefunden");
+    }
+
+   return res.view("pages/patient/uploadfile", { appointment: appoinment });
   },
 
   uploadImage: async function (req, res) {
