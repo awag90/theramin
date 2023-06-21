@@ -1,31 +1,44 @@
 <div class="container py-4">
-    <div class="card shadow px-4 pt-2">
+    <div id="app" class="card shadow px-4 pt-2">
         <form action="/practice/<%=practice.id%>/update" method="post">
             <div>
                 <div class="form-group row px-2">
                     <label class="form-label">Praxis-Name</label>
-                    <input type="text" class="form-control" maxlength="50"  minlength ="0" name="name" value="<%=practice.name%>"
-                        required />
+                    <input type="text" v-model="name" class="form-control" maxlength="50" minlength="0" name="name"
+                        @change="validate" required />
+                </div>
+                <div v-if="invalidCharsName" class="text-center text-danger">
+                    Der Praxisname darf nur Buchstaben,"-" und "." enthalten!
                 </div>
                 <div class="row">
                     <div class="form-group col-md-8 px-2">
                         <label class="form-label">Straße</label>
-                        <input type="text" class="form-control" maxlength="50" minlength ="0" name="street" value="<%=practice.street%>" required />
+                        <input type="text" v-model="street" class="form-control" maxlength="50" minlength="0"
+                            name="street" @change="validate" required />
                     </div>
                     <div class="form-group col-md-4 px-2 pl-md-4">
                         <label class="form-label">Hausnummer</label>
-                        <input type="text" class="form-control" maxlength="10" minlength ="0" name="streetnumber" value="<%=practice.streetnumber%>" required />
+                        <input type="text" class="form-control" maxlength="10" minlength="0" name="streetnumber"
+                            value="<%=practice.streetnumber%>" @change="validate" required />
                     </div>
+                </div>
+                <div v-if="invalidCharsStreet" class="text-center text-danger">
+                    Die Straße darf nur Buchstaben,"-" und "." enthalten!
                 </div>
                 <div class="row">
                     <div class="form-group col-md-6 px-2">
                         <label class="form-label">PLZ</label>
-                        <input type="text" class="form-control" pattern="[0-9]{5}"  name="zip" value="<%=practice.zip%>" required />
+                        <input type="text" class="form-control" pattern="[0-9]{5}" name="zip" value="<%=practice.zip%>"
+                            @change="validate" required />
                     </div>
                     <div class="form-group col-md-6 px-2 pl-md-4">
                         <label class="form-label">Ort</label>
-                        <input type="text" class="form-control" maxlength="50" minlength ="0" name="city" value="<%=practice.city%>" required />
+                        <input type="text" v-model="city" class="form-control" maxlength="50" minlength="0" name="city"
+                            @change="validate" required />
                     </div>
+                </div>
+                <div v-if="invalidCharsCity" class="text-center text-danger">
+                    Der Ort darf nur Buchstaben,"-" und "." enthalten!
                 </div>
                 <div class="row">
                     <div class="form-group px-2 w-100">
@@ -37,10 +50,46 @@
                 </div>
             </div>
             <div class="row justify-content-center">
-                <button type="submit" class="btn btn-primary mt-4 mb-4">
+                <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">
                     Anpassen
                 </button>
             </div>
         </form>
     </div>
 </div>
+<script>
+    const app = Vue.createApp({
+        data: function () {
+            return {
+                name: "<%=practice.name%>",
+                city: "<%=practice.city%>",
+                street: "<%=practice.street%>",
+                invalidCharsCity: false,
+                invalidCharsName: false,
+                invalidCharsStreet: false,
+                disabled: true,
+            };
+        },
+        methods: {
+            validate: function () {
+
+                let lettersAndValidCharsOnly = /^[a-zA-ZäöüÄÖÜß\.\-]*$/;
+                this.invalidCharsCity = !(
+                    lettersAndValidCharsOnly.test(this.city)
+                );
+                this.invalidCharsName = !(
+                    lettersAndValidCharsOnly.test(this.name)
+                );
+                this.invalidCharsStreet = !(
+                    lettersAndValidCharsOnly.test(this.street)
+                );
+                if (!this.invalidCharsCity && !this.invalidCharsName && !this.invalidCharsStreet) {
+                    this.disabled = false;
+                } else {
+                    this.disabled = true;
+                }
+            },
+        },
+    });
+    app.mount("#app");
+</script>

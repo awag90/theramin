@@ -1,81 +1,104 @@
 <div class="container p-4 px-3">
-  <div class=" card shadow  px-4 pt-2">
-  <form action="/therapist" method="post">
-    <div id="app">
-      <input type="hidden" value="<%=practice.id%>" name="practice" />
-      <div class="row">
-        <div class="form-group col-md-6 px-0">
-          <label class="form-label">Name</label>
-          <input type="text" class="form-control" maxlength="50" minlength ="0" name="name" placeholder="Name" required/>
+  <div id="app" class=" card shadow  px-4 pt-2">
+    <form action="/therapist" method="post">
+      <div id="app">
+        <input type="hidden" value="<%=practice.id%>" name="practice" />
+        <div class="row">
+          <div class="form-group col-md-6 px-0">
+            <label class="form-label">Name</label>
+            <input type="text" v-model="name" class="form-control" maxlength="50" minlength="2" name="name"
+              placeholder="Name" @change="validate" required />
+          </div>
+          <div class="form-group col-md-6 px-0 pl-md-4">
+            <label class="form-label">Vorname</label>
+            <input type="text" v-model="firstname" class="form-control" maxlength="50" minlength="2" name="firstname"
+              placeholder="Vorname" @change="validate" required />
+          </div>
         </div>
-        <div class="form-group col-md-6 px-0 pl-md-4">
-          <label class="form-label">Vorname</label>
-          <input type="text" class="form-control" maxlength="50" minlength ="0" name="firstname" placeholder="Vorname" required />
+        <div v-if="invalidChars" class="text-center text-danger">
+          Name und Vorname dürfen keine Sonderzeichen oder Zahlen enthalten!
+        </div>
+        <div class="row px-0">
+          <label class="form-label">E-Mail</label>
+          <input type="email" class="form-control" maxlength="100" minlength="0" name="emailAddress"
+            placeholder="email@adresse.de" required />
+        </div>
+        <div class="row px-0">
+          <label class="form-label">Initiales Passwort</label>
+          <input type="password" @change="validate" v-model="password" class="form-control" minlength="8" maxlength="60"
+            name="password" placeholder="••••••••" required />
+        </div>
+        <div class="row px-0">
+          <label for="confirm-password">Passwort bestätigen</label>
+          <input :class="fieldclass" @change="validate" v-model="confirm" name="confirmPassword" type="password"
+            placeholder="••••••••" autocomplete="new-password">
+        </div>
+        <div class="row">
+          <div class="formgroup">
+            <label class="form-label">Fachgebiet</label>
+            <select class="form-control" id="select" name="specialisation">
+              <% specialisations.forEach(function(specialisation){ %>
+                <option value="<%=specialisation.id%>">
+                  <%=specialisation.name%>
+                </option>
+                <%});%>
+            </select>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-check p-4">
+            <%if(req.me){%>
+              <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" />
+              <%}else{%>
+                <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" checked
+                  disabled />
+                <%}%>
+                  <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
+          </div>
+        </div>
+        <div class="row justify-content-center">
+          <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">Hinzufügen</button>
         </div>
       </div>
-      <div class="row px-0">
-        <label class="form-label">E-Mail</label>
-        <input type="email" class="form-control" maxlength="100"  minlength ="0" name="emailAddress" placeholder="email@adresse.de" required/>
-      </div>
-      <div class="row px-0">
-        <label class="form-label">Initiales Passwort</label>
-        <input type="password" @change="validate" v-model="password" class="form-control" minlength="8" maxlength="60" name="password" placeholder="••••••••" required/>
-      </div>
-      <div class="row px-0">
-        <label for="confirm-password">Passwort bestätigen</label>
-        <input :class="fieldclass" @change="validate" v-model="confirm" name="confirmPassword" type="password"  placeholder="••••••••" autocomplete="new-password">
-      </div>
-      <div class="row">
-        <div class="formgroup">
-          <label class="form-label">Fachgebiet</label>
-          <select class="form-control" id="select" name="specialisation">
-            <% specialisations.forEach(function(specialisation){ %>
-            <option value="<%=specialisation.id%>">
-              <%=specialisation.name%>
-            </option>
-            <%});%>
-          </select>
-        </div>
-      </div>
-      <div class="row">
-        <div class="form-check p-4">
-          <%if(req.me){%>
-            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin"/>
-          <%}else{%>
-            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" checked disabled/>
-          <%}%>
-          <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
-        </div>
-      </div>
-      <div class="row justify-content-center">
-        <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">Hinzufügen</button>
-      </div>
-    </div>
-  </form>
-</div>
+    </form>
+  </div>
 </div>
 <script>
   const app = Vue.createApp({
-   data: function () {
-     return {
-       password: '',
-       confirm: '',
-       disabled: true,
-       fieldclass: 'form-control'
-     };
-   },
-   methods: {
-    validate: function(){
-       if ( this.password == this.confirm){
-         this.disabled = false
-         this.fieldclass = "form-control border-success border-2"
-       }else{
-         this.disabled = true
-         this.fieldclass = "form-control border-danger border-2"
-       }
-     }
-   },
-   
- });
- app.mount("#app");
+    data: function () {
+      return {
+        password: '',
+        confirm: '',
+        name: "",
+        firstname: "",
+        invalidChars: false,
+        disabled: true,
+        passwordsMatch: false,
+        fieldclass: 'form-control'
+      };
+    },
+    methods: {
+      validate: function () {
+        if (this.password == this.confirm) {
+          this.passwordsMatch = true
+          this.fieldclass = "form-control border-success border-2"
+        } else {
+          this.passwordsMatch = false
+          this.fieldclass = "form-control border-danger border-2"
+        }
+        let lettersOnly = /^[a-zA-ZäöüÄÖÜß]*$/;
+        this.invalidChars = !(
+          lettersOnly.test(this.name) && lettersOnly.test(this.firstname)
+        )
+
+        if (this.passwordsMatch && !this.invalidChars) {
+          this.disabled = false;
+        } else {
+          this.disabled = true;
+        }
+      }
+    },
+
+  });
+  app.mount("#app");
 </script>
