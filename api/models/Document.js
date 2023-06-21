@@ -14,7 +14,7 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
     
     filename: { type: 'string', columnType: 'varchar(128)' },
-    name: { type: 'string', columnType: 'varchar(50)', required: true },
+    name: { type: 'string', columnType: 'varchar(50)',maxLength: 50, minLength:0, required: true,example: "Befund" },
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
