@@ -20,7 +20,7 @@
                     <% if (appointment.documents.length > 0){%>
                         <% appointment.documents.forEach(function(document){%>
                             <li class="list-group-item">
-                                <a href="https://wetebucket.s3.us-west-2.amazonaws.com/<%=document.image%>" target="_blank"><%=document.name%></a>
+                                <a href="https://wetebucket.s3.us-west-2.amazonaws.com/<%=document.filename%>" target="_blank"><%=document.name%></a>
                             </li>
                         <%})%>
                     <%}else{%>

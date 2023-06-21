@@ -44,13 +44,16 @@
                                     
                                     
                                       
-                                     <td>
-                                        <li v-for="document in appointment.documents"><a :href ="'https://wetebucket.s3.us-west-2.amazonaws.com/'+ document.image"  target="_blank">{{document.name}}</a></li>
+                                     <td class="p-auto">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" v-for="document in appointment.documents">
+                                                <a :href ="'https://wetebucket.s3.us-west-2.amazonaws.com/'+ document.filename"  target="_blank">{{document.name}}</a>
+                                            </li>
+                                        </ul>
                                     </td>
                                     <td class="text-center">
                                       <a class="btn btn-primary btn-btn mb-1 mx-3"  :href="'/appointment/' + appointment.id + '/uploadImageForm'">Dokumente hochladen</a> 
-                                        <button class="btn btn-danger tbl-btn mb-1 mx-3"
-                                            @click="deleteAppointment(appointment)">
+                                        <button class="btn btn-danger tbl-btn mb-1 mx-3" @click="deleteAppointment(appointment)">
                                             Stornieren
                                         </button>
                                     </td>

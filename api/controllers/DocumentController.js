@@ -14,7 +14,7 @@ module.exports = {
       },
     
       uploadImage: async function (req, res) {
-        sails.log("Upload image for appointment...");
+        sails.log("Upload document for appointment...");
     
         let params = {
           adapter: require("skipper-s3"),
@@ -31,7 +31,8 @@ module.exports = {
             sails.log("Uploaded!");
           }
 
-        
+          sails.log.debug("req.body:", req.body);
+
 
           let fname = require("path").basename(uploadedFiles[0].fd);
           let documentName = req.body.documentName;// Holen Sie den Namen des Dokuments aus dem Formularfeld
@@ -39,19 +40,15 @@ module.exports = {
           // Erstellen Sie das Dokument in der Datenbank
           let document = await Document.create({
             name: documentName,
-            image: fname,
+            filename: fname,
             appointment: req.params.id // Weisen Sie das Dokument dem Termin zu
-          }).fetch();
+          });
 
-         
-          console.log("req.body:", req.body);
-        
-          // Fügen Sie das Dokument dem Termin hinzu
-          await Appointment.addToCollection(req.params.id, 'document', document.id);
       
           return res.redirect("/patient/show");
         };
-        await req.file("image").upload(params, callback);
+
+        await req.file("filename").upload(params, callback);
       },
     }
     
