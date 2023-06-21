@@ -47,7 +47,7 @@
                                     
                                       
                                      <td>
-                                        <a href ="https://wetebucket.s3.us-west-2.amazonaws.com/${document.name}">document.name</a>
+                                        <li v-for="document in appointment.documents"><a :href ="'https://wetebucket.s3.us-west-2.amazonaws.com/'+ document.image"  target="_blank">{{document.name}}</a></li>
                                         
                                     </td>
                                     <td class="text-center">

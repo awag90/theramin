@@ -23,7 +23,7 @@ module.exports = {
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     patient: {model: 'patient', required: true},
     therapist: {model: 'therapist', required: true},
-    document: { collection: "document", via: "appointment" }
+    documents: { collection: "document", via: "appointment" }
   },
 
 };
