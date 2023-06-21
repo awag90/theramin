@@ -35,9 +35,7 @@
                                     <td>{{new Date(appointment.date).toLocaleDateString()}}</td>
                                     <td>{{ appointment.from.substring(0, 5) }}</td>
                                     <td>
-                                        <a :href="getPracticeUrl(appointment)">{{
-                                            getPracticeForAppointment(appointment).name
-                                            }}</a>
+                                        <a :href="getPracticeUrl(appointment)">{{getPracticeForAppointment(appointment).name}}</a>
                                     </td>
                                     <td>
                                         {{ appointment.therapist.firstname }}
@@ -48,7 +46,6 @@
                                       
                                      <td>
                                         <li v-for="document in appointment.documents"><a :href ="'https://wetebucket.s3.us-west-2.amazonaws.com/'+ document.image"  target="_blank">{{document.name}}</a></li>
-                                        
                                     </td>
                                     <td class="text-center">
                                       <a class="btn btn-primary btn-btn mb-1 mx-3"  :href="'/appointment/' + appointment.id + '/uploadImageForm'">Dokumente hochladen</a> 
@@ -139,10 +136,7 @@
             if (this.appointments.length > 0) {
                 this.noAppointments = false;
                 this.appointments.forEach((a) => {
-                    if (
-                        this.practices.filter((e) => e.id == a.therapist.practice).length ==
-                        0
-                    ) {
+                    if (this.practices.filter((e) => e.id == a.therapist.practice).length == 0) {
                         this.fetchPractice(a);
                     }
                 });

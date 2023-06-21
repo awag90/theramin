@@ -79,8 +79,9 @@
         },
         methods: {
             today: function(){
-                this.fromDate = new Date().toISOString().substring(0,10),
+                this.fromDate = new Date().toISOString().substring(0,10)
                 this.tillDate = new Date().toISOString().substring(0,10)
+                this.getAppointments()
             },
 
             week: function(){
@@ -90,6 +91,7 @@
 
                 this.fromDate = new Date(today.setDate(monday)).toISOString().substring(0,10),
                 this.tillDate = new Date(today.setDate(friday)).toISOString().substring(0,10)
+                this.getAppointments()
             },
 
             getDeleteUrl: function (appointment) {
@@ -97,18 +99,15 @@
             },
 
             deleteAppointment: async function (appointment) {
-                if (
-                    confirm(
-                        "Sind Sie sicher, dass Sie diesen Termin stornieren möchten?"
-                    ) == true
-                ) {
+                if (confirm("Sind Sie sicher, dass Sie diesen Termin stornieren möchten?") == true) {
                     await fetch(origin + "/appointment/" + appointment.id + "/delete");
                     window.location.reload();
                 }
             },
 
             getAppointments: async function(){
-                let url = new URL(origin + "/therapist/<%=therapist.id%>/appointments/from/" + new Date(this.fromDate).getTime() +"/till/"+ new Date(this.tillDate).getTime());
+                let url = new URL(origin + "/therapist/<%=therapist.id%>/appointments/from/" 
+                            + new Date(this.fromDate).getTime() +"/till/"+ new Date(this.tillDate).getTime());
                 await fetch(url)
                     .then((res) => res.json())
                     .then((data) => (this.appointments = data));
