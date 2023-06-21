@@ -43,7 +43,7 @@
                                     <td>{{ appointment.till.substring(0, 5) }}</td>
                                     <td>{{ appointment.patient.name }}, {{ appointment.patient.firstname }}</td>
                                     <td class="text-center">
-                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Termin-Details anzeigen</a>
+                                        <a class="btn btn-primary btn-btn mb-1 mx-3" :href="'/appointment/' + appointment.id + '/show'">Termin-Details anzeigen</a>
                                         <button class="btn btn-danger tbl-btn mb-1 mx-3"
                                             @click="deleteAppointment(appointment)">
                                             Stornieren

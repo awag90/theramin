@@ -64,6 +64,7 @@ module.exports.routes = {
   'POST /appointment-as-therapist' : 'AppointmentController.createAsTherapist',
   'GET /appointment/:id/delete': 'AppointmentController.delete',
   'GET /appointment/new' : 'AppointmentController.new',
+  'GET /appointment/:id/show': 'AppointmentController.show',
 
   //Documents
   'GET /appointment/:id/uploadImageForm': 'DocumentController.uploadImageForm' ,

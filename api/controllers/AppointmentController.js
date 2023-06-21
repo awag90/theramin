@@ -56,6 +56,12 @@ module.exports = {
     res.view("pages/therapist/create-appointment", { therapist: therapist });
   },
 
+  show: async function (req, res) {
+    sails.log.debug("Opening appointment details...")
+    let appointment = await Appointment.findOne({id: req.params.id}).populate('therapist').populate('patient').populate('documents')
+    res.view('pages/appointment/show', {appointment: appointment})
+  },
+
   delete: async function (req, res) {
     sails.log.debug("Deleting appointment...");
     let appoinment = await Appointment.destroyOne({ id: req.params.id });
