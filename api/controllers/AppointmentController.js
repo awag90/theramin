@@ -36,7 +36,7 @@ module.exports = {
       }).fetch();
     }
     sails.log.debug(patient)
-    let till = new Date(new Date(params.date + "T" + params.time).getTime() + 30 * 60 * 1000).toLocaleTimeString();
+    let till = new Date(new Date(params.date + "T" + params.time).getTime() + 30 * 60 * 1000).toLocaleTimeString("de-DE");
     let appointment = await Appointment.create({
       therapist: therapist.id,
       patient: patient.id,
