@@ -5,7 +5,7 @@
             <div class="card-body table-responsive px-2">
                 <table class="table">
                     <tbody>
-                            <tr><th>Datum</th><td><%=new Date(appointment.date).toLocaleDateString()%></td></tr>
+                            <tr><th>Datum</th><td><%=new Date(appointment.date).toLocaleDateString('de-DE')%></td></tr>
                             <tr><th>Von</th><td><%=appointment.from.substring(0,5)%></td></tr>
                             <tr><th>Bis</th><td><%=appointment.till.substring(0,5)%></td></tr>
                             <tr><th>Patient</th><td><%=appointment.patient.name%>, <%=appointment.patient.firstname%></td></tr>

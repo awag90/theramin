@@ -32,7 +32,7 @@
                             </thead>
                             <tbody>
                                 <tr v-for="appointment in appointments" :key="appointment.id">
-                                    <td>{{new Date(appointment.date).toLocaleDateString()}}</td>
+                                    <td>{{new Date(appointment.date).toLocaleDateString('de-DE')}}</td>
                                     <td>{{ appointment.from.substring(0, 5) }}</td>
                                     <td>
                                         <a :href="getPracticeUrl(appointment)">{{getPracticeForAppointment(appointment).name}}</a>

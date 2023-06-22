@@ -100,7 +100,7 @@
                             this.times.push(time);
                             this.noTimes = false
                         }
-                        time = new Date(new Date(this.dateStr + "T" + time).getTime() + 30 * 60 * 1000).toLocaleTimeString();
+                        time = new Date(new Date(this.dateStr + "T" + time).getTime() + 30 * 60 * 1000).toLocaleTimeString('de-DE');
                     }
                 }
                 if (this.times.length == 0) {

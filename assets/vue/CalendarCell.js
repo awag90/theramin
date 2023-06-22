@@ -55,9 +55,9 @@ function getWeekdayForDatetime(time){
 
 function isFree(utcTime, therapist){
     let datetime = new Date(Number(utcTime)); 
-    let date = datetime.toLocaleDateString()
-    let time = datetime.toLocaleTimeString()
-    let appointments = therapist.appointments.filter((e) => (new Date(e.date).toLocaleDateString() == date && new Date('1970-01-01T'+e.from).toLocaleTimeString() == time));
+    let date = datetime.toLocaleDateString('de-DE')
+    let time = datetime.toLocaleTimeString('de-DE')
+    let appointments = therapist.appointments.filter((e) => (new Date(e.date).toLocaleDateString('de-DE') == date && new Date('1970-01-01T'+e.from).toLocaleTimeString('de-DE') == time));
     return (appointments.length == 0)
 
 }

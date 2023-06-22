@@ -85,7 +85,7 @@ export default {
   template: `
     <div class="row justify-content-center my-2">
         <button class="btn btn-primary col-md-2 col-3" @click="decrement">Zurück</button>
-        <p class="col-md-2 col-4 text-center">{{getGermanWeekdayForDatetime(day)}}, {{day.toLocaleDateString()}}</p>
+        <p class="col-md-2 col-4 text-center">{{getGermanWeekdayForDatetime(day)}}, {{day.toLocaleDateString('de-DE')}}</p>
         <button class="btn btn-primary col-md-2 col-3" @click="increment">Weiter</button>
     </div>
     <div class="calendar row  my-2 mx-1">
