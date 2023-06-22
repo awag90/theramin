@@ -53,8 +53,6 @@ module.exports.datastores = {
     adapter: 'sails-mysql',
     host: '193.196.53.194',
     port: 33061,
-    user: 'user8_prod',
-    database: 'theramin_prod'
   },
 
 
