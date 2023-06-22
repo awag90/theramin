@@ -27,6 +27,8 @@ module.exports.policies = {
   'therapist/get-appointment-for-time': true,
   'account/get-me': true,
   'practice/get-practice': true,
+  'therapist/get-appointment-by-criteria': true,
+  'therapist/get-patients-for-therapist': true,
 
   PracticeController: {
     '*': 'is-practice-admin',
@@ -38,8 +40,9 @@ module.exports.policies = {
   },
 
   TherapistController: {
-    '*': 'is-practice-admin',
-    'create': true
+    '*': 'is-therapist',
+    'create': true, 
+    'destroy': 'is-practice-admin', 
   },
 
   WorktimeController: {

@@ -15,13 +15,15 @@ module.exports = {
     date: {type: 'ref', columnType: 'date', required: true},
     from: {type: 'ref', columnType: 'time', required: true},
     till: {type: 'ref', columnType: 'time', required: true},
-    indication: {type: 'string', columnType: 'text', required: true},
+    indication: {type: 'string', columnType: 'text', maxLength: 50, minLength:0,example: "Rückenschmerzen"},
+    
     
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
     patient: {model: 'patient', required: true},
-    therapist: {model: 'therapist', required: true}
+    therapist: {model: 'therapist', required: true},
+    documents: { collection: "document", via: "appointment" }
   },
 
 };

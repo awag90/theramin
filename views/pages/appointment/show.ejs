@@ -1,0 +1,54 @@
+<div class="container py-4 px-4">
+    <div id="app">
+        <div class="card col-12 px-0 mx-0">
+            <h2 class="card-title px-2">Termin-Informationen</h2>
+            <div class="card-body table-responsive px-2">
+                <table class="table">
+                    <tbody>
+                            <tr><th>Datum</th><td><%=new Date(appointment.date).toLocaleDateString()%></td></tr>
+                            <tr><th>Von</th><td><%=appointment.from.substring(0,5)%></td></tr>
+                            <tr><th>Bis</th><td><%=appointment.till.substring(0,5)%></td></tr>
+                            <tr><th>Patient</th><td><%=appointment.patient.name%>, <%=appointment.patient.firstname%></td></tr>
+                            <tr><th>Indikation</th><td><%=appointment.indication%></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="p-2">
+                <h3>Dokumente</h3>
+                <ul class="list-group">
+                    <% if (appointment.documents.length > 0){%>
+                        <% appointment.documents.forEach(function(document){%>
+                            <li class="list-group-item">
+                                <a href="https://wetebucket.s3.us-west-2.amazonaws.com/<%=document.filename%>" target="_blank"><%=document.name%></a>
+                            </li>
+                        <%})%>
+                    <%}else{%>
+                        <p>Zu diesem Termin sind keine Dokumente vorhanden</p>
+                    <%}%>
+                </ul>
+            </div>
+            <div class="row justify-content-end">
+                <button class="btn btn-danger mb-4 mx-5" @click="deleteAppointment()">Termin stornieren</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="module">
+    const app = Vue.createApp({
+        data: function () {
+            return {    
+            };
+        },
+        methods: {
+            deleteAppointment: async function () {
+                if (confirm("Sind Sie sicher, dass Sie diesen Termin stornieren möchten?") == true) {
+                    await fetch(origin + "/appointment/<%=appointment.id%>/delete");
+                    window.location.href = "/therapist/overview";
+                }
+                
+            }, 
+        },
+    });
+    app.mount("#app");
+</script>

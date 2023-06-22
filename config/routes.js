@@ -44,24 +44,31 @@ module.exports.routes = {
   'GET /therapist/:id/destroy': 'Therapist.destroy',
   'GET /therapist/:id/worktimes': 'Worktime.manage',
   'GET /therapist/appointments' : 'TherapistController.find',
-
+  'GET /therapist/overview' : 'TherapistController.show',
+ 
   //Patient
-   'GET /patient/show': 'PatientController.find',
-   'GET /patient/edit-profile': 'PatientController.edit',
-   'POST /patient/update': 'PatientController.update',
+  'GET /patient/show': 'PatientController.find',
+  'GET /patient/edit-profile': 'PatientController.edit',
+  'POST /patient/update': 'PatientController.update',
 
 
-   //Account
-   'GET /account/edit-password': {action: 'account/view-edit-password'},
-   'POST /update-password': {action: 'account/update-password'},
+  //Account
+  'GET /account/edit-password': {action: 'account/view-edit-password'},
+  'POST /update-password': {action: 'account/update-password'},
 
   //Worktime
   'POST /worktime': 'WorktimeController.createOrUpdate',
 
   //Appointments
-  'POST /appointment': 'AppointmentController.create',
+  'POST /appointment-as-pat': 'AppointmentController.createAsPatient',
+  'POST /appointment-as-therapist' : 'AppointmentController.createAsTherapist',
+  'GET /appointment/:id/delete': 'AppointmentController.delete',
+  'GET /appointment/new' : 'AppointmentController.new',
+  'GET /appointment/:id/show': 'AppointmentController.show',
 
-
+  //Documents
+  'GET /appointment/:id/uploadImageForm': 'DocumentController.uploadImageForm' ,
+  'POST /appointment/:id/uploadImage': 'DocumentController.uploadImage' ,
   //Signup
   'GET /entrance/signup':{view: 'pages/entrance/signup'},
   'POST /signup-patient' :{action: 'entrance/signup-patient'},
@@ -82,7 +89,8 @@ module.exports.routes = {
   'GET /me': {action: 'account/get-me'}, 
   'GET /patient/:id/appointments': {action: 'patient/get-appointments'},
   'GET /practice/:id/getInfo': {action: 'practice/get-practice'},
-  'GET /appointment/:id/delete': 'AppointmentController.delete',
+  'GET /therapist/:id/appointments/from/:fromDate/till/:tillDate': {action: 'therapist/get-appointment-by-criteria'},
+  'GET /therapist/:id/patients' : {action: 'therapist/get-patients-for-therapist'},
 
 
   /***************************************************************************

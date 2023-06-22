@@ -25,7 +25,7 @@ module.exports = {
   
     fn: async function (inputs) {
       sails.log.debug("Loading therapist")
-      let therapist = await Therapist.findOne({id: inputs.id}).populate('specialisation'); 
+      let therapist = await Therapist.findOne({id: inputs.id}).populate('specialisation').populate('worktimes').populate('appointments'); 
       return therapist;
     }
   

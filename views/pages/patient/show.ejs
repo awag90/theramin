@@ -27,6 +27,7 @@
                                 <th>Uhrzeit</th>
                                 <th>Praxis</th>
                                 <th>Therapeut</th>
+                                <th>Dokumenten</th>
                                 <th></th>
                             </thead>
                             <tbody>
@@ -34,18 +35,25 @@
                                     <td>{{new Date(appointment.date).toLocaleDateString()}}</td>
                                     <td>{{ appointment.from.substring(0, 5) }}</td>
                                     <td>
-                                        <a :href="getPracticeUrl(appointment)">{{
-                                            getPracticeForAppointment(appointment).name
-                                            }}</a>
+                                        <a :href="getPracticeUrl(appointment)">{{getPracticeForAppointment(appointment).name}}</a>
                                     </td>
                                     <td>
                                         {{ appointment.therapist.firstname }}
                                         {{ appointment.therapist.name }}
                                     </td>
+                                    
+                                    
+                                      
+                                     <td class="p-auto">
+                                        <ul class="list-group">
+                                            <li class="list-group-item" v-for="document in appointment.documents">
+                                                <a :href ="'https://wetebucket.s3.us-west-2.amazonaws.com/'+ document.filename"  target="_blank">{{document.name}}</a>
+                                            </li>
+                                        </ul>
+                                    </td>
                                     <td class="text-center">
-                                        <a class="btn btn-primary btn-btn mb-1 mx-3" href="#">Dokumente hochladen</a>
-                                        <button class="btn btn-danger tbl-btn mb-1 mx-3"
-                                            @click="deleteAppointment(appointment)">
+                                      <a class="btn btn-primary btn-btn mb-1 mx-3"  :href="'/appointment/' + appointment.id + '/uploadImageForm'">Dokumente hochladen</a> 
+                                        <button class="btn btn-danger tbl-btn mb-1 mx-3" @click="deleteAppointment(appointment)">
                                             Stornieren
                                         </button>
                                     </td>
@@ -69,7 +77,9 @@
             return {
                 appointments: [],
                 practices: [],
+                document: [],
                 noAppointments: true,
+                
             };
         },
         methods: {
@@ -116,7 +126,9 @@
                     await fetch(origin + "/appointment/" + appointment.id + "/delete");
                     window.location.reload();
                 }
+                
             },
+           
         },
         async created() {
             let url = new URL(origin + "/patient/<%=patient.id%>/appointments");
@@ -127,10 +139,7 @@
             if (this.appointments.length > 0) {
                 this.noAppointments = false;
                 this.appointments.forEach((a) => {
-                    if (
-                        this.practices.filter((e) => e.id == a.therapist.practice).length ==
-                        0
-                    ) {
+                    if (this.practices.filter((e) => e.id == a.therapist.practice).length == 0) {
                         this.fetchPractice(a);
                     }
                 });

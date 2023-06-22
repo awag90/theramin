@@ -26,7 +26,7 @@ module.exports = {
   
     fn: async function (inputs) {
       sails.log.debug("Searching for appoinments")
-      let appointments = await Appointment.find({patient: inputs.id}).populate('therapist')
+      let appointments = await Appointment.find({patient: inputs.id}).populate('therapist').populate('documents')
       return appointments
     }
   };
