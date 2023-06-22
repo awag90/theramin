@@ -96,7 +96,7 @@
                 if (worktime != undefined) {
                     let time = worktime.from;
                     while (new Date(this.dateStr + "T" + time).getTime() < new Date(this.dateStr + "T" + worktime.till).getTime()) {
-                        if (this.therapist.appointments.filter((e) => e.from == time && new Date(new Date(e.date).getTime() + 120 * 60 * 1000).toISOString() == date.toISOString()).length == 0) {
+                        if (this.therapist.appointments.filter((e) => e.from == time && new Date(new Date(e.date).getTime() + 120 * 60 * 1000).toISOString().substring(0,10) == date.toISOString().substring(0,10)).length == 0) {
                             this.times.push(time);
                             this.noTimes = false
                         }
