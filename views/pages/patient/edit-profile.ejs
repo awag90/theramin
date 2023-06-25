@@ -8,13 +8,11 @@
           <div class="row">
             <div class="form-group px-3 col-md-5">
               <label class="form-label">Vorname</label>
-              <input class="form-control" v-model="firstname" name="firstname" type="text" maxlength="50"
-                autocomplete="name" @change="validate" required focus-first />
+              <input class="form-control" v-model="firstname" name="firstname" type="text" maxlength="50" autocomplete="name" @change="validate" required focus-first />
             </div>
             <div class="form-group px-3 pl-md-4 col-md-5">
               <label class="form-label">Name</label>
-              <input class="form-control" v-model="name" name="name" type="text" maxlength="50" autocomplete="name"
-                @change="validate" required />
+              <input class="form-control" v-model="name" name="name" type="text" maxlength="50" autocomplete="name" @change="validate" required />
             </div>
           </div>
           <div v-if="invalidChars" class="text-center text-danger">
@@ -23,16 +21,13 @@
           <div class="row">
             <div class="form-group col-md-10 px-3">
               <label for="email-address">Email Adresse</label>
-              <input class="form-control" id="email-address" name="emailAddress" type="email" autocomplete="email"
-                value="<%= req.me.emailAddress %>" @change="validate" required />
+              <input class="form-control" id="email-address" name="emailAddress" type="email" autocomplete="email" value="<%= req.me.emailAddress %>" @change="validate" required />
             </div>
           </div>
           <div class="row">
             <div class="form-group col-md-10 px-3">
               <label for="email-address">Geburtstdatum</label>
-              <input class="form-control" name="dob" type="date"
-                value="<%= new Date(patient.dob.getTime() +2*60*60*1000).toISOString().substring(0,10) %>"
-                min="1900-01-01" max="2023-01-01" @change="validate" required />
+              <input class="form-control" name="dob" type="date" value="<%= new Date(patient.dob.getTime() +2*60*60*1000).toISOString().substring(0,10) %>" min="1900-01-01" max="2023-01-01" @change="validate" required />
             </div>
           </div>
           <div class="row">
@@ -50,7 +45,7 @@
 </div>
 <script>
   const app = Vue.createApp({
-    data: function () {
+    data: function() {
       return {
         name: "<%= patient.name %>",
         firstname: "<%= patient.firstname %>",
@@ -59,7 +54,7 @@
       };
     },
     methods: {
-      validate: function () {
+      validate: function() {
 
         let lettersOnly = /^[a-zA-ZäöüÄÖÜß]*$/;
         this.invalidChars = !(

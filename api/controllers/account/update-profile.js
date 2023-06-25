@@ -35,7 +35,7 @@ module.exports = {
   },
 
 
-  fn: async function ({fullName, emailAddress}) {
+  fn: async function ({ fullName, emailAddress }) {
 
     var newEmailAddress = emailAddress;
     if (newEmailAddress !== undefined) {
@@ -84,7 +84,7 @@ module.exports = {
     };
 
 
-  // Change now
+    // Change now
     _.extend(valuesToSet, {
       emailAddress: newEmailAddress,
       emailChangeCandidate: '',
@@ -93,12 +93,12 @@ module.exports = {
       emailStatus: this.req.me.emailStatus === 'unconfirmed' ? 'unconfirmed' : 'confirmed'
     });
 
-      
-    // Save to the db
-    await User.updateOne({id: this.req.me.id })
-    .set(valuesToSet);
 
-    throw {redirect: '/account/edit-profile'};
+    // Save to the db
+    await User.updateOne({ id: this.req.me.id })
+      .set(valuesToSet);
+
+    throw { redirect: '/account/edit-profile' };
 
   }
 

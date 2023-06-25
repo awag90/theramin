@@ -1,52 +1,52 @@
 <div class="container pt-4 pb-4 px-2">
-    <form class="row align-items-end px-2" action="/practice/filtered" method="get">
-        <form-group class="col-md-4 pl-md-3">
-            <label class="form-label">Praxis-Name</label>
-            <input type="text" class="form-control" maxlength="50" name="name" />
-        </form-group>
-        <form-group class="col-md-2 mt-3">
-            <label class="form-label">PLZ</label>
-            <input type="text" class="form-control" maxlength="10" name="zip" />
-        </form-group>
-        <form-group class="col-md-3 mt-3">
-            <label class="form-label">Fachgebiet</label>
-            <select type="text" class="form-control"  name="specialisation" >
-                <option value="-1">Alle Fachgebiete</option>
-                <% specialisations.forEach(function(specialisation){ %>
-                    <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
-                <%});%>
-            </select>
-        </form-group>
-        <form-group  class="col-md-2 mt-3" >
-            <button type="submit" class="btn btn-primary">Suchen</button>
-        </form-group>
-    </form>
-    <%practices.forEach(function(practice){%>
-        <a href="/practice/<%=practice.id%>" class="card row mt-3 mx-1 text-decoration-none shadow">
-            <h2 class="card-title px-2 pt-2">
-                <%=practice.name%>
-            </h2>   
-            <div class="card-body px-2">
-                <div class="row justify-content-between pt-3">
-                    <div class="col- md-6 text-body mb-3 px-3">
-                        <p>Praxis für:</p>
-                         <ul>
-                            <% specialisations.forEach(function(specialisation){%>
-                                <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
-                                    <li><%=specialisation.name%></li>
-                                <%}%>
+  <form class="row align-items-end px-2" action="/practice/filtered" method="get">
+    <form-group class="col-md-4 pl-md-3">
+      <label class="form-label">Praxis-Name</label>
+      <input type="text" class="form-control" maxlength="50" name="name" />
+    </form-group>
+    <form-group class="col-md-2 mt-3">
+      <label class="form-label">PLZ</label>
+      <input type="text" class="form-control" maxlength="10" name="zip" />
+    </form-group>
+    <form-group class="col-md-3 mt-3">
+      <label class="form-label">Fachgebiet</label>
+      <select type="text" class="form-control" name="specialisation">
+        <option value="-1">Alle Fachgebiete</option>
+        <% specialisations.forEach(function(specialisation){ %>
+        <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
+        <%});%>
+      </select>
+    </form-group>
+    <form-group class="col-md-2 mt-3">
+      <button type="submit" class="btn btn-primary">Suchen</button>
+    </form-group>
+  </form>
+  <%practices.forEach(function(practice){%>
+  <a href="/practice/<%=practice.id%>" class="card row mt-3 mx-1 text-decoration-none shadow">
+    <h2 class="card-title px-2 pt-2">
+      <%=practice.name%>
+    </h2>
+    <div class="card-body px-2">
+      <div class="row justify-content-between pt-3">
+        <div class="col- md-6 text-body mb-3 px-3">
+          <p>Praxis für:</p>
+          <ul>
+            <% specialisations.forEach(function(specialisation){%>
+            <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
+            <li><%=specialisation.name%></li>
+            <%}%>
                             <%})%>
-                        </ul>
-                    </div>
-                    <div class="col-md-6 text-body pt-md-4">
-                        <address class="d-flex adress pt-md-3">
-                            <%=practice.street%> <%=practice.streetnumber%><br />
-                            <%=practice.zip%> <%=practice.city%>
-                        </address>
-                    </div>
-            </div>
+          </ul>
         </div>
-        </a>
-   
-        <%}); %>
+        <div class="col-md-6 text-body pt-md-4">
+          <address class="d-flex adress pt-md-3">
+            <%=practice.street%> <%=practice.streetnumber%><br />
+            <%=practice.zip%> <%=practice.city%>
+          </address>
+        </div>
+      </div>
+    </div>
+  </a>
+
+  <%}); %>
 </div>

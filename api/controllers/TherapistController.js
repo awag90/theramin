@@ -24,13 +24,13 @@ module.exports = {
         },
         sails.config.custom.verifyEmailAddresses
           ? {
-              emailProofToken: await Sails.helpers.strings.random(
-                "url-friendly"
-              ),
-              emailProofTokenExpiresAt:
-                Date.now() + sails.config.custom.emailProofTokenTTL,
-              emailStatus: "unconfirmed",
-            }
+            emailProofToken: await Sails.helpers.strings.random(
+              "url-friendly"
+            ),
+            emailProofTokenExpiresAt:
+              Date.now() + sails.config.custom.emailProofTokenTTL,
+            emailStatus: "unconfirmed",
+          }
           : {}
       )
     )
@@ -79,10 +79,10 @@ module.exports = {
       emailAddress: newEmailAddress,
       isPracticeAdmin: isAdmin,
     });
-    if (user.id = req.session.userId){    
-        res.redirect("/therapist/overview")
-    }else{
-        res.redirect("/practice/" + therapist.practice + "/admin")
+    if (user.id = req.session.userId) {
+      res.redirect("/therapist/overview")
+    } else {
+      res.redirect("/practice/" + therapist.practice + "/admin")
     }
   },
 

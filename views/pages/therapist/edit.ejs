@@ -1,87 +1,86 @@
 <div class="container py-4">
-    <div id="app" class="card shadow px-4 pt-2">
-        <form action="/therapist/<%=therapist.id%>/update" method="post">
-            <div class="row">
-                <div class="form-group col-md-6 px-0">
-                    <label class="form-label">Name</label>
-                    <input type="text" v-model="name" class="form-control" maxlength="50" minlength ="0" name="name" 
-                    @change="validate" required />
-                </div>
-                <div class="form-group col-md-6 px-0 pl-md-4">
-                    <label class="form-label">Vorname</label>
-                    <input type="text" v-model="firstname" class="form-control" maxlength="50" minlength ="0" name="firstname" @change="validate" required />
-                </div>
-            </div>
-            <div v-if="invalidChars" class="text-center text-danger">
-                Name und Vorname dürfen keine Sonderzeichen oder Zahlen enthalten!
-              </div>
-            <div class="row form-group px-0">
-                <label class="form-label">E-Mail</label>
-                <input type="email" class="form-control" maxlength="100" minlength ="0" name="emailAddress" value="<%=therapist.user.emailAddress%>" @change="validate" required/>
-            </div>
-            <div class="row">
-                <div class="form-group">
-                    <label class="form-label">Fachgebiet</label>
-                    <select class="form-control" name="specialisation" @change="validate">
-                        <% specialisations.forEach(function(specialisation){ %>
-                            <% if (specialisation.id==therapist.specialisation.id){%>
-                                <option selected value="<%=specialisation.id%>">
-                                    <%=specialisation.name%>
-                                </option>
-                            <%} else { %>
-                                <option value="<%=specialisation.id%>">
-                                    <%=specialisation.name%>
-                                </option>
-                            <%}%>
+  <div id="app" class="card shadow px-4 pt-2">
+    <form action="/therapist/<%=therapist.id%>/update" method="post">
+      <div class="row">
+        <div class="form-group col-md-6 px-0">
+          <label class="form-label">Name</label>
+          <input type="text" v-model="name" class="form-control" maxlength="50" minlength="0" name="name" @change="validate" required />
+        </div>
+        <div class="form-group col-md-6 px-0 pl-md-4">
+          <label class="form-label">Vorname</label>
+          <input type="text" v-model="firstname" class="form-control" maxlength="50" minlength="0" name="firstname" @change="validate" required />
+        </div>
+      </div>
+      <div v-if="invalidChars" class="text-center text-danger">
+        Name und Vorname dürfen keine Sonderzeichen oder Zahlen enthalten!
+      </div>
+      <div class="row form-group px-0">
+        <label class="form-label">E-Mail</label>
+        <input type="email" class="form-control" maxlength="100" minlength="0" name="emailAddress" value="<%=therapist.user.emailAddress%>" @change="validate" required />
+      </div>
+      <div class="row">
+        <div class="form-group">
+          <label class="form-label">Fachgebiet</label>
+          <select class="form-control" name="specialisation" @change="validate">
+            <% specialisations.forEach(function(specialisation){ %>
+            <% if (specialisation.id==therapist.specialisation.id){%>
+            <option selected value="<%=specialisation.id%>">
+              <%=specialisation.name%>
+            </option>
+            <%} else { %>
+            <option value="<%=specialisation.id%>">
+              <%=specialisation.name%>
+            </option>
+            <%}%>
                         <%});%>
-                    </select>
-                </div>
-            </div>
-            <% if (req.me.isPracticeAdmin){%>
-            <div class="row">
-                <div class="form-check p-4">
-                    <% if (therapist.user.isPracticeAdmin){%>
-                        <input checked type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate" />
-                    <% }else{ %>
-                            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate"/>
-                    <%}%>
+          </select>
+        </div>
+      </div>
+      <% if (req.me.isPracticeAdmin){%>
+      <div class="row">
+        <div class="form-check p-4">
+          <% if (therapist.user.isPracticeAdmin){%>
+          <input checked type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate" />
+          <% }else{ %>
+          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate" />
+          <%}%>
                     <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
                 </div>
             </div>
             <%}%>
-            <div class="row justify-content-center">
-                <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">
-                    Anpassen
-                </button>
-            </div>
-        </form>
-    </div>
+          <div class="row justify-content-center">
+            <button type="submit" class="btn btn-primary mt-4 mb-4" :disabled="disabled">
+              Anpassen
+            </button>
+          </div>
+    </form>
+  </div>
 </div>
 <script>
-    const app = Vue.createApp({
-      data: function () {
-        return {
-          name: "<%=therapist.name%>",
-          firstname: "<%=therapist.firstname%>",
-          invalidChars: false,
-          disabled: true,
-        };
-      },
-      methods: {
-        validate: function () {
-          let lettersOnly = /^[a-zA-ZäöüÄÖÜß]*$/;
-          this.invalidChars = !(
-            lettersOnly.test(this.name) && lettersOnly.test(this.firstname)
-          )
-  
-          if (!this.invalidChars) {
-            this.disabled = false;
-          } else {
-            this.disabled = true;
-          }
+  const app = Vue.createApp({
+    data: function() {
+      return {
+        name: "<%=therapist.name%>",
+        firstname: "<%=therapist.firstname%>",
+        invalidChars: false,
+        disabled: true,
+      };
+    },
+    methods: {
+      validate: function() {
+        let lettersOnly = /^[a-zA-ZäöüÄÖÜß]*$/;
+        this.invalidChars = !(
+          lettersOnly.test(this.name) && lettersOnly.test(this.firstname)
+        )
+
+        if (!this.invalidChars) {
+          this.disabled = false;
+        } else {
+          this.disabled = true;
         }
-      },
-  
-    });
-    app.mount("#app");
-  </script>
+      }
+    },
+
+  });
+  app.mount("#app");
+</script>

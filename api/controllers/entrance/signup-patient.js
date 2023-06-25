@@ -8,7 +8,7 @@ module.exports = {
 
 
   extendedDescription:
-`This creates a new user record in the database, signs in the requesting user agent
+    `This creates a new user record in the database, signs in the requesting user agent
 by modifying its [session](https://sailsjs.com/documentation/concepts/sessions), and
 (if emailing with Mailgun is enabled) sends an account verification email.
 
@@ -35,14 +35,14 @@ the account verification message.)`,
       description: 'The unencrypted password to use for the new account.'
     },
 
-    name:  {
+    name: {
       required: true,
       type: 'string',
       example: 'Wunderlich',
       description: 'The user\'s name.',
     },
 
-    firstname:  {
+    firstname: {
       required: true,
       type: 'string',
       example: 'Fiona',
@@ -50,7 +50,7 @@ the account verification message.)`,
     },
 
     dob: {
-      required: true, 
+      required: true,
       type: 'string',
       example: '01.01.2000',
       description: 'The patients dob'
@@ -68,8 +68,8 @@ the account verification message.)`,
     invalid: {
       responseType: 'badRequest',
       description: 'Der eingegeben Name, Email oder Passwort ist nicht valide',
-      extendedDescription: 'If this request was sent from a graphical user interface, the request '+
-      'parameters should have been validated/coerced _before_ they were sent.'
+      extendedDescription: 'If this request was sent from a graphical user interface, the request ' +
+        'parameters should have been validated/coerced _before_ they were sent.'
     },
 
     emailAlreadyInUse: {
@@ -86,11 +86,11 @@ the account verification message.)`,
   },
 
 
-  fn: async function ({emailAddress, password,firstname,dob,name}) {
+  fn: async function ({ emailAddress, password, firstname, dob, name }) {
 
     let newEmailAddress = emailAddress.toLowerCase();
-    
-   
+
+
 
     // Build up data for the new user record and save it to the database.
     // (Also use `fetch` to retrieve the new ID so that we can use it below.)
@@ -98,23 +98,23 @@ the account verification message.)`,
       emailAddress: newEmailAddress,
       password: await sails.helpers.passwords.hashPassword(password),
       tosAcceptedByIp: this.req.ip
-    }, sails.config.custom.verifyEmailAddresses? {
+    }, sails.config.custom.verifyEmailAddresses ? {
       emailProofToken: await sails.helpers.strings.random('url-friendly'),
       emailProofTokenExpiresAt: Date.now() + sails.config.custom.emailProofTokenTTL,
       emailStatus: 'unconfirmed'
-    }:{}))
-    .intercept('E_UNIQUE', 'emailAlreadyInUse')
-    .intercept({name: 'UsageError'}, 'invalid')
-    .fetch();
+    } : {}))
+      .intercept('E_UNIQUE', 'emailAlreadyInUse')
+      .intercept({ name: 'UsageError' }, 'invalid')
+      .fetch();
 
     // Store the user's new id in their session.
     this.req.session.userId = newUserRecord.id;
 
     //Create the Patient Entry for new User
-    let patient = await Patient.create({dob: dob, user: newUserRecord.id, name: name, firstname: firstname});
-  
+    let patient = await Patient.create({ dob: dob, user: newUserRecord.id, name: name, firstname: firstname });
+
     if (!this.req.wantsJSON) {
-      throw {redirect: '/'};
+      throw { redirect: '/' };
     }
   }
 

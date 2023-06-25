@@ -28,7 +28,7 @@ module.exports = {
     let therapist = await Therapist.findOne({ id: params.therapist });
     let patient = "";
     if (params.patId != undefined) {
-      patient = await Patient.findOne({ id: params.patId});
+      patient = await Patient.findOne({ id: params.patId });
     } else {
       patient = await Patient.create({
         name: params.patName,
@@ -58,8 +58,8 @@ module.exports = {
 
   show: async function (req, res) {
     sails.log.debug("Opening appointment details...")
-    let appointment = await Appointment.findOne({id: req.params.id}).populate('therapist').populate('patient').populate('documents')
-    res.view('pages/appointment/show', {appointment: appointment})
+    let appointment = await Appointment.findOne({ id: req.params.id }).populate('therapist').populate('patient').populate('documents')
+    res.view('pages/appointment/show', { appointment: appointment })
   },
 
   delete: async function (req, res) {

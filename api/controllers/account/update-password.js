@@ -32,7 +32,7 @@ module.exports = {
   },
 
 
-  fn: async function ({password}) {
+  fn: async function ({ password }) {
     sails.log.debug("Update Password....")
 
     // Hash the new password.
@@ -40,10 +40,10 @@ module.exports = {
 
     // Update the record for the logged-in user.
     await User.updateOne({ id: this.req.me.id })
-    .set({
-      password: hashed
-    });
-    throw {redirect: '/'};
+      .set({
+        password: hashed
+      });
+    throw { redirect: '/' };
 
   }
 

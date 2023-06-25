@@ -1,75 +1,85 @@
 <script>
 </script>
-<div class="container py-4 ">  
-    <div class="card  shadow px-4 pt-2 ">
-      <h2 class="card-title px-2"><%=practice.name%></h2>
-      <div class="card-header px-2">
-        <h3>Beschreibung</h3>
-        <div class="d-none d-md-flex"><%=practice.description%></div>
-        <div class="d-md-none">
-          <details>
-            <summary>Anzeigen</summary>
-            <p><%=practice.description%></p>
-          </details>
-        </div>
-      </div>
-      <div class="card-body table-responsive px-2">
-        <h3>Termine</h3>
-        <!--Vue App-->
-        <div id="app">
-          <router-view @create-appointment="createAppointment"></router-view>
-        </div>
-        <script type="module">
-          import practiceCalendar from '/vue/PracticeCalendar.js'
-          import appointmentForm from '/vue/AppointmentForm.js'
-
-          const routes = [
-            {path: '/', component: practiceCalendar, props: {practiceId: "<%= practice.id %>"}},
-            {path:'/createAppointment/:therapistId/:time', name: 'create', component: appointmentForm, props: true}
-          ]
-
-          const router = VueRouter.createRouter({
-            history: VueRouter.createWebHashHistory(),
-            routes: routes, 
-          })
-
-          const app = Vue.createApp({
-            data: function(){
-              return{
-                me: ''
-              }
-            },
-            methods:{
-              createAppointment: function(therapist, time){
-                if(this.me.length > 0 && !this.me[0].isTherapist){
-                  router.push('/createAppointment/'+therapist.id+'/'+time.getTime())
-                }else if (this.me.length == 0) {
-                  window.location.replace("/login")
-                }
-              }
-            },
-            async created(){
-              let url = new URL(origin + "/me");
-              await fetch(url)
-                .then((res) => res.json())
-                .then((data) => (this.me = data));
-            }
-          })
-          app.use(router).mount("#app")
-        </script>
-        <!--Vue Ende-->
-      </div>
-      <div class="card-footer px-2">
-        <address>
-          <strong>
-            <%=practice.name%>
-          </strong><br />
-          <%=practice.street%>
-          <%=practice.streetnumber%><br />
-          <%=practice.zip%>
-          <%=practice.city%>
-        </address>
+<div class="container py-4 ">
+  <div class="card  shadow px-4 pt-2 ">
+    <h2 class="card-title px-2"><%=practice.name%></h2>
+    <div class="card-header px-2">
+      <h3>Beschreibung</h3>
+      <div class="d-none d-md-flex"><%=practice.description%></div>
+      <div class="d-md-none">
+        <details>
+          <summary>Anzeigen</summary>
+          <p><%=practice.description%></p>
+        </details>
       </div>
     </div>
- 
+    <div class="card-body table-responsive px-2">
+      <h3>Termine</h3>
+      <!--Vue App-->
+      <div id="app">
+        <router-view @create-appointment="createAppointment"></router-view>
+      </div>
+      <script type="module">
+        import practiceCalendar from '/vue/PracticeCalendar.js'
+        import appointmentForm from '/vue/AppointmentForm.js'
+
+        const routes = [{
+            path: '/',
+            component: practiceCalendar,
+            props: {
+              practiceId: "<%= practice.id %>"
+            }
+          },
+          {
+            path: '/createAppointment/:therapistId/:time',
+            name: 'create',
+            component: appointmentForm,
+            props: true
+          }
+        ]
+
+        const router = VueRouter.createRouter({
+          history: VueRouter.createWebHashHistory(),
+          routes: routes,
+        })
+
+        const app = Vue.createApp({
+          data: function() {
+            return {
+              me: ''
+            }
+          },
+          methods: {
+            createAppointment: function(therapist, time) {
+              if (this.me.length > 0 && !this.me[0].isTherapist) {
+                router.push('/createAppointment/' + therapist.id + '/' + time.getTime())
+              } else if (this.me.length == 0) {
+                window.location.replace("/login")
+              }
+            }
+          },
+          async created() {
+            let url = new URL(origin + "/me");
+            await fetch(url)
+              .then((res) => res.json())
+              .then((data) => (this.me = data));
+          }
+        })
+        app.use(router).mount("#app")
+      </script>
+      <!--Vue Ende-->
+    </div>
+    <div class="card-footer px-2">
+      <address>
+        <strong>
+          <%=practice.name%>
+        </strong><br />
+        <%=practice.street%>
+        <%=practice.streetnumber%><br />
+        <%=practice.zip%>
+        <%=practice.city%>
+      </address>
+    </div>
+  </div>
+
 </div>

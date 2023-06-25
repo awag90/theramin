@@ -8,10 +8,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
 
   <% /* If you want to discourage search engines from indexing this site, uncomment the following line: */%>
-    <% /* <meta name="robots" content="noindex" />
+  <% /* <meta name="robots" content="noindex" />
     */%>
 
-    <!--
+  <!--
         Stylesheets and Preprocessors
         ==============================
 
@@ -32,12 +32,12 @@
             + Use a different or additional preprocessor, like SASS, SCSS or Stylus
     -->
 
-    <!--STYLES-->
-    <link rel="stylesheet" href="/dependencies/bootstrap.min.css">
-    <link rel="stylesheet" href="/styles/importer.css">
-    <link rel="stylesheet" href="/styles/styles.css">
-    <!--STYLES END-->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
+  <!--STYLES-->
+  <link rel="stylesheet" href="/dependencies/bootstrap.min.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <link rel="stylesheet" href="/styles/styles.css">
+  <!--STYLES END-->
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet" />
 </head>
 
 <body class="bg-light">
@@ -47,14 +47,13 @@
   <script src="/dependencies/vue.global.js"></script>
   <script src="/dependencies/z-vue-router.global.js"></script>
   <!--SCRIPTS END-->
-  
+
   <header class="sticky-top">
     <div class="container-fluid justify-content-center bg-light row m-auto">
       <a class="col-12 col-md-8 text-center display-flex p-auto" href="/"><img class="w-50" src="/images/icon_schrift_daneben.png" /></a>
     </div>
     <nav class="navbar navbar-expand-md ms-3 justify-content-end navbar-dark bg-primary">
-      <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target=".into-burger"
-        aria-controls="into-burger" aria-expanded="false">
+      <button class="navbar-toggler me-3" type="button" data-bs-toggle="collapse" data-bs-target=".into-burger" aria-controls="into-burger" aria-expanded="false">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse ms-auto into-burger order-0" id="navbarNav">
@@ -75,7 +74,7 @@
           </li>
           <%}%> 
           <%if(req.me && req.me.isPracticeAdmin){%>
-            <li class="nav-item">
+          <li class="nav-item">
             <a class="nav-link text-white" href="/practice/admin">Praxis verwalten</a>
           </li>
           <%}%>
@@ -89,16 +88,16 @@
       <div class="collapse navbar-collapse me-5 justify-content-end into-burger order-1">
         <ul class="navbar-nav">
           <%if (!req.me){%>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/entrance/signup">Registrieren</a>
-            </li>
-          <% }else{%> 
-            <li class="nav-item">
-              <a class="nav-link text-white" href="/logout">Logout</a>
-            </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/login">Login</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/entrance/signup">Registrieren</a>
+          </li>
+          <% }else{%>
+          <li class="nav-item">
+            <a class="nav-link text-white" href="/logout">Logout</a>
+          </li>
           <%}%>
         </ul>
       </div>
@@ -107,28 +106,28 @@
 
   <main class="bg-white">
     <%- body %>
-  </main>
+          </main>
 
-  <footer class="footer bg-light mt-2">
-    <div class="container-fluid">
-       <div class="row bg-dark p-2 mt-0"></div> 
-      <div class="row justify-content-center">
-        <img class="col-5 col-md-3 col-lg-1" src="/images/icon_allein.png" />
-      </div>
-      <div class="row justify-content-center mt-4">
-        <a href="#" class="btn social-btn fa fa-facebook m-1" id="fb"></a>
-        <a href="#" class="btn social-btn fa fa-twitter m-1" id="twitter"></a>
-        <a href="#" class="btn social-btn fa fa-linkedin m-1" id="linkedin"></a>
-        <a href="#" class="btn social-btn fa fa-youtube m-1" id="yt"></a>
-      </div>
-      <div class="row justify-content-center mb-5 mt-4">
-        <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Kontakt</a>
-        <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Impressum</a>
-      </div>
-    </div>
-  </footer>
+          <footer class="footer bg-light mt-2">
+            <div class="container-fluid">
+              <div class="row bg-dark p-2 mt-0"></div>
+              <div class="row justify-content-center">
+                <img class="col-5 col-md-3 col-lg-1" src="/images/icon_allein.png" />
+              </div>
+              <div class="row justify-content-center mt-4">
+                <a href="#" class="btn social-btn fa fa-facebook m-1" id="fb"></a>
+                <a href="#" class="btn social-btn fa fa-twitter m-1" id="twitter"></a>
+                <a href="#" class="btn social-btn fa fa-linkedin m-1" id="linkedin"></a>
+                <a href="#" class="btn social-btn fa fa-youtube m-1" id="yt"></a>
+              </div>
+              <div class="row justify-content-center mb-5 mt-4">
+                <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Kontakt</a>
+                <a class="btn col-3 col-md-2 col-lg-1 m-1" href="">Impressum</a>
+              </div>
+            </div>
+          </footer>
 
-  <!--
+          <!--
         Client-side Templates
         ========================
 
@@ -149,10 +148,10 @@
               stringfile before they're served.
     -->
 
-  <!--TEMPLATES-->
-  <!--TEMPLATES END-->
+          <!--TEMPLATES-->
+          <!--TEMPLATES END-->
 
-  <!--
+          <!--
         Server-side View Locals
         ========================
 
@@ -167,7 +166,7 @@
 
     -->
 
-  <!--
+          <!--
 
       Client-side Javascript
       ========================

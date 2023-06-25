@@ -1,28 +1,28 @@
-export default{
-    props:['time', 'therapist'], 
+export default {
+    props: ['time', 'therapist'],
     emits: ['createAppointment'],
     data: function () {
         return {
-          status: 'btn cal not-free',
-          disabled: false,
-          text: '  '
+            status: 'btn cal not-free',
+            disabled: false,
+            text: '  '
         }
     },
     methods: {
-        emitEvent: function(){
+        emitEvent: function () {
             this.$emit('createAppointment', this.therapist, this.time);
         }
     },
     created() {
-        let working = isWorking(this.time, this.therapist.worktimes); 
+        let working = isWorking(this.time, this.therapist.worktimes);
         let free = false;
-        if (working){
-            free =  isFree(this.time, this.therapist);
+        if (working) {
+            free = isFree(this.time, this.therapist);
         }
-        if (working && free){
+        if (working && free) {
             this.status = 'btn btn-primary cal free';
             this.text = 'Termin verfügbar'
-        }else{
+        } else {
             this.status = 'btn cal not-free';
             this.disabled = true;
         }
@@ -30,15 +30,15 @@ export default{
     template: '<button :class="status" :disabled="disabled" @click="emitEvent">{{text}}</button>'
 }
 
-function isWorking(time,worktimes){
-    let date = time.toISOString().split('T')[0] +'T'
+function isWorking(time, worktimes) {
+    let date = time.toISOString().split('T')[0] + 'T'
     let worktime = worktimes.find(e => e.weekday === getWeekdayForDatetime(time))
-    return (worktime && time >= new Date(date + worktime.from) && time < new Date(date +worktime.till))
+    return (worktime && time >= new Date(date + worktime.from) && time < new Date(date + worktime.till))
 }
 
-function getWeekdayForDatetime(time){
+function getWeekdayForDatetime(time) {
     let dayNum = time.getDay();
-    switch (dayNum){
+    switch (dayNum) {
         case 1:
             return 'monday'
         case 2:
@@ -53,12 +53,12 @@ function getWeekdayForDatetime(time){
 
 }
 
-function isFree(utcTime, therapist){
-    let datetime = new Date(Number(utcTime)); 
+function isFree(utcTime, therapist) {
+    let datetime = new Date(Number(utcTime));
     let date = datetime.toLocaleDateString('de-DE')
     let time = datetime.toLocaleTimeString('de-DE')
-    let appointments = therapist.appointments.filter((e) => (new Date(e.date).toLocaleDateString('de-DE') == date && new Date('1970-01-01T'+e.from).toLocaleTimeString('de-DE') == time));
+    let appointments = therapist.appointments.filter((e) => (new Date(e.date).toLocaleDateString('de-DE') == date && new Date('1970-01-01T' + e.from).toLocaleTimeString('de-DE') == time));
     return (appointments.length == 0)
 
 }
-    
+

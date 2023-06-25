@@ -27,7 +27,7 @@ module.exports = {
       defaultsTo: 'confirmed',
       description: 'The confirmation status of the user\'s email address.',
       extendedDescription:
-`Users might be created as "unconfirmed" (e.g. normal signup) or as "confirmed" (e.g. hard-coded
+        `Users might be created as "unconfirmed" (e.g. normal signup) or as "confirmed" (e.g. hard-coded
 admin users).  When the email verification feature is enabled, new users created via the
 signup form have \`emailStatus: 'unconfirmed'\` until they click the link in the confirmation email.
 Similarly, when an existing user changes their email address, they switch to the "change-requested"
@@ -53,13 +53,13 @@ email status until they click the link in the confirmation email.`
       description: 'User has the Role of therapist'
     },
 
-    isPracticeAdmin:{
+    isPracticeAdmin: {
       type: 'boolean',
       description: 'User has the role of Practice Admin for a practice'
     },
 
-    isMegaAdmin:{
-      type: 'boolean', 
+    isMegaAdmin: {
+      type: 'boolean',
       description: 'Has access to all pages and practices'
     },
   },
