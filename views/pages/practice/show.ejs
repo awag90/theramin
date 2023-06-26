@@ -49,6 +49,7 @@
               me: ''
             }
           },
+          
           methods: {
             createAppointment: function(therapist, time) {
               if (this.me.length > 0 && !this.me[0].isTherapist) {
@@ -58,6 +59,7 @@
               }
             }
           },
+
           async created() {
             let url = new URL(origin + "/me");
             await fetch(url)
@@ -65,6 +67,7 @@
               .then((data) => (this.me = data));
           }
         })
+
         app.use(router).mount("#app")
       </script>
       <!--Vue Ende-->

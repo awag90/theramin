@@ -131,6 +131,7 @@
         }
       },
     },
+    
     async created() {
       let url = new URL(origin + "/patient/<%=patient.id%>/appointments");
       await fetch(url)
