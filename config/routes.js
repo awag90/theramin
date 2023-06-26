@@ -21,6 +21,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   '/': { view: 'pages/homepage' },
+  '/impressum': {view: 'pages/impressum'},
 
 
   //Practice

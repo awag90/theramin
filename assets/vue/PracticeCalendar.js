@@ -5,7 +5,9 @@ export default {
   components: {
     calendarcell,
   },
+
   emits: ['create-appointment'],
+  
   data: function () {
     return {
       therapists: [],
@@ -64,11 +66,10 @@ export default {
     },
 
     reemit: function (therapist, time) {
-      console.log(therapist);
-      console.log(time);
       this.$emit("createAppointment", therapist, time);
     },
   },
+
   async created() {
     let url = new URL(origin + "/practice/" + this.practiceId + "/therapists");
     await fetch(url)
