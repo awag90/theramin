@@ -30,7 +30,8 @@ module.exports = {
 
   fn: async function (inputs) {
     sails.log.debug("Searching for appoinment")
-    let datetime = new Date(Number(inputs.time) + 2 * 60 * 60 * 1000); //Zeitverschiebung
+    const timeDifference = 120 * 60 * 1000
+    let datetime = new Date(Number(inputs.time) + timeDifference)
     let date = datetime.toISOString().substring(0, 10)
     let time = datetime.toISOString().substring(11, 16)
     let appointments = await Appointment.find({ therapist: inputs.id, date: date, from: time })

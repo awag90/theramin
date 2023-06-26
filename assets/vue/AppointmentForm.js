@@ -7,7 +7,8 @@ export default {
       dateStr: '',
       startTime: new Date(Number(this.time)),
       startTimeStr: '',
-      endTime: new Date(Number(this.time) + 30 * 60 * 1000),
+      appointmentLength: 30 * 60 * 1000,
+      endTime: new Date(Number(this.time) + this.appointmentLength),
       endTimeStr: '',
       therapistName: '',
       indication: '',
@@ -15,10 +16,11 @@ export default {
     };
   },
   async created() {
+    const timeDifference = 2 * 60 * 60 * 1000
     this.date = new Date(this.date.setHours(0, 0, 0))
     this.startTime = new Date(this.startTime - this.date)
     this.endTime = new Date(this.endTime - this.date)
-    this.date = new Date(this.date.getTime() + 2 * 60 * 60 * 1000) //Zeitzone
+    this.date = new Date(this.date.getTime() + timeDifference) 
     this.dateStr = this.date.toISOString().substring(0, 10)
     this.startTimeStr = this.startTime.toISOString().substring(11, 16)
     this.endTimeStr = this.endTime.toISOString().substring(11, 16)

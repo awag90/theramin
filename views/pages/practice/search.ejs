@@ -13,7 +13,7 @@
       <select type="text" class="form-control" name="specialisation">
         <option value="-1">Alle Fachgebiete</option>
         <% specialisations.forEach(function(specialisation){ %>
-        <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
+            <option value="<%=specialisation.id%>"><%=specialisation.name%></option>
         <%});%>
       </select>
     </form-group>
@@ -32,10 +32,10 @@
           <p>Praxis für:</p>
           <ul>
             <% specialisations.forEach(function(specialisation){%>
-            <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
-            <li><%=specialisation.name%></li>
-            <%}%>
-                            <%})%>
+                <%if(practice.therapists.filter(e => e.specialisation == specialisation.id).length > 0){ %>
+                    <li><%=specialisation.name%></li>
+                <%}%>
+            <%})%>
           </ul>
         </div>
         <div class="col-md-6 text-body pt-md-4">

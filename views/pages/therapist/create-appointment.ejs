@@ -83,28 +83,31 @@
         invalidChars: false,
       };
     },
+    
     methods: {
       getTimes: async function() {
         this.times = [];
-        let date = new Date(this.dateStr);
-        let weekday = getWeekdayForDatetime(date);
-        let worktime = this.therapist.worktimes.find((e) => e.weekday == weekday);
+        let date = new Date(this.dateStr)
+        let weekday = getWeekdayForDatetime(date)
+        let worktime = this.therapist.worktimes.find((e) => e.weekday == weekday)
+        const timeDifference = 120 * 60 * 1000
+        const appointmentLength = 30 * 60 * 1000
         if (worktime != undefined) {
           let time = worktime.from;
           while (new Date(this.dateStr + "T" + time).getTime() < new Date(this.dateStr + "T" + worktime.till).getTime()) {
-            if (this.therapist.appointments.filter((e) => e.from == time && new Date(new Date(e.date).getTime() + 120 * 60 * 1000).toISOString().substring(0, 10) == date.toISOString().substring(0, 10)).length == 0) {
+            if (this.therapist.appointments.filter((e) => e.from == time && new Date(new Date(e.date).getTime() + timeDifference).toISOString().substring(0, 10) == date.toISOString().substring(0, 10)).length == 0) {
               this.times.push(time);
               this.noTimes = false
             }
-            time = new Date(new Date(this.dateStr + "T" + time).getTime() + 30 * 60 * 1000).toLocaleTimeString('de-DE');
+            time = new Date(new Date(this.dateStr + "T" + time).getTime() + appointmentLength).toLocaleTimeString('de-DE');
           }
         }
         if (this.times.length == 0) {
           this.noTimes = true
         }
       },
-      validate: function() {
 
+      validate: function() {
         let lettersOnly = /^[a-zA-ZäöüÄÖÜß]*$/;
         this.invalidChars = !(
           lettersOnly.test(this.name) && lettersOnly.test(this.firstname)
@@ -116,6 +119,7 @@
         }
       },
     },
+
     async created() {
       let url = new URL(origin + "/therapist/<%=therapist.id%>/patients");
       await fetch(url)
@@ -128,6 +132,7 @@
         .then((data) => (this.therapist = data));
     },
   });
+
   app.mount("#app");
 
   function getWeekdayForDatetime(date) {

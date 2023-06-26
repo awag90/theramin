@@ -31,9 +31,6 @@ module.exports = {
         sails.log("Uploaded!");
       }
 
-      sails.log.debug("req.body:", req.body);
-
-
       let fname = require("path").basename(uploadedFiles[0].fd);
       let documentName = req.body.documentName;// Holen Sie den Namen des Dokuments aus dem Formularfeld
 

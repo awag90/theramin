@@ -60,8 +60,7 @@ password attempt.`,
     },
 
     badCombo: {
-      description: `The provided email and password combination does not
-      match any user in the database.`,
+      description: `The provided email and password combination does not match any user in the database.`,
       responseType: 'unauthorized'
       // ^This uses the custom `unauthorized` response located in `api/responses/unauthorized.js`.
       // To customize the generic "unauthorized" response across this entire app, change that file

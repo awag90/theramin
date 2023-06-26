@@ -10,15 +10,16 @@ export default {
     return {
       therapists: [],
       times: [],
+      hour: 60 * 60 * 1000,
       day: new Date(),
     };
   },
   methods: {
     increment: function () {
       if (this.day.getDay() != 5) {
-        this.day = new Date(this.day.getTime() + 24 * 60 * 60 * 1000);
+        this.day = new Date(this.day.getTime() + 24 * this.hour);
       } else {
-        this.day = new Date(this.day.getTime() + 3 * 24 * 60 * 60 * 1000);
+        this.day = new Date(this.day.getTime() + 3 * 24 * this.hour);
       }
       this.setTimes();
     },
@@ -26,9 +27,9 @@ export default {
     decrement: function () {
       if (this.day.getTime() > new Date().getTime()) {
         if (this.day.getDay() != 1) {
-          this.day = new Date(this.day.getTime() - 24 * 60 * 60 * 1000);
+          this.day = new Date(this.day.getTime() - 24 * this.hour);
         } else {
-          this.day = new Date(this.day.getTime() - 3 * 24 * 60 * 60 * 1000);
+          this.day = new Date(this.day.getTime() - 3 * 24 * this.hour);
         }
       }
       this.setTimes();
@@ -38,8 +39,8 @@ export default {
       this.day.setHours(0, 0, 0, 0);
       this.times = [];
       for (
-        let i = this.day.getTime() + 3600000 * 8;
-        i < this.day.getTime() + 3600000 * 20;
+        let i = this.day.getTime() +  8 * this.hour ;
+        i < this.day.getTime() +  20 * this.hour;
         i += 1800000
       ) {
         this.times.push(new Date(i));
@@ -75,9 +76,9 @@ export default {
       .then((data) => (this.therapists = data));
 
     if (this.day.getDay() == 6) {
-      this.day = new Date(this.day.getTime() + 2 * 24 * 60 * 60 * 1000);
+      this.day = new Date(this.day.getTime() + 2 * 24 * this.hour);
     } else if (this.day.getDay() == 0) {
-      this.day = new Date(this.day.getTime() - 24 * 60 * 60 * 1000);
+      this.day = new Date(this.day.getTime() - 24 * this.hour);
     }
     this.setTimes();
   },

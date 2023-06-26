@@ -24,9 +24,12 @@ module.exports = {
 
   createAsTherapist: async function (req, res) {
     sails.log.debug("Creating appointment...");
+    
     let params = req.allParams();
+    const appoinmentLength = 30 * 60 * 1000
     let therapist = await Therapist.findOne({ id: params.therapist });
     let patient = "";
+    
     if (params.patId != undefined) {
       patient = await Patient.findOne({ id: params.patId });
     } else {
@@ -35,8 +38,9 @@ module.exports = {
         firstname: params.patFirstname,
       }).fetch();
     }
-    sails.log.debug(patient)
-    let till = new Date(new Date(params.date + "T" + params.time).getTime() + 30 * 60 * 1000).toLocaleTimeString("de-DE");
+    
+    let till = new Date(new Date(params.date + "T" + params.time).getTime() + appoinmentLength).toLocaleTimeString("de-DE");
+    
     let appointment = await Appointment.create({
       therapist: therapist.id,
       patient: patient.id,
@@ -45,6 +49,7 @@ module.exports = {
       till: till,
       indication: params.indication,
     });
+
     res.redirect("/therapist/overview");
   },
 
