@@ -9,18 +9,33 @@ const Sails = require("sails/lib/app/Sails");
 
 module.exports = {
     create: async function (req, res) {
+        try{
         sails.log.debug("Creating practice...")
         let params = req.allParams()
         let practice = await Practice.create(params).fetch()
         let specialisations = await Specialisation.find()
         res.view('pages/therapist/new', { practice: practice, specialisations: specialisations })
+         } catch (err){
+
+            if(err.name ==='UsageError'){
+                return res.view('error',{message: 'Ungültige Eingabe.'});
+            } else{
+                return res.serverError(err);
+            }
+
+        }
+    
     },
 
     find: async function (req, res) {
+        try{
         sails.log.debug("Listing all practices...")
         let practices = await Practice.find().populate('therapists')
         let specialisations = await Specialisation.find()
         res.view('pages/practice/search', { practices: practices, specialisations: specialisations })
+        }catch (err) {
+            res.status(500).send("Praxis konnte nicht gefunden worden");
+        }
     },
 
     findByCriteria: async function (req, res) {
