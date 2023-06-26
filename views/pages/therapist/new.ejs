@@ -1,5 +1,10 @@
 <div class="container p-4 px-3">
   <div id="app" class="card shadow px-4 pt-2">
+    <% if (typeof error !== 'undefined'){%> 
+    <div class ="alert alert-danger" role="alert">
+      <%= error %>
+    </div>
+    <% } %>
     <form action="/therapist" method="post">
       <div id="app">
         <input type="hidden" value="<%=practice.id%>" name="practice" />

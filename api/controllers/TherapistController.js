@@ -7,7 +7,9 @@
 const Sails = require("sails/lib/app/Sails");
 
 module.exports = {
+
   create: async function (req, res) {
+    try {
     sails.log.debug("Creating therapist...");
     let params = req.allParams();
     let isAdmin = params.isAdmin !== undefined;
@@ -50,7 +52,20 @@ module.exports = {
       req.session.userId = newUserRecord.id;
     }
     res.redirect("/practice/" + therapist.practice + "/admin");
-  },
+  } catch (err){
+    if (err.code === "E_UNIQUE" ) {
+      // E-Mail-Adresse bereits vorhanden
+      return res.view("createTherapist", { error: "Die E-Mail-Adresse ist bereits in Verwendung." });
+    } else if (err.name === "UsageError") {
+      // Ungültige Eingaben
+      return res.view("createTherapist", { error: "Ungültige Eingaben." });
+    } else {
+      // Andere Fehler
+      return res.serverError(err);
+    }
+
+  }
+},
 
   edit: async function (req, res) {
     sails.log.debug("Opening Edit-Site for therapist...");
