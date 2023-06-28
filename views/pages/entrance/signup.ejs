@@ -80,7 +80,7 @@
         if (this.password == this.confirm && this.password.length >= 8) {
           this.passwordsMatch = true;
           this.fieldclass = "form-control border-success border-2";
-        } else if (this.password.length >= 0) {
+        } else if (this.password.length > 0) {
           this.passwordsMatch = false;
           this.fieldclass = "form-control border-danger border-2";
         }
