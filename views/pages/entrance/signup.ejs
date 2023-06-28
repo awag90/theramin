@@ -40,7 +40,7 @@
             </div>
             <div class="row">
               <div class="form-check p-4">
-                <input @input="validate" v-model="accepted" class="form-check-input" id="terms-agreement" name="termsAgreement" type="checkbox" required />
+                <input @change="validate" v-model="accepted" class="form-check-input" id="terms-agreement" name="termsAgreement" type="checkbox" required />
                 <label for="terms-agreement" class="form-check-label">Ich habe die
                   <a target="_blank" href="/terms"> Nutzungsbedingungen</a>
                   gelesen &amp; stimme zu.</label>
