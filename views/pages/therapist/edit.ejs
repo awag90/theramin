@@ -4,11 +4,11 @@
       <div class="row">
         <div class="form-group col-md-6 px-0">
           <label class="form-label">Name</label>
-          <input type="text" v-model="name" class="form-control" maxlength="50" minlength="0" name="name" @change="validate" required />
+          <input type="text" v-model="name" class="form-control" maxlength="50" minlength="0" name="name" @input="validate" required />
         </div>
         <div class="form-group col-md-6 px-0 pl-md-4">
           <label class="form-label">Vorname</label>
-          <input type="text" v-model="firstname" class="form-control" maxlength="50" minlength="0" name="firstname" @change="validate" required />
+          <input type="text" v-model="firstname" class="form-control" maxlength="50" minlength="0" name="firstname" @input="validate" required />
         </div>
       </div>
       <div v-if="invalidChars" class="text-center text-danger">
@@ -16,7 +16,7 @@
       </div>
       <div class="row form-group px-0">
         <label class="form-label">E-Mail</label>
-        <input type="email" class="form-control" maxlength="100" minlength="0" name="emailAddress" value="<%=therapist.user.emailAddress%>" @change="validate" required />
+        <input type="email" class="form-control" maxlength="100" minlength="0" name="emailAddress" value="<%=therapist.user.emailAddress%>" @input="validate" required />
       </div>
       <div class="row">
         <div class="form-group">
@@ -40,9 +40,9 @@
       <div class="row">
         <div class="form-check p-4">
           <% if (therapist.user.isPracticeAdmin){%>
-          <input checked type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate" />
+          <input checked type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @input="validate" />
           <% }else{ %>
-          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @change="validate" />
+          <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" @input="validate" />
           <%}%>
                     <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
                 </div>

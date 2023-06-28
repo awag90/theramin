@@ -12,11 +12,11 @@
             <div class="row">
               <div class="form-group col-md-6 px-0">
                 <label class="form-label">Name</label>
-                <input type="text" v-model="name" @change="validate" class="form-control" maxlength="50" minlength="0" name="name" placeholder="Name" required />
+                <input type="text" v-model="name" @input="validate" class="form-control" maxlength="50" minlength="0" name="name" placeholder="Name" required />
               </div>
               <div class="form-group col-md-6 px-0 pl-md-4">
                 <label class="form-label">Vorname</label>
-                <input type="text" v-model="firstname" @change="validate" class="form-control" maxlength="50" minlength="0" name="firstname" placeholder="Vorname" required />
+                <input type="text" v-model="firstname" @input="validate" class="form-control" maxlength="50" minlength="0" name="firstname" placeholder="Vorname" required />
               </div>
             </div>
             <div v-if="invalidChars" class="text-center text-danger">
@@ -32,15 +32,15 @@
             </div>
             <div class="row px-0 pt-2">
               <label class="form-label">Initiales Passwort</label>
-              <input v-model="password" @change="validate" type="password" class="form-control" minlength="8" maxlength="50" name="password" placeholder="••••••••" required />
+              <input v-model="password" @input="validate" type="password" class="form-control" minlength="8" maxlength="50" name="password" placeholder="••••••••" required />
             </div>
             <div class="row px-0 pt-2">
               <label for="confirm-password">Passwort bestätigen</label>
-              <input v-model="confirm" @change="validate" :class="fieldclass" name="confirmPassword" type="password" maxlength="50" placeholder="••••••••" autocomplete="new-password" required />
+              <input v-model="confirm" @input="validate" :class="fieldclass" name="confirmPassword" type="password" maxlength="50" placeholder="••••••••" autocomplete="new-password" required />
             </div>
             <div class="row">
               <div class="form-check p-4">
-                <input @change="validate" v-model="accepted" class="form-check-input" id="terms-agreement" name="termsAgreement" type="checkbox" required />
+                <input @input="validate" v-model="accepted" class="form-check-input" id="terms-agreement" name="termsAgreement" type="checkbox" required />
                 <label for="terms-agreement" class="form-check-label">Ich habe die
                   <a target="_blank" href="/terms"> Nutzungsbedingungen</a>
                   gelesen &amp; stimme zu.</label>
@@ -80,7 +80,7 @@
         if (this.password == this.confirm && this.password.length >= 8) {
           this.passwordsMatch = true;
           this.fieldclass = "form-control border-success border-2";
-        } else {
+        } else if (this.password.length >= 0) {
           this.passwordsMatch = false;
           this.fieldclass = "form-control border-danger border-2";
         }
