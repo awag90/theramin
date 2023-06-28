@@ -51,7 +51,7 @@ module.exports = {
     if (!req.session.userId) {
       req.session.userId = newUserRecord.id;
     }
-    res.redirect("/practice/" + therapist.practice + "/admin");
+    res.redirect("/practice/admin");
   } catch (err){
     if (err.code === "E_UNIQUE" ) {
       // E-Mail-Adresse bereits vorhanden
