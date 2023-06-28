@@ -15,7 +15,7 @@ module.exports = {
     date: { type: 'ref', columnType: 'date', required: true },
     from: { type: 'ref', columnType: 'time', required: true },
     till: { type: 'ref', columnType: 'time', required: true },
-    indication: { type: 'string', columnType: 'text', maxLength: 50, minLength: 0, example: "Rückenschmerzen" },
+    indication: { type: 'string', columnType: 'text', maxLength: 300, minLength: 0, example: "Rückenschmerzen" },
 
 
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

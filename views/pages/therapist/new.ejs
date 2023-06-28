@@ -50,11 +50,10 @@
             <%if(req.me){%>
             <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" />
             <%}else{%>
-            <input type="checkbox" value="true" class="form-check-input" name="isAdmin" id="checkAdmin" checked disabled />
+            <input type="checkbox" value="true" class="form-check-input" id="checkAdmin" checked disabled/>
+            <input type="hidden" value="true" name="isAdmin">
             <%}%>
-            <label class="form-check-label" for="checkAdmin"
-              >Ist Praxis-Administrator</label
-            >
+            <label class="form-check-label" for="checkAdmin">Ist Praxis-Administrator</label>
           </div>
         </div>
         <div class="row justify-content-center">
@@ -86,7 +85,7 @@
     },
     methods: {
       validate: function () {
-        if (this.password == this.confirm) {
+        if (this.password.length > 0 && this.password == this.confirm) {
           this.passwordsMatch = true;
           this.fieldclass = "form-control border-success border-2";
         } else {
