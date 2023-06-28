@@ -110,7 +110,7 @@ module.exports = {
 
   show: async function (req, res) {
     sails.log.debug("Loading therapist overview...");
-    let therapist = await Therapist.findOne({ id: req.session.userId })
+    let therapist = await Therapist.findOne({ user: req.session.userId })
       .populate("practice")
       .populate("worktimes")
       .populate("user");
