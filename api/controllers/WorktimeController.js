@@ -29,7 +29,7 @@ module.exports = {
             }
         })
         let therapist = await Therapist.findOne({ id: req.param('therapist') })
-        res.redirect('practice/' + therapist.practice + '/admin')
+        res.redirect('practice/admin')
     },
 
 };

@@ -75,7 +75,7 @@ module.exports = {
         sails.log.debug('Updating practice...')
         let params = req.allParams()
         await Practice.updateOne({ id: req.params.id }).set(params)
-        res.redirect('/practice/' + req.params.id + '/admin')
+        res.redirect('/practice/admin')
     },
 
     admin: async function (req, res) {

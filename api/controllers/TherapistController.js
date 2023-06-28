@@ -97,7 +97,7 @@ module.exports = {
     if (user.id = req.session.userId) {
       res.redirect("/therapist/overview")
     } else {
-      res.redirect("/practice/" + therapist.practice + "/admin")
+      res.redirect("/practice/admin")
     }
   },
 
@@ -105,7 +105,7 @@ module.exports = {
     sails.log.debug("Deleting therapist...");
     let user = await User.destroyOne({ id: req.param.user });
     let therapist = await Therapist.destroyOne({ id: req.params.id });
-    res.redirect("/practice/" + therapist.practice + "/admin");
+    res.redirect("/practice/admin");
   },
 
   show: async function (req, res) {
