@@ -103,7 +103,8 @@ module.exports = {
 
   destroy: async function (req, res) {
     sails.log.debug("Deleting therapist...");
-    let user = await User.destroyOne({ id: req.param.user });
+    let user = await User.destroyOne({ id: req.params.user });
+    let worktimes = await worktimes.destroy({therapist: req.params.id})
     let therapist = await Therapist.destroyOne({ id: req.params.id });
     res.redirect("/practice/admin");
   },
